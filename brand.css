@@ -1,0 +1,144 @@
+/* ===== Descomplica Visto — Brand System ===== */
+:root{
+  --navy-950:#040A18;
+  --navy-900:#06112A;
+  --navy-800:#091a3d;
+  --navy-700:#0c2350;
+  --navy-600:#123067;
+  --royal:#1c4f9c;
+  --gold-50:#FCEFC0;
+  --gold-100:#F7E2A0;
+  --gold-300:#EBC56A;
+  --gold-500:#D6A23E;
+  --gold-600:#C2902F;
+  --gold-700:#A9781F;
+  --ink:#ECF2FE;
+  --muted:#9DB0D6;
+  --muted-dim:#6F82A8;
+  --line:rgba(214,162,62,.28);
+  --line-soft:rgba(157,176,214,.16);
+  --maxw:1180px;
+  --green:#1f9e57;
+  --green-d:#16804a;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+  --shadow-card:0 24px 60px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Hanken Grotesk",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--navy-950);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.gold{
+  background:var(--gold-grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.serif{font-family:"Playfair Display",Georgia,serif;}
+.cinzel{font-family:"Cinzel",serif;letter-spacing:.14em;}
+.eyebrow{
+  font-family:"Cinzel",serif;font-weight:600;
+  letter-spacing:.32em;text-transform:uppercase;
+  font-size:.72rem;color:var(--gold-300);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+
+.band{
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(28,79,156,.26) 0%, transparent 55%),
+    linear-gradient(180deg,var(--navy-900) 0%, var(--navy-950) 100%);
+  position:relative;
+}
+.band-alt{
+  background:
+    radial-gradient(90% 70% at 50% 0%, rgba(28,79,156,.22) 0%, transparent 60%),
+    linear-gradient(180deg,var(--navy-950),#071638 50%,var(--navy-950));
+  position:relative;
+}
+.dots{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.4px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 30%, #000 30%, transparent 80%);
+  mask-image:radial-gradient(120% 90% at 50% 30%, #000 30%, transparent 80%);
+  opacity:.55;
+}
+
+/* section heading */
+.sec-head{text-align:center;max-width:760px;margin:0 auto 56px;}
+.sec-title{
+  font-family:"Playfair Display",serif;font-weight:700;
+  font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.08;
+  letter-spacing:-.01em;margin-top:14px;text-wrap:balance;
+}
+.sec-intro{color:var(--muted);font-size:1.08rem;margin-top:18px;text-wrap:pretty;}
+.section-pad{padding:104px 0;position:relative;}
+
+/* divider */
+.divider{display:flex;align-items:center;gap:16px;justify-content:center;}
+.divider .ln{height:1px;width:90px;background:linear-gradient(90deg,transparent,var(--gold-500));}
+.divider .ln.r{background:linear-gradient(270deg,transparent,var(--gold-500));}
+.divider .dia{width:8px;height:8px;background:var(--gold-grad-flat);transform:rotate(45deg);box-shadow:0 0 12px rgba(214,162,62,.6);}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:11px;justify-content:center;
+  font-family:"Hanken Grotesk",sans-serif;font-weight:700;font-size:1.02rem;
+  padding:17px 30px;border-radius:12px;cursor:pointer;border:none;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  text-align:center;line-height:1.2;
+}
+.btn svg{flex:none}
+.btn-gold{
+  background:var(--gold-grad-flat);color:#2a1c04;
+  box-shadow:0 14px 34px rgba(214,162,62,.32);
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(214,162,62,.45);}
+.btn-wa{
+  background:linear-gradient(180deg,#23b85c,#16894a);color:#fff;
+  box-shadow:0 14px 34px rgba(31,158,87,.30);
+}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(31,158,87,.45);}
+.btn-ghost{
+  background:rgba(236,242,254,.04);color:var(--ink);
+  border:1px solid var(--line);
+}
+.btn-ghost:hover{border-color:var(--gold-500);background:rgba(214,162,62,.08);transform:translateY(-2px);}
+.btn-lg{padding:20px 38px;font-size:1.1rem;}
+.btn-block{width:100%;}
+
+/* pill / tag */
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Cinzel",serif;letter-spacing:.18em;text-transform:uppercase;
+  font-size:.68rem;color:var(--gold-100);
+  border:1px solid var(--line);border-radius:30px;padding:8px 16px;
+  background:rgba(214,162,62,.05);
+}
+
+/* card */
+.card{
+  border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,rgba(12,35,80,.42),rgba(6,17,42,.5));
+  padding:32px;position:relative;overflow:hidden;
+}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* flight path decoration */
+.flight{position:absolute;pointer-events:none;}
+
+@media(max-width:860px){
+  .wrap{padding:0 22px;}
+  .section-pad{padding:74px 0;}
+}

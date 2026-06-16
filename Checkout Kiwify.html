@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Assessoria em Ebook | Descomplica Visto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Brand tokens ── */
+:root{
+  --navy-950:#040A18;--navy-900:#06112A;--navy-800:#091a3d;--navy-700:#0c2350;
+  --gold-50:#FCEFC0;--gold-100:#F7E2A0;--gold-300:#EBC56A;--gold-500:#D6A23E;
+  --gold-600:#C2902F;--gold-700:#A9781F;
+  --ink:#ECF2FE;--muted:#9DB0D6;--muted-dim:#6F82A8;
+  --line:rgba(214,162,62,.28);--line-soft:rgba(157,176,214,.16);
+  --green:#1f9e57;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;color:var(--ink);background:var(--navy-950);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ── noise grain ── */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.04;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+.gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.serif{font-family:"Playfair Display",Georgia,serif;}
+.cinzel{font-family:"Cinzel",serif;letter-spacing:.14em;}
+
+/* ── buttons ── */
+.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;font-family:"Hanken Grotesk",sans-serif;font-weight:700;font-size:1rem;padding:17px 30px;border-radius:12px;cursor:pointer;border:none;transition:transform .18s,box-shadow .18s;text-align:center;line-height:1.2;position:relative;overflow:hidden;}
+.btn svg{flex:none}
+.btn-gold{background:var(--gold-grad-flat);color:#2a1c04;box-shadow:0 14px 34px rgba(214,162,62,.32);}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(214,162,62,.45);}
+.btn-gold::after{content:"";position:absolute;top:0;left:-75%;width:45%;height:100%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);}
+.btn-gold:hover::after{animation:sheen .9s ease;}
+@keyframes sheen{to{left:145%}}
+.btn-lg{padding:20px 38px;font-size:1.12rem;}
+.btn-block{width:100%;}
+
+/* ── top bar ── */
+.co-top{padding:18px 0;border-bottom:1px solid var(--line-soft);background:rgba(6,17,42,.7);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;}
+.co-top-inner{max-width:1060px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.brand{display:flex;align-items:center;gap:11px;}
+.brand img{height:40px;border-radius:8px;}
+.brand .nm{font-family:"Playfair Display",serif;font-weight:700;font-size:.95rem;}
+.brand .nm small{display:block;font-family:"Cinzel",serif;font-size:.48rem;letter-spacing:.24em;color:var(--gold-300);margin-top:3px;}
+.secure{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:.82rem;}
+.secure svg{color:var(--green);filter:drop-shadow(0 0 5px rgba(31,158,87,.5));}
+
+/* ── layout ── */
+.co-wrap{max-width:1060px;margin:0 auto;padding:36px 28px 80px;}
+.co-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:start;}
+
+/* ── left marketing column ── */
+.mkt{display:flex;flex-direction:column;gap:20px;}
+
+/* hero card */
+.hero-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#091a3d 0%,#040c22 100%);position:relative;}
+.hero-card .bg-glow{position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(214,162,62,.18),transparent 70%);pointer-events:none;}
+.hero-card .bg-glow2{position:absolute;bottom:-80px;left:-40px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(28,79,156,.25),transparent 70%);pointer-events:none;}
+.hero-inner{padding:32px 36px;display:flex;gap:28px;align-items:center;position:relative;z-index:1;}
+.ebook-wrap{flex:none;position:relative;}
+.ebook-wrap img{width:110px;border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 1px rgba(214,162,62,.35);}
+.ebook-badge{position:absolute;top:-10px;right:-14px;background:var(--gold-grad-flat);color:#2a1c04;font-family:"Cinzel",serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;padding:5px 10px;border-radius:20px;white-space:nowrap;box-shadow:0 4px 12px rgba(214,162,62,.4);}
+.hero-copy{flex:1;}
+.hero-eyebrow{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.3em;color:var(--gold-300);text-transform:uppercase;margin-bottom:10px;}
+.hero-title{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.35rem,2.5vw,1.75rem);line-height:1.1;text-wrap:balance;}
+.hero-sub{color:var(--muted);font-size:.9rem;margin-top:10px;line-height:1.5;}
+.hero-divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:14px 0;}
+.hero-stats{display:flex;gap:20px;flex-wrap:wrap;}
+.hero-stat .n{font-family:"Playfair Display",serif;font-weight:800;font-size:1.4rem;color:var(--gold-300);}
+.hero-stat .l{font-size:.75rem;color:var(--muted-dim);}
+
+/* timer */
+.timer-card{border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,rgba(12,35,80,.5),rgba(4,10,24,.6));padding:18px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.timer-label{font-family:"Cinzel",serif;font-size:.62rem;letter-spacing:.22em;color:var(--gold-300);text-transform:uppercase;flex:none;}
+.timer-display{display:flex;gap:10px;align-items:center;}
+.t-unit{text-align:center;}
+.t-num{font-family:"Playfair Display",serif;font-weight:800;font-size:2rem;line-height:1;color:var(--gold-100);background:rgba(214,162,62,.08);border:1px solid var(--line);border-radius:9px;padding:8px 14px;min-width:54px;display:block;}
+.t-sep{font-size:1.4rem;color:var(--gold-500);margin-bottom:18px;}
+.t-lbl{font-size:.6rem;color:var(--muted-dim);margin-top:4px;font-family:"Cinzel",serif;letter-spacing:.1em;text-transform:uppercase;}
+.timer-urgency{margin-left:auto;font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.timer-urgency svg{color:#e07070;}
+
+/* included list */
+.inc-card{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(12,35,80,.38),rgba(6,17,42,.45));overflow:hidden;}
+.inc-card .card-head{padding:16px 22px;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;gap:10px;}
+.inc-card .card-head .step{width:28px;height:28px;border-radius:50%;background:var(--gold-grad-flat);color:#2a1c04;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex:none;}
+.inc-card .card-head h3{font-family:"Playfair Display",serif;font-weight:700;font-size:1.05rem;}
+.inc-body{padding:20px 22px;display:flex;flex-direction:column;gap:13px;}
+.inc-item{display:flex;align-items:flex-start;gap:12px;}
+.inc-check{width:22px;height:22px;border-radius:50%;background:rgba(31,158,87,.15);border:1px solid rgba(31,158,87,.35);display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px;}
+.inc-check svg{color:var(--green);}
+.inc-text .t{font-weight:600;font-size:.95rem;}
+.inc-text .s{font-size:.78rem;color:var(--muted-dim);margin-top:1px;}
+.inc-text .val{font-size:.72rem;color:var(--gold-300);font-family:"Cinzel",serif;letter-spacing:.1em;text-decoration:line-through;opacity:.7;}
+
+/* benefits */
+.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.ben{border:1px solid var(--line-soft);border-radius:14px;padding:18px 16px;background:rgba(12,35,80,.25);text-align:center;}
+.ben .ico{width:42px;height:42px;border-radius:50%;background:rgba(214,162,62,.1);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;color:var(--gold-300);}
+.ben .bt{font-weight:700;font-size:.9rem;line-height:1.2;}
+.ben .bs{font-size:.76rem;color:var(--muted-dim);margin-top:5px;}
+
+/* testimonials */
+.testi-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.testi{border:1px solid var(--line-soft);border-radius:14px;padding:18px 18px 16px;background:linear-gradient(170deg,rgba(12,35,80,.35),rgba(4,10,24,.45));}
+.testi .stars{color:var(--gold-300);font-size:.8rem;letter-spacing:2px;margin-bottom:10px;}
+.testi p{font-size:.84rem;color:var(--muted);line-height:1.55;font-style:italic;}
+.testi .who{display:flex;align-items:center;gap:9px;margin-top:13px;padding-top:11px;border-top:1px solid var(--line-soft);}
+.testi .ph{width:32px;height:32px;border-radius:50%;background:var(--gold-grad-flat);color:#2a1c04;font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center;flex:none;}
+.testi .nm{font-weight:700;font-size:.82rem;}
+.testi .mt{font-size:.72rem;color:var(--muted-dim);}
+
+/* trust row */
+.trust-row{display:flex;gap:12px;flex-wrap:wrap;}
+.trust-item{flex:1;min-width:130px;border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;background:rgba(12,35,80,.2);display:flex;align-items:center;gap:10px;}
+.trust-item .ti{color:var(--gold-300);}
+.trust-item .tt{font-weight:700;font-size:.84rem;}
+.trust-item .ts{font-size:.72rem;color:var(--muted-dim);}
+
+/* ── right payment column ── */
+.pay-col{position:sticky;top:80px;display:flex;flex-direction:column;gap:0;}
+.pay-panel{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(12,35,80,.45),rgba(6,17,42,.55));overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);}
+
+/* product summary */
+.prod-sum{padding:22px 24px;border-bottom:1px solid var(--line-soft);}
+.prod-row{display:flex;gap:14px;align-items:center;margin-bottom:18px;}
+.prod-cover{width:54px;height:78px;border-radius:7px;overflow:hidden;flex:none;background:linear-gradient(170deg,#0d2456,#040c22);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.5);}
+.prod-cover img{width:100%;height:100%;object-fit:cover;border-radius:6px;}
+.prod-info h4{font-family:"Playfair Display",serif;font-weight:700;font-size:1rem;line-height:1.2;}
+.prod-info .pi{color:var(--muted-dim);font-size:.77rem;margin-top:3px;}
+.prod-info .fmt{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:.7rem;color:var(--gold-300);}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.price-old{color:var(--muted-dim);text-decoration:line-through;font-size:.9rem;}
+.price-new{font-family:"Playfair Display",serif;font-weight:800;font-size:2rem;line-height:1;}
+.price-new small{font-size:1rem;}
+.price-disc{background:rgba(31,158,87,.15);color:var(--green);border:1px solid rgba(31,158,87,.3);border-radius:20px;font-size:.72rem;font-weight:700;padding:3px 10px;}
+
+/* form */
+.form-wrap{padding:22px 24px;}
+.form-sec{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.22em;color:var(--gold-300);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.form-sec::after{content:"";flex:1;height:1px;background:var(--line-soft);}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:7px;font-weight:500;}
+.field input{width:100%;background:rgba(4,10,24,.6);border:1px solid var(--line-soft);border-radius:10px;padding:13px 15px;color:var(--ink);font-family:inherit;font-size:.95rem;transition:border-color .2s,box-shadow .2s;}
+.field input:focus{outline:none;border-color:var(--gold-500);box-shadow:0 0 0 3px rgba(214,162,62,.13);}
+.field input::placeholder{color:var(--muted-dim);}
+.field.err input{border-color:#c86a6a;}
+.field .msg{color:#e08a8a;font-size:.76rem;margin-top:5px;display:none;}
+.field.err .msg{display:block;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+/* payment methods */
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.pay-opt{border:1px solid var(--line-soft);border-radius:12px;padding:13px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:.2s;background:rgba(4,10,24,.4);}
+.pay-opt:hover{border-color:var(--line);}
+.pay-opt.sel{border-color:var(--gold-500);background:rgba(214,162,62,.07);box-shadow:0 0 0 3px rgba(214,162,62,.1);}
+.pay-opt .rd{width:18px;height:18px;border-radius:50%;border:2px solid var(--muted-dim);flex:none;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.pay-opt.sel .rd{border-color:var(--gold-500);}
+.pay-opt.sel .rd::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold-grad-flat);}
+.pay-opt .pt{font-weight:700;font-size:.9rem;}
+.pay-opt .ps{color:var(--muted-dim);font-size:.72rem;}
+.pay-opt .pico{margin-left:auto;color:var(--gold-300);}
+.pay-detail{padding:14px;border:1px dashed var(--line-soft);border-radius:11px;background:rgba(4,10,24,.35);font-size:.85rem;color:var(--muted);margin-bottom:14px;}
+.pix-box{display:flex;gap:14px;align-items:center;}
+.pix-q{width:66px;height:66px;border-radius:8px;background:#fff;flex:none;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);padding:7px;gap:2px;}
+.pix-q i{background:#06112a;border-radius:1px;}
+
+/* card fields */
+.card-detail{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.card-detail .field{margin-bottom:0;}
+
+/* pay button */
+.pay-btn-wrap{padding:0 24px 20px;}
+.trust-badges{padding:0 24px 22px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line-soft);padding-top:16px;}
+.tb-item{display:flex;align-items:center;gap:5px;color:var(--muted-dim);font-size:.7rem;font-family:"Cinzel",serif;letter-spacing:.1em;}
+
+/* success modal */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(4,10,24,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px;}
+.modal.open{display:flex;}
+.modal-card{max-width:440px;width:100%;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#0b2050,#06112a);padding:40px 34px;text-align:center;box-shadow:0 40px 90px rgba(0,0,0,.6);}
+.modal-card .seal{width:82px;height:82px;margin:0 auto 18px;border-radius:50%;border:3px solid var(--gold-500);display:flex;align-items:center;justify-content:center;color:var(--gold-300);animation:sealGlow 3.4s ease-in-out infinite;}
+@keyframes sealGlow{0%,100%{box-shadow:0 0 28px rgba(214,162,62,.3),inset 0 0 16px rgba(214,162,62,.12)}50%{box-shadow:0 0 50px rgba(214,162,62,.5),inset 0 0 20px rgba(214,162,62,.2)}}
+.modal-card h3{font-family:"Playfair Display",serif;font-weight:800;font-size:1.65rem;}
+.modal-card p{color:var(--muted);margin-top:10px;font-size:.95rem;}
+.modal-card .em{color:var(--gold-100);font-weight:700;}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* responsive */
+@media(max-width:860px){
+  .co-grid{grid-template-columns:1fr;}
+  .pay-col{position:static;}
+  .ben-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:560px){
+  .co-wrap{padding:24px 16px 60px;}
+  .hero-inner{flex-direction:column;align-items:flex-start;}
+  .testi-row{grid-template-columns:1fr;}
+  .row2{grid-template-columns:1fr;}
+  .pay-methods{grid-template-columns:1fr;}
+  .ben-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<header class="co-top">
+  <div class="co-top-inner">
+    <div class="brand">
+      <img src="assets/logo-descomplica-visto.png" alt="Descomplica Visto">
+      <span class="nm">Descomplica Visto<small>Checkout Seguro</small></span>
+    </div>
+    <div class="secure">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Ambiente 100% seguro · SSL
+    </div>
+  </div>
+</header>
+
+<div class="co-wrap">
+
+  <!-- page title -->
+  <div style="margin-bottom:28px;" class="reveal">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.84rem;margin-bottom:14px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+      Voltar para o site
+    </a>
+    <h1 class="serif" style="font-weight:800;font-size:clamp(1.55rem,3.5vw,2.1rem);margin-bottom:6px;">Finalize sua compra</h1>
+    <p style="color:var(--muted);">Você está a um passo de dominar o processo do seu visto com segurança.</p>
+  </div>
+
+  <div class="co-grid">
+
+    <!-- ════════════════════════════════════════
+         LEFT — Marketing column
+    ════════════════════════════════════════ -->
+    <div class="mkt">
+
+      <!-- HERO CARD -->
+      <div class="hero-card reveal">
+        <div class="bg-glow"></div>
+        <div class="bg-glow2"></div>
+        <div class="hero-inner">
+          <div class="ebook-wrap">
+            <img src="assets/ebook-cover.png" alt="Ebook Descomplica Visto">
+            <span class="ebook-badge">OFERTA ESPECIAL</span>
+          </div>
+          <div class="hero-copy">
+            <p class="hero-eyebrow">Assessoria em Ebook · Descomplica Visto</p>
+            <h2 class="hero-title serif">Seu visto aprovado — <span class="gold">sem estresse, seguro e descomplicado </span></h2>
+            <p class="hero-sub">O guia completo de quem já orientou +500 brasileiros rumo aos EUA, Canadá e Europa.</p>
+            <div class="hero-divider"></div>
+            <div class="hero-stats">
+              <div class="hero-stat"><div class="n">+500</div><div class="l">clientes orientados</div></div>
+              <div class="hero-stat"><div class="n">90%</div><div class="l">taxa de aprovação</div></div>
+              <div class="hero-stat"><div class="n">14+</div><div class="l">anos de experiência</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COUNTDOWN TIMER -->
+      <div class="timer-card reveal">
+        <span class="timer-label">Oferta expira em</span>
+        <div class="timer-display">
+          <div class="t-unit"><span class="t-num" id="th">00</span><div class="t-lbl">horas</div></div>
+          <span class="t-sep">:</span>
+          <div class="t-unit"><span class="t-num" id="tm">29</span><div class="t-lbl">min</div></div>
+          <span class="t-sep">:</span>
+          <div class="t-unit"><span class="t-num" id="ts">59</span><div class="t-lbl">seg</div></div>
+        </div>
+        <div class="timer-urgency">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Preço volta a R$197 após o prazo
+        </div>
+      </div>
+
+      <!-- O QUE ESTÁ INCLUSO -->
+      <div class="inc-card reveal">
+        <div class="card-head">
+          <span class="step">✦</span>
+          <h3 class="serif">O que você recebe hoje</h3>
+        </div>
+        <div class="inc-body">
+          <div class="inc-item">
+            <div class="inc-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l5 5L20 6"/></svg></div>
+            <div class="inc-text"><div class="t">Guia completo em PDF</div><div class="s">Passo a passo do DS-160 à entrevista — linguagem simples e direta</div><div class="val">Valor R$197</div></div>
+          </div>
+          <div class="inc-item">
+            <div class="inc-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l5 5L20 6"/></svg></div>
+            <div class="inc-text"><div class="t">Vídeos explicativos</div><div class="s">Cada etapa detalhada em vídeo para você não errar nenhum detalhe</div><div class="val">Valor R$97</div></div>
+          </div>
+          <div class="inc-item">
+            <div class="inc-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l5 5L20 6"/></svg></div>
+            <div class="inc-text"><div class="t">Audiobook</div><div class="s">Ouça no caminho, na academia, onde quiser — conhecimento sempre com você</div><div class="val">Valor R$67</div></div>
+          </div>
+          <div class="inc-item">
+            <div class="inc-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l5 5L20 6"/></svg></div>
+            <div class="inc-text"><div class="t">Checklist de documentos</div><div class="s">Nunca esqueça nada — lista completa por perfil de viajante</div></div>
+          </div>
+          <div class="inc-item">
+            <div class="inc-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l5 5L20 6"/></svg></div>
+            <div class="inc-text"><div class="t">Simulação de entrevista</div><div class="s">As perguntas exatas do consulado e como respondê-las com segurança</div></div>
+          </div>
+          <div class="inc-item">
+            <div class="inc-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l5 5L20 6"/></svg></div>
+            <div class="inc-text"><div class="t">Acesso vitalício + atualizações</div><div class="s">Material sempre atualizado conforme as regras consulares mudam</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BENEFITS -->
+      <div class="ben-grid reveal">
+        <div class="ben">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="bt">Linguagem simples</div>
+          <div class="bs">Sem juridiquês — direto ao que importa</div>
+        </div>
+        <div class="ben">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+          <div class="bt">Expertise real</div>
+          <div class="bs">14 anos orientando brasileiros</div>
+        </div>
+        <div class="ben">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></div>
+          <div class="bt">Garantia 7 dias</div>
+          <div class="bs">100% do dinheiro de volta, sem perguntas</div>
+        </div>
+      </div>
+
+      <!-- DEPOIMENTOS -->
+      <div class="testi-row reveal">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p>"Com as orientações da Isis, todo o processo se tornou bem mais fácil e nos sentimos muito seguros. Durante a entrevista, foram feitas exatamente as perguntas que ela nos disse."</p>
+          <div class="who">
+            <span class="ph">MF</span>
+            <div><div class="nm">Marília Freitas</div><div class="mt">Visto Americano · Aprovado</div></div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p>"Incrível trabalho na tratativa do visto americano, tudo feito com muita competência, agilidade e atenção. Obrigado demais e super recomendo a Descomplica Visto."</p>
+          <div class="who">
+            <span class="ph">FO</span>
+            <div><div class="nm">Fábio de Oliveira</div><div class="mt">Visto Americano · Aprovado</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRUST ROW -->
+      <div class="trust-row reveal">
+        <div class="trust-item">
+          <div class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></div>
+          <div><div class="tt">Garantia 7 dias</div><div class="ts">Reembolso total</div></div>
+        </div>
+        <div class="trust-item">
+          <div class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div><div class="tt">Pagamento seguro</div><div class="ts">SSL 256-bit</div></div>
+        </div>
+        <div class="trust-item">
+          <div class="ti"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12l5 5L20 6"/></svg></div>
+          <div><div class="tt">Entrega imediata</div><div class="ts">No seu e-mail</div></div>
+        </div>
+      </div>
+
+    </div><!-- /mkt -->
+
+    <!-- ════════════════════════════════════════
+         RIGHT — Payment column
+    ════════════════════════════════════════ -->
+    <div class="pay-col">
+      <div class="pay-panel">
+
+        <!-- product summary -->
+        <div class="prod-sum">
+          <div class="prod-row">
+            <div class="prod-cover">
+              <img src="assets/ebook-cover.png" alt="Ebook">
+            </div>
+            <div class="prod-info">
+              <h4 class="serif">Assessoria em Ebook</h4>
+              <p class="pi">Ebook · Vídeos · Audiobook</p>
+              <span class="fmt">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>
+                Acesso vitalício
+              </span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted);margin-bottom:7px;">
+            <span>Treinamento <span style="text-decoration:line-through;color:var(--muted-dim)">R$197</span></span>
+            <span>R$97,00</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted);margin-bottom:14px;">
+            <span>Desconto especial</span>
+            <span style="color:var(--green);">−R$100,00</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;border-top:1px solid var(--line-soft);">
+            <span style="font-weight:700;">Total</span>
+            <div class="price-row" style="gap:8px;">
+              <span class="price-disc">−51%</span>
+              <span class="price-new gold serif">R$97<small>,00</small></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- form -->
+        <form class="form-wrap" id="kiwifyForm" novalidate>
+          <div class="form-sec">Seus dados</div>
+
+          <div class="field" id="f-name">
+            <label for="kname">Nome completo</label>
+            <input id="kname" type="text" placeholder="Como no seu documento" autocomplete="name">
+            <span class="msg">Informe seu nome.</span>
+          </div>
+          <div class="field" id="f-email">
+            <label for="kemail">E-mail (onde você recebe o treinamento)</label>
+            <input id="kemail" type="email" placeholder="voce@email.com" autocomplete="email">
+            <span class="msg">Informe um e-mail válido.</span>
+          </div>
+          <div class="row2">
+            <div class="field" id="f-cpf">
+              <label for="kcpf">CPF</label>
+              <input id="kcpf" type="text" placeholder="000.000.000-00" inputmode="numeric">
+              <span class="msg">Informe seu CPF.</span>
+            </div>
+            <div class="field" id="f-phone">
+              <label for="kphone">WhatsApp</label>
+              <input id="kphone" type="tel" placeholder="(00) 00000-0000" autocomplete="tel">
+              <span class="msg">Informe o telefone.</span>
+            </div>
+          </div>
+
+          <div class="form-sec" style="margin-top:18px;">Forma de pagamento</div>
+
+          <div class="pay-methods">
+            <div class="pay-opt sel" data-pay="pix">
+              <span class="rd"></span>
+              <div><div class="pt">Pix</div><div class="ps">Aprovação na hora</div></div>
+              <span class="pico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l4 4-4 4-4-4z"/><path d="M2 12l4-4 4 4-4 4z"/><path d="M22 12l-4-4-4 4 4 4z"/><path d="M12 14l4 4-4 4-4-4z"/></svg></span>
+            </div>
+            <div class="pay-opt" data-pay="card">
+              <span class="rd"></span>
+              <div><div class="pt">Cartão</div><div class="ps">Em até 12×</div></div>
+              <span class="pico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+            </div>
+          </div>
+
+          <!-- PIX detail -->
+          <div class="pay-detail" id="det-pix">
+            <div class="pix-box">
+              <div class="pix-q" id="pixQr"></div>
+              <div><b style="color:var(--ink)">Pague com Pix e receba na hora.</b><br><span style="font-size:.8rem;">Ao finalizar, geramos o QR Code. A confirmação é automática e o acesso chega no seu e-mail em segundos.</span></div>
+            </div>
+          </div>
+
+          <!-- Card detail -->
+          <div class="card-detail" id="det-card" style="display:none;">
+            <div class="field" style="margin-bottom:0;"><label>Número do cartão</label><input type="text" placeholder="0000 0000 0000 0000" inputmode="numeric"></div>
+            <div class="row2">
+              <div class="field" style="margin-bottom:0;"><label>Validade</label><input type="text" placeholder="MM/AA"></div>
+              <div class="field" style="margin-bottom:0;"><label>CVV</label><input type="text" placeholder="000" inputmode="numeric"></div>
+            </div>
+            <div class="field" style="margin-bottom:0;"><label>Nome no cartão</label><input type="text" placeholder="Como impresso no cartão"></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(31,158,87,.08);border:1px solid rgba(31,158,87,.2);border-radius:9px;font-size:.78rem;color:var(--muted);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--green);flex:none;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Seus dados são protegidos por criptografia SSL
+            </div>
+          </div>
+
+        </form>
+
+        <!-- pay button -->
+        <div class="pay-btn-wrap">
+          <button type="submit" form="kiwifyForm" class="btn btn-gold btn-lg btn-block" id="payBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Garantir acesso agora · R$97
+          </button>
+          <p style="text-align:center;font-size:.74rem;color:var(--muted-dim);margin-top:10px;">Você será cobrado apenas R$97,00 — sem assinatura</p>
+        </div>
+
+        <!-- trust badges -->
+        <div class="trust-badges">
+          <div class="tb-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> SSL</div>
+          <div class="tb-item">PIX</div>
+          <div class="tb-item">VISA</div>
+          <div class="tb-item">MASTER</div>
+          <div class="tb-item">7 DIAS GARANTIA</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /co-grid -->
+</div><!-- /co-wrap -->
+
+<!-- ── SUCCESS MODAL ── -->
+<div class="modal" id="successModal">
+  <div class="modal-card">
+    <div class="seal">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+    </div>
+    <h3 class="serif">Pagamento confirmado!</h3>
+    <p style="margin-top:10px;color:var(--muted);">Enviamos a <b style="color:var(--ink)">Assessoria em Ebook</b> para o e-mail <span class="em" id="confirmEmail" style="color:var(--gold-100);font-weight:700;"></span>. Verifique também a caixa de spam.</p>
+    <a class="btn btn-gold btn-block" href="https://wa.me/5584999185400?text=Acabei%20de%20comprar%20o%20ebook%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener" style="margin-top:22px;">
+      Quero também a assessoria completa
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <p style="margin-top:16px;font-size:.75rem;color:var(--muted-dim);padding-top:14px;border-top:1px solid var(--line-soft);">⚙️ <b>Modo demonstração</b> — nenhuma cobrança foi feita. Conecte o link do checkout Kiwify para processar pagamentos reais.</p>
+  </div>
+</div>
+
+<script>
+/* ── CONFIG ── cole o link do Kiwify aqui quando estiver pronto ── */
+const KIWIFY_URL = ""; // ex: "https://pay.kiwify.com.br/SEU-CODIGO"
+
+/* ── countdown timer ── */
+(()=>{
+  const saved = localStorage.getItem('dv_timer_end');
+  let end = saved ? parseInt(saved) : Date.now() + (29*60+59)*1000;
+  if (!saved) localStorage.setItem('dv_timer_end', end);
+  function tick(){
+    const diff = Math.max(0, end - Date.now());
+    const h = Math.floor(diff/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    document.getElementById('th').textContent = String(h).padStart(2,'0');
+    document.getElementById('tm').textContent = String(m).padStart(2,'0');
+    document.getElementById('ts').textContent = String(s).padStart(2,'0');
+    if (diff > 0) setTimeout(tick, 1000);
+  }
+  tick();
+})();
+
+/* ── payment method toggle ── */
+document.querySelectorAll('.pay-opt').forEach(o => {
+  o.onclick = () => {
+    document.querySelectorAll('.pay-opt').forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+    const m = o.dataset.pay;
+    document.getElementById('det-pix').style.display  = m === 'pix'  ? 'block' : 'none';
+    document.getElementById('det-card').style.display = m === 'card' ? 'flex'  : 'none';
+  };
+});
+
+/* ── fake pix qr ── */
+const qr = document.getElementById('pixQr');
+for(let i=0;i<49;i++){
+  const el = document.createElement(Math.random()>.5 ? 'i' : 'span');
+  qr.appendChild(el);
+}
+
+/* ── input masks ── */
+document.getElementById('kcpf').oninput = e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,11);
+  v = v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  e.target.value = v;
+};
+document.getElementById('kphone').oninput = e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,11);
+  v = v.replace(/(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2');
+  e.target.value = v;
+};
+
+/* ── form validation + submit ── */
+const form = document.getElementById('kiwifyForm');
+function setErr(id, bad){ document.getElementById(id).classList.toggle('err', bad); return !bad; }
+form.onsubmit = e => {
+  e.preventDefault();
+  if(KIWIFY_URL){ window.location.href = KIWIFY_URL; return; }
+  const name  = document.getElementById('kname').value.trim();
+  const email = document.getElementById('kemail').value.trim();
+  const cpf   = document.getElementById('kcpf').value.replace(/\D/g,'');
+  const phone = document.getElementById('kphone').value.replace(/\D/g,'');
+  let ok = true;
+  ok = setErr('f-name',  name.length < 3) && ok;
+  ok = setErr('f-email', !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) && ok;
+  ok = setErr('f-cpf',   cpf.length !== 11) && ok;
+  ok = setErr('f-phone', phone.length < 10) && ok;
+  if(!ok) return;
+  const btn = document.getElementById('payBtn');
+  btn.textContent = 'Processando…'; btn.disabled = true; btn.style.opacity = .7;
+  setTimeout(()=>{
+    document.getElementById('confirmEmail').textContent = email;
+    document.getElementById('successModal').classList.add('open');
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Garantir acesso agora · R$97';
+    btn.disabled = false; btn.style.opacity = 1;
+  }, 1600);
+};
+document.getElementById('successModal').onclick = e => {
+  if(e.target.id === 'successModal') e.target.classList.remove('open');
+};
+
+/* ── scroll reveal ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('in'); });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

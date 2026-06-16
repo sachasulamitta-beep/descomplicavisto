@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Obrigado pela sua compra — Descomplica Visto</title>
+<meta name="description" content="Pagamento confirmado! Sua Assessoria em Ebook foi enviada para o seu e-mail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#03081a;
+  --navy-900:#061230;
+  --navy-800:#0a1c46;
+  --royal:#1c4f9c;
+  --gold-100:#F7E2A0;
+  --gold-300:#EBC56A;
+  --gold-500:#D6A23E;
+  --gold-700:#A9781F;
+  --ink:#EEF3FF;
+  --muted:#A9BCE0;
+  --muted-dim:#7387ad;
+  --line:rgba(214,162,62,.30);
+  --line-soft:rgba(157,176,214,.16);
+  --wa:#23b85c;
+  --gold-grad:linear-gradient(135deg,#FCEFC0 0%,#EBC56A 42%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  font-family:"Hanken Grotesk",system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(80% 55% at 50% 0%, rgba(28,79,156,.4) 0%, transparent 58%),
+    radial-gradient(90% 50% at 50% 100%, rgba(214,162,62,.1) 0%, transparent 55%),
+    linear-gradient(176deg,#081636 0%, #060f28 50%, #03081a 100%);
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 22px;min-height:100vh;
+  position:relative;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.5px);
+  background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(120% 80% at 50% 12%, #000 25%, transparent 78%);
+  mask-image:radial-gradient(120% 80% at 50% 12%, #000 25%, transparent 78%);
+  opacity:.5;
+}
+.wrap{position:relative;z-index:1;width:100%;max-width:600px;text-align:center;}
+
+.rise{opacity:0;transform:translateY(20px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards;}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* seal */
+.seal{width:108px;height:108px;margin:0 auto 26px;border-radius:50%;border:3px solid var(--gold-500);
+  display:flex;align-items:center;justify-content:center;color:var(--gold-300);position:relative;
+  box-shadow:0 0 34px rgba(214,162,62,.32),inset 0 0 20px rgba(214,162,62,.16);
+  animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards, sealGlow 3.4s ease-in-out infinite 0.7s;}
+.seal::before{content:"";position:absolute;inset:8px;border:1px solid rgba(214,162,62,.5);border-radius:50%;}
+@keyframes sealGlow{0%,100%{box-shadow:0 0 34px rgba(214,162,62,.32),inset 0 0 20px rgba(214,162,62,.16)}50%{box-shadow:0 0 56px rgba(214,162,62,.5),inset 0 0 24px rgba(214,162,62,.22)}}
+.seal svg path{stroke-dasharray:60;stroke-dashoffset:60;animation:draw .8s ease .5s forwards;}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.eyebrow{font-family:"Cinzel",serif;font-weight:600;letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;color:var(--gold-300);}
+h1{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(2rem,5.5vw,3rem);line-height:1.08;margin:14px 0 0;text-wrap:balance;}
+h1 .g{font-style:italic;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.lead{color:var(--muted);font-size:1.1rem;margin:20px auto 0;max-width:46ch;text-wrap:pretty;}
+
+/* email callout */
+.mailbox{display:flex;align-items:center;gap:16px;text-align:left;margin:32px auto 0;max-width:460px;
+  border:1px solid var(--line);border-radius:16px;padding:18px 22px;
+  background:linear-gradient(180deg,rgba(18,48,103,.45),rgba(8,20,46,.4));}
+.mailbox .ic{width:50px;height:50px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;
+  background:var(--gold-grad-flat);color:#2a1c04;box-shadow:0 6px 16px rgba(214,162,62,.3);}
+.mailbox .t{font-weight:700;font-size:1rem;}
+.mailbox .s{color:var(--muted);font-size:.88rem;margin-top:2px;}
+
+.divider{display:flex;align-items:center;gap:14px;justify-content:center;margin:38px 0 28px;}
+.divider .ln{height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold-500));}
+.divider .ln.r{background:linear-gradient(270deg,transparent,var(--gold-500));}
+.divider i{width:7px;height:7px;background:var(--gold-grad-flat);transform:rotate(45deg);display:block;}
+
+/* upsell to assessoria */
+.upsell{border:1px solid var(--line);border-radius:20px;padding:34px 30px;text-align:center;
+  background:radial-gradient(90% 120% at 50% 0%,rgba(28,79,156,.34),transparent 60%),linear-gradient(180deg,rgba(13,38,86,.6),rgba(6,17,42,.6));
+  box-shadow:0 24px 60px rgba(0,0,0,.4);}
+.upsell .tag{display:inline-flex;align-items:center;gap:7px;font-family:"Cinzel",serif;letter-spacing:.16em;text-transform:uppercase;font-size:.62rem;color:var(--gold-100);border:1px solid var(--line);border-radius:30px;padding:7px 15px;background:rgba(214,162,62,.05);}
+.upsell h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(1.4rem,3.4vw,1.95rem);line-height:1.14;margin:16px 0 0;text-wrap:balance;}
+.upsell h2 .g{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;}
+.upsell p{color:var(--muted);font-size:1rem;margin:14px auto 0;max-width:44ch;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;font-weight:700;font-size:1.06rem;
+  padding:17px 32px;border-radius:14px;cursor:pointer;margin-top:26px;text-decoration:none;color:#fff;
+  background:linear-gradient(180deg,#23b85c,#16894a);box-shadow:0 14px 32px rgba(31,158,87,.36);
+  position:relative;overflow:hidden;transition:transform .2s ease, box-shadow .2s ease;-webkit-tap-highlight-color:transparent;}
+.btn::after{content:"";position:absolute;top:0;left:-80%;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);}
+.btn:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(31,158,87,.5);}
+.btn:hover::after{animation:swipe .85s ease;}
+@keyframes swipe{to{left:130%}}
+
+.foot{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.foot a{color:var(--gold-100);font-size:.92rem;text-decoration:none;border-bottom:1px solid var(--line-soft);padding-bottom:1px;}
+.foot a:hover{color:var(--gold-300);}
+.foot .copy{color:var(--muted-dim);font-size:.74rem;margin-top:6px;}
+
+@media(prefers-reduced-motion:reduce){
+  .rise,.seal{animation:none;opacity:1;transform:none;}
+  .seal svg path{stroke-dashoffset:0;animation:none;}
+  .btn::after{display:none;}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="seal">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12.5l5 5L20 6.5"/></svg>
+  </div>
+  <div class="eyebrow rise" style="animation-delay:.05s">Pagamento confirmado</div>
+  <h1 class="rise" style="animation-delay:.1s">Obrigado pela sua <span class="g">compra!</span></h1>
+  <p class="lead rise" style="animation-delay:.16s">Sua <b style="color:var(--ink)">Assessoria em Ebook</b> já está a caminho. Em instantes você recebe tudo no seu e-mail — ebook, vídeos explicativos e audiobook.</p>
+
+  <div class="mailbox rise" style="animation-delay:.22s">
+    <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M3 6l9 7 9-7"/></svg></span>
+    <div>
+      <div class="t">Verifique seu e-mail</div>
+      <div class="s">O acesso chega em poucos minutos. Não esqueça de olhar a caixa de <b style="color:var(--gold-100)">spam / promoções</b>.</div>
+    </div>
+  </div>
+
+  <div class="divider rise" style="animation-delay:.28s"><span class="ln"></span><i></i><span class="ln r"></span></div>
+
+  <section class="upsell rise" style="animation-delay:.34s">
+    <span class="tag">★ Quer ir além?</span>
+    <h2>Prefere ter a especialista <span class="g">ao seu lado</span> em cada etapa?</h2>
+    <p>O ebook te dá todo o caminho. Mas se você quer acompanhamento individual — com revisão da sua documentação, preparação personalizada para a entrevista e suporte do início ao fim — a assessoria completa com a Isis é pra você.</p>
+    <a class="btn" href="https://wa.me/5584999185400?text=Acabei%20de%20comprar%20a%20Assessoria%20em%20Ebook%20e%20quero%20saber%20mais%20sobre%20a%20assessoria%20completa%20com%20a%20especialista." target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Falar sobre a assessoria completa
+    </a>
+  </section>
+
+  <div class="foot rise" style="animation-delay:.4s">
+    <a href="https://www.descomplicavisto.com">Voltar ao site</a>
+    <div class="copy">© 2026 Descomplica Visto · Assessoria Consular Internacional</div>
+  </div>
+</main>
+</body>
+</html>

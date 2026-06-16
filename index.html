@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descomplica Visto — Assessoria Consular Internacional</title>
+<meta name="description" content="Assessoria consular com +14 anos de experiência e 90% de aprovação. Tire seu visto para os EUA, Canadá e +13 países com orientação profissional — ou aprenda o passo a passo na nossa Assessoria em Ebook.">
+<!-- Open Graph / preview ao compartilhar o link -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Descomplica Visto">
+<meta property="og:title" content="Descomplica Visto — Assessoria Consular Internacional">
+<meta property="og:description" content="Tire seu visto com segurança e orientação profissional. +14 anos de experiência, 90% de aprovação e atendimento humano do início ao fim.">
+<meta property="og:image" content="https://www.descomplicavisto.com/assets/og-descomplica.png">
+<meta property="og:image:width" content="1242">
+<meta property="og:image:height" content="1242">
+<meta property="og:url" content="https://www.descomplicavisto.com">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Descomplica Visto — Assessoria Consular Internacional">
+<meta name="twitter:description" content="Tire seu visto com segurança e orientação profissional. +14 anos de experiência e 90% de aprovação.">
+<meta name="twitter:image" content="https://www.descomplicavisto.com/assets/og-descomplica.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700;800&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="brand.css">
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;500;600;700&display=swap">
+<style>
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+  padding:18px 0;
+}
+.nav.scrolled{background:rgba(6,17,42,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-soft);padding:12px 0;}
+.nav .row{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.nav .brand{display:flex;align-items:center;gap:12px;}
+.nav .brand img{height:46px;width:auto;border-radius:9px;}
+.brand-globe{height:44px;width:44px;flex:none;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));}
+.brand-globe-img{height:50px;width:50px;object-fit:contain;flex:none;filter:drop-shadow(0 4px 10px rgba(0,0,0,.45));}
+.nav .brand .nm{font-family:"Playfair Display",serif;font-weight:700;font-size:1.06rem;line-height:1;}
+.nav .brand .nm small{display:block;font-family:"Cinzel",serif;font-weight:500;font-size:.52rem;letter-spacing:.26em;color:var(--gold-300);margin-top:5px;}
+.nav .links{display:flex;align-items:center;gap:30px;}
+.nav .links a{font-size:.92rem;color:var(--muted);transition:color .2s;font-weight:500;}
+.nav .links a:hover{color:var(--gold-100);}
+.nav .links .btn{padding:11px 22px;font-size:.92rem;}
+.nav .burger{display:none;background:none;border:none;color:var(--ink);cursor:pointer;padding:6px;}
+.mobile-menu{display:none;}
+
+@media(max-width:980px){
+  .nav .links{display:none;}
+  .nav .burger{display:block;}
+  .mobile-menu{
+    display:block;position:fixed;inset:0;z-index:90;background:rgba(4,10,24,.97);
+    backdrop-filter:blur(10px);padding:90px 30px 40px;
+    transform:translateX(100%);transition:transform .35s ease;
+  }
+  .mobile-menu.open{transform:none;}
+  .mobile-menu a{display:block;font-family:"Playfair Display",serif;font-size:1.5rem;padding:16px 0;border-bottom:1px solid var(--line-soft);}
+  .mobile-menu .btn{margin-top:24px;}
+  .mobile-menu .close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--gold-100);cursor:pointer;}
+}
+
+/* ============ HERO ============ */
+/* ---- preview de fundos animados (seletor flutuante) ---- */
+.hero-fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.hero .wrap{position:relative;z-index:2;}
+.hero .flight{z-index:1;}
+.hero-fx .layer{position:absolute;inset:0;display:none;}
+.hero[data-bg="aurora"] .fx-aurora{display:block;}
+.hero[data-bg="grid"] .fx-grid{display:block;}
+.hero[data-bg="flight"] .fx-flight{display:block;}
+.hero[data-bg="const"] .fx-const{display:block;}
+.hero[data-bg="part"] .fx-part{display:block;}
+.hero-fx canvas{position:absolute;inset:0;width:100%;height:100%;}
+.fx-aurora .b{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;}
+.fx-aurora .b1{width:55%;height:80%;left:-8%;top:-25%;background:radial-gradient(circle,rgba(28,79,156,.9),transparent 70%);animation:fxa1 14s ease-in-out infinite;}
+.fx-aurora .b2{width:50%;height:75%;right:-10%;top:5%;background:radial-gradient(circle,rgba(214,162,62,.4),transparent 70%);animation:fxa2 18s ease-in-out infinite;}
+.fx-aurora .b3{width:48%;height:70%;left:30%;bottom:-30%;background:radial-gradient(circle,rgba(58,123,213,.55),transparent 70%);animation:fxa3 16s ease-in-out infinite;}
+@keyframes fxa1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(16%,12%) scale(1.15)}}
+@keyframes fxa2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-12%,16%) scale(1.1)}}
+@keyframes fxa3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(10%,-12%) scale(1.2)}}
+.fx-grid .lines{position:absolute;inset:-2px;background-image:linear-gradient(rgba(214,162,62,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(214,162,62,.14) 1px,transparent 1px);background-size:46px 46px;animation:fxgrid 7s linear infinite;-webkit-mask-image:radial-gradient(80% 80% at 60% 40%,#000 25%,transparent 80%);mask-image:radial-gradient(80% 80% at 60% 40%,#000 25%,transparent 80%);}
+@keyframes fxgrid{to{background-position:46px 46px}}
+.fx-grid .spot{position:absolute;width:55%;height:70%;left:35%;top:15%;background:radial-gradient(circle,rgba(28,79,156,.5),transparent 65%);filter:blur(50px);animation:fxspot 10s ease-in-out infinite;}
+@keyframes fxspot{0%,100%{transform:translate(-15%,-10%)}50%{transform:translate(18%,15%)}}
+/* switcher */
+.bg-switch{position:fixed;left:20px;bottom:20px;z-index:75;background:rgba(6,17,42,.92);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:0 18px 44px rgba(0,0,0,.5);max-width:230px;}
+.bg-switch .hd{font-family:"Cinzel",serif;letter-spacing:.14em;font-size:.56rem;text-transform:uppercase;color:var(--gold-300);margin-bottom:9px;display:flex;align-items:center;gap:7px;}
+.bg-switch .opts{display:flex;flex-wrap:wrap;gap:6px;}
+.bg-switch button{font-family:"Hanken Grotesk";font-size:.74rem;font-weight:600;color:var(--muted);background:rgba(236,242,254,.05);border:1px solid var(--line-soft);border-radius:8px;padding:7px 10px;cursor:pointer;transition:.18s;}
+.bg-switch button:hover{border-color:var(--gold-500);color:var(--gold-100);}
+.bg-switch button.on{background:var(--gold-grad-flat);color:var(--navy-900);border-color:transparent;}
+.bg-switch .cls{position:absolute;top:8px;right:9px;background:none;border:none;color:var(--muted-dim);cursor:pointer;font-size:.9rem;padding:0;line-height:1;}
+.bg-switch.min .opts,.bg-switch.min .hd{display:none;}
+.bg-switch.min{padding:9px 12px;cursor:pointer;}
+.bg-switch .reopen{display:none;font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.1em;color:var(--gold-100);}
+.bg-switch.min .reopen{display:block;}
+@media print{.bg-switch{display:none;}}
+/* ---- modo site inteiro (preview combinado grade + rotas) ---- */
+#site-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;display:none;background:linear-gradient(180deg,#071435,#040A18 60%);}
+body.fx-site #site-fx{display:block;}
+#site-fx .sfx-spot{position:absolute;width:50%;height:55%;left:30%;top:6%;background:radial-gradient(circle,rgba(28,79,156,.42),transparent 65%);filter:blur(60px);animation:fxspot 12s ease-in-out infinite;}
+#site-fx .sfx-spot{position:absolute;width:50%;height:55%;left:30%;top:6%;background:radial-gradient(circle,rgba(28,79,156,.42),transparent 65%);filter:blur(60px);animation:fxspot 12s ease-in-out infinite;}
+#site-fx canvas{position:absolute;inset:0;width:100%;height:100%;}
+#site-fx #siteBeams{filter:blur(30px);}
+/* deixa o fundo aparecer através das seções, mantendo leitura */
+body.fx-site .nav,body.fx-site .hero,body.fx-site .trustbar,body.fx-site .band,body.fx-site .band-alt,body.fx-site .finalcta,body.fx-site footer.site,body.fx-site .wa-float,body.fx-site .bg-switch{position:relative;z-index:1;}
+body.fx-site .band{background:linear-gradient(180deg,rgba(7,20,53,.72),rgba(4,10,24,.82)) !important;}
+body.fx-site .band-alt{background:linear-gradient(180deg,rgba(6,17,42,.7),rgba(7,22,56,.62) 50%,rgba(4,10,24,.82)) !important;}
+body.fx-site .hero{background:linear-gradient(180deg,rgba(7,20,53,.4),rgba(4,10,24,.6)) !important;}
+body.fx-site .finalcta{background:linear-gradient(180deg,rgba(7,22,56,.6),rgba(4,10,24,.8)) !important;}
+body.fx-site .hero-fx{display:none !important;}
+body.fx-site .band .dots,body.fx-site .band-alt .dots{opacity:.2;}
+.hero{
+  position:relative;overflow:hidden;
+  padding:170px 0 90px;
+  background:
+    radial-gradient(70% 55% at 70% 30%, rgba(28,79,156,.4) 0%, transparent 60%),
+    radial-gradient(80% 70% at 20% 90%, rgba(214,162,62,.07) 0%, transparent 55%),
+    linear-gradient(180deg,#071435 0%, var(--navy-950) 100%);
+}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+.hero h1{
+  font-family:"Playfair Display",serif;font-weight:800;
+  font-size:clamp(2.5rem,5.2vw,4rem);line-height:1.05;letter-spacing:-.018em;
+  margin:22px 0 0;text-wrap:balance;
+}
+.hero .sub{color:var(--muted);font-size:1.18rem;margin-top:24px;max-width:54ch;text-wrap:pretty;}
+.hero .cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:36px;}
+.hero .reassure{display:flex;align-items:center;gap:10px;margin-top:24px;color:var(--muted-dim);font-size:.9rem;}
+.hero .reassure .av{display:flex;}
+.hero .reassure .av span{width:30px;height:30px;border-radius:50%;border:2px solid var(--navy-900);margin-left:-10px;background:linear-gradient(135deg,#1c4f9c,#0c2350);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--gold-100);font-family:"Playfair Display",serif;}
+.hero .reassure .av span:first-child{margin-left:0;}
+
+/* hero portrait — premium frameless editorial */
+.hero-visual{position:relative;padding:6px 8px 40px;}
+.portrait-stage{position:relative;aspect-ratio:941/1672;display:block;border-radius:22px;overflow:hidden;
+  border:1px solid rgba(214,162,62,.45);
+  box-shadow:0 50px 95px rgba(0,0,0,.6),0 0 0 6px rgba(8,20,46,.55),0 0 44px rgba(214,162,62,.14);
+  animation:framePulse 6.5s ease-in-out infinite;}
+@keyframes framePulse{0%,100%{box-shadow:0 50px 95px rgba(0,0,0,.6),0 0 0 6px rgba(8,20,46,.55),0 0 40px rgba(214,162,62,.10)}50%{box-shadow:0 50px 95px rgba(0,0,0,.6),0 0 0 6px rgba(8,20,46,.55),0 0 72px rgba(214,162,62,.22)}}
+.portrait-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(247,226,160,.32);}
+.globe-bg{display:none;}
+.portrait-cut{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;filter:contrast(1.03) saturate(1.05);}
+
+/* elegant seal */
+.hero-seal{
+  position:absolute;top:20px;right:-16px;z-index:6;width:90px;height:90px;border-radius:50%;
+  background:radial-gradient(circle at 36% 30%,#10306a,#06112a 72%);
+  border:1px solid rgba(214,162,62,.55);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  box-shadow:0 16px 34px rgba(0,0,0,.55),0 0 24px rgba(214,162,62,.14);
+}
+.hero-seal::before{content:"";position:absolute;inset:5px;border:1px solid rgba(214,162,62,.32);border-radius:50%;}
+.hero-seal .v{font-family:"Playfair Display",serif;font-weight:800;font-size:1.5rem;line-height:1;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-seal .t{font-family:"Cinzel",serif;font-weight:600;letter-spacing:.18em;font-size:.42rem;color:var(--gold-100);text-transform:uppercase;}
+
+/* refined glass stat chip */
+.hero-chip{
+  position:absolute;top:30px;left:-22px;z-index:6;
+  display:flex;align-items:center;gap:12px;
+  background:rgba(8,20,46,.86);backdrop-filter:blur(10px);
+  border:1px solid rgba(214,162,62,.34);border-radius:13px;padding:11px 16px;
+  box-shadow:0 18px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.hero-chip .ic{width:34px;height:34px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;color:var(--gold-300);border:1px solid rgba(214,162,62,.3);background:rgba(214,162,62,.07);}
+.hero-chip .tx{display:flex;flex-direction:column;line-height:1;}
+.hero-chip .n{font-family:"Playfair Display",serif;font-weight:800;font-size:1.28rem;line-height:1;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-chip .l{font-size:.68rem;color:var(--muted);letter-spacing:.03em;margin-top:2px;}
+
+/* signature nameplate */
+.hero-name{
+  position:absolute;left:50%;bottom:6px;transform:translateX(-50%);z-index:7;
+  min-width:248px;text-align:center;
+  background:rgba(7,17,40,.94);backdrop-filter:blur(12px);
+  border:1px solid rgba(214,162,62,.4);border-radius:15px;
+  padding:13px 28px 14px;
+  box-shadow:0 22px 46px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.hero-name .orn{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:7px;}
+.hero-name .orn .ln{height:1px;width:30px;background:linear-gradient(90deg,transparent,var(--gold-500));}
+.hero-name .orn .ln.r{background:linear-gradient(270deg,transparent,var(--gold-500));}
+.hero-name .orn .dia{width:6px;height:6px;background:var(--gold-grad-flat);transform:rotate(45deg);box-shadow:0 0 8px rgba(214,162,62,.6);}
+.hero-name .nm{font-family:"Playfair Display",serif;font-weight:700;font-style:italic;font-size:1.5rem;line-height:1;color:var(--ink);}
+.hero-name .ro{font-family:"Cinzel",serif;font-weight:600;letter-spacing:.22em;font-size:.56rem;color:var(--gold-300);text-transform:uppercase;margin-top:7px;}
+
+@media(max-width:900px){
+  .hero .grid{grid-template-columns:1fr;gap:60px;}
+  .hero-visual{max-width:360px;margin:0 auto;}
+  .hero{padding:140px 0 70px;}
+  .hero-chip{left:-12px;}
+  .hero-seal{right:-8px;}
+}
+@media(max-width:560px){
+  .hero-visual{max-width:300px;}
+  .hero-chip{padding:9px 13px;top:20px;left:-8px;}
+  .hero-chip .n{font-size:1.1rem;}
+  .hero-chip .ic{width:28px;height:28px;}
+  .hero-seal{width:74px;height:74px;top:14px;right:-4px;}
+  .hero-seal .v{font-size:1.2rem;}
+  .hero-name{min-width:210px;padding:11px 20px;}
+  .hero-name .nm{font-size:1.28rem;}
+}
+
+/* ============ TRUST BAR ============ */
+.trustbar{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:rgba(6,17,42,.5);}
+.trustbar .row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:34px 0;}
+.tstat{text-align:center;border-right:1px solid var(--line-soft);}
+.tstat:last-child{border-right:none;}
+.tstat .n{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);}
+.tstat .l{color:var(--muted);font-size:.84rem;margin-top:2px;letter-spacing:.02em;}
+@media(max-width:680px){.trustbar .row{grid-template-columns:repeat(2,1fr);gap:28px 10px;}.tstat:nth-child(2){border-right:none;}}
+
+/* ============ PAIN ============ */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.pain{display:flex;gap:14px;align-items:flex-start;}
+.pain .x{flex:none;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:rgba(214,162,62,.07);color:var(--gold-300);display:flex;align-items:center;justify-content:center;margin-top:2px;font-size:1.15rem;font-weight:700;}
+.pain h4{font-weight:700;font-size:1.04rem;}
+.pain p{color:var(--muted);font-size:.93rem;margin-top:4px;}
+.pain-cta{text-align:center;margin-top:48px;font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.3rem,3vw,1.9rem);color:var(--gold-100);}
+@media(max-width:760px){.pain-grid{grid-template-columns:1fr;}}
+
+/* ============ SERVICES ============ */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc{transition:transform .25s ease, border-color .25s ease;}
+.svc:hover{transform:translateY(-6px);border-color:var(--gold-500);}
+.svc .ic{width:54px;height:54px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--gold-300);border:1px solid var(--line);background:rgba(214,162,62,.06);margin-bottom:20px;}
+.svc h3{font-family:"Playfair Display",serif;font-weight:700;font-size:1.32rem;}
+.svc p{color:var(--muted);font-size:.95rem;margin-top:10px;}
+.svc .more{display:inline-flex;align-items:center;gap:7px;margin-top:18px;color:var(--gold-300);font-weight:600;font-size:.9rem;}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr;}}
+
+/* ============ EBOOK OFFER ============ */
+.ebook{position:relative;overflow:hidden;}
+.ebook-card{
+  display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:center;
+  border:1px solid var(--line);border-radius:24px;padding:48px;
+  background:
+    radial-gradient(80% 120% at 0% 0%, rgba(28,79,156,.3),transparent 55%),
+    linear-gradient(180deg,rgba(12,35,80,.5),rgba(6,17,42,.6));
+  box-shadow:var(--shadow-card);
+}
+.ebook-cover-wrap{position:relative;display:flex;justify-content:center;}
+.ebook-cover{
+  width:240px;aspect-ratio:3/4.2;border-radius:8px 14px 14px 8px;position:relative;overflow:hidden;
+  background:radial-gradient(70% 60% at 50% 30%,#123067,#06112a);
+  border:1px solid rgba(214,162,62,.4);
+  box-shadow:-14px 22px 50px rgba(0,0,0,.6),inset 6px 0 14px rgba(0,0,0,.4);
+  transform:rotate(-4deg);transition:transform .4s ease;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px 22px;text-align:center;
+}
+.ebook-cover:hover{transform:rotate(0);}
+.ebook-cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(90deg,rgba(255,255,255,.14),transparent);}
+.ebook-cover .globe{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#3a7bd5,#0c2350 70%);border:1.5px solid var(--gold-500);margin-bottom:16px;box-shadow:0 0 18px rgba(214,162,62,.3);}
+.ebook-cover .et{font-family:"Cinzel",serif;font-size:.5rem;letter-spacing:.24em;color:var(--gold-300);}
+.ebook-cover .eh{font-family:"Playfair Display",serif;font-weight:800;font-size:1.26rem;line-height:1.12;margin-top:12px;}
+.ebook-cover .eh em{font-style:italic;}
+.ebook-cover .ed{margin-top:auto;font-size:.56rem;color:var(--muted);letter-spacing:.1em;font-family:"Cinzel",serif;}
+.ebook-ribbon{position:absolute;top:14px;left:-8px;background:var(--gold-grad-flat);color:#2a1c04;font-family:"Cinzel",serif;font-weight:700;font-size:.6rem;letter-spacing:.14em;padding:6px 14px;border-radius:4px;box-shadow:0 8px 18px rgba(0,0,0,.4);}
+
+.ebook-info h2{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.1;}
+.ebook-info .lead{color:var(--muted);margin-top:14px;font-size:1.05rem;}
+.ebook-list{list-style:none;margin:24px 0;display:flex;flex-direction:column;gap:12px;}
+.ebook-list li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;}
+.ebook-list li .ck{flex:none;width:24px;height:24px;border-radius:50%;background:rgba(214,162,62,.12);border:1px solid var(--gold-500);color:var(--gold-300);display:flex;align-items:center;justify-content:center;font-size:.78rem;margin-top:2px;}
+.price-row{display:flex;align-items:flex-end;gap:14px;margin:8px 0 22px;}
+.price-row .old{color:var(--muted-dim);text-decoration:line-through;font-size:1.1rem;}
+.price-row .now{font-family:"Playfair Display",serif;font-weight:800;font-size:2.6rem;line-height:1;}
+.price-row .cents{font-size:1.2rem;}
+.price-row .note{color:var(--muted);font-size:.82rem;align-self:flex-end;padding-bottom:5px;}
+.ebook-guarantee{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.86rem;margin-top:16px;}
+.fmt-badges{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 22px;}
+.fmt-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(214,162,62,.06);font-size:.82rem;font-weight:600;color:var(--gold-100);}
+.fmt-badge svg{color:var(--gold-300);flex:none;}
+.paths{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin-bottom:48px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(12,35,80,.34),rgba(6,17,42,.46));}
+.path{padding:30px 30px;}
+.path .ph-tag{display:inline-flex;align-items:center;gap:7px;font-family:"Cinzel",serif;letter-spacing:.14em;text-transform:uppercase;font-size:.62rem;padding:6px 13px;border-radius:30px;margin-bottom:14px;}
+.path.assess .ph-tag{background:rgba(31,158,87,.14);border:1px solid rgba(35,184,92,.5);color:#7fe0a6;}
+.path.train .ph-tag{background:rgba(214,162,62,.12);border:1px solid var(--gold-500);color:var(--gold-100);}
+.path h4{font-family:"Playfair Display",serif;font-weight:700;font-size:1.42rem;line-height:1.12;}
+.path .who-for{color:var(--muted);font-size:.92rem;margin-top:8px;min-height:42px;}
+.path ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:9px;}
+.path li{display:flex;gap:9px;font-size:.9rem;color:var(--ink);align-items:flex-start;}
+.path li .ck{color:var(--gold-300);flex:none;margin-top:1px;}
+.path .pprice{margin-top:18px;font-family:"Playfair Display",serif;font-weight:700;font-size:1.1rem;color:var(--muted);}
+.path.train{background:radial-gradient(90% 120% at 100% 0%,rgba(214,162,62,.12),transparent 60%);}
+.paths .vs{display:flex;align-items:center;justify-content:center;width:64px;background:rgba(4,10,24,.4);border-left:1px solid var(--line);border-right:1px solid var(--line);font-family:"Playfair Display",serif;font-style:italic;color:var(--gold-300);font-size:1.1rem;}
+@media(max-width:760px){.paths{grid-template-columns:1fr;}.paths .vs{width:auto;height:50px;border-left:none;border-right:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}}
+@media(max-width:860px){.ebook-card{grid-template-columns:1fr;gap:38px;padding:30px;}}
+
+/* ============ ABOUT ============ */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center;}
+.about-photo{position:relative;aspect-ratio:4/5;border-radius:24px 24px 120px 120px;overflow:hidden;border:2px solid rgba(214,162,62,.45);box-shadow:var(--shadow-card),0 0 40px rgba(214,162,62,.12);}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:20% 30%;}
+.about h2{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.1;margin-top:14px;}
+.about p{color:var(--muted);margin-top:16px;font-size:1.04rem;}
+.about .sig{font-family:"Playfair Display",serif;font-style:italic;font-size:1.5rem;color:var(--gold-100);margin-top:24px;}
+.about .sig small{display:block;font-family:"Cinzel",serif;font-style:normal;font-size:.66rem;letter-spacing:.2em;color:var(--muted-dim);margin-top:6px;}
+@media(max-width:820px){.about{grid-template-columns:1fr;gap:40px;}.about-photo{max-width:360px;margin:0 auto;}}
+
+/* ============ STEPS ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.step{position:relative;padding:30px 26px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(12,35,80,.42),rgba(6,17,42,.52));box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 12px 32px rgba(0,0,0,.28);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;}
+.step:hover{transform:translateY(-5px);border-color:var(--gold-500);box-shadow:0 22px 50px rgba(0,0,0,.45),0 0 26px rgba(214,162,62,.12);}
+.step .num{position:absolute;top:-12px;right:18px;width:30px;height:30px;border-radius:50%;background:var(--gold-grad-flat);color:#2a1c04;font-family:"Cinzel",serif;font-weight:700;font-size:.9rem;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.4);}
+.step .sic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--gold-300);border:1px solid var(--line);background:rgba(214,162,62,.06);margin-bottom:16px;}
+.step h4{font-family:"Playfair Display",serif;font-weight:600;font-size:1.14rem;margin:0 0 8px;}
+.step p{color:var(--muted);font-size:.9rem;}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.steps{grid-template-columns:1fr;}}
+
+/* ============ COUNTRIES ============ */
+.countries{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;max-width:840px;margin:0 auto;}
+.country{display:flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid var(--line);border-radius:40px;background:rgba(214,162,62,.04);font-weight:600;font-size:.95rem;}
+.country .fl{width:26px;height:18px;border-radius:3px;object-fit:cover;box-shadow:0 1px 4px rgba(0,0,0,.4);display:block;}
+
+/* ============ APPROVED WALL ============ */
+.wall-rail{display:flex;gap:20px;overflow-x:auto;padding:8px 4px 26px;scroll-snap-type:x mandatory;cursor:grab;
+  scrollbar-width:thin;scrollbar-color:var(--gold-700) transparent;}
+.wall-rail.drag{cursor:grabbing;}
+.wall-rail::-webkit-scrollbar{height:7px;}
+.wall-rail::-webkit-scrollbar-thumb{background:var(--gold-700);border-radius:10px;}
+.wall-rail::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}
+.story{flex:none;width:248px;aspect-ratio:9/16;border-radius:18px;overflow:hidden;position:relative;scroll-snap-align:center;
+  border:1.5px solid rgba(214,162,62,.45);box-shadow:0 20px 44px rgba(0,0,0,.5);background:#06112a;transition:transform .25s ease, border-color .25s ease;}
+.story:hover{transform:translateY(-6px);border-color:var(--gold-500);}
+.story img{width:100%;height:100%;object-fit:cover;pointer-events:none;}
+.story .vbadge{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;
+  background:rgba(6,17,42,.78);backdrop-filter:blur(4px);border:1px solid var(--gold-500);border-radius:30px;
+  padding:6px 12px;font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.12em;color:var(--gold-100);text-transform:uppercase;z-index:2;}
+.story .vbadge .ck{color:var(--green);}
+.story .zoom{position:absolute;bottom:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(6,17,42,.78);
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold-200,#EBC56A);z-index:2;opacity:0;transition:opacity .2s;}
+.story:hover .zoom{opacity:1;}
+.wall-hint{text-align:center;color:var(--muted-dim);font-size:.82rem;margin-top:4px;display:flex;align-items:center;gap:8px;justify-content:center;}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:120;background:rgba(4,10,24,.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:30px;}
+.lb.open{display:flex;}
+.lb img{max-width:min(440px,92vw);max-height:88vh;border-radius:18px;border:1.5px solid var(--gold-500);box-shadow:0 40px 90px rgba(0,0,0,.6);}
+.lb .x{position:absolute;top:24px;right:24px;background:rgba(6,17,42,.7);border:1px solid var(--line);color:var(--gold-100);border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.lb .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(6,17,42,.7);border:1px solid var(--line);color:var(--gold-100);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.lb .nav.prev{left:24px;} .lb .nav.next{right:24px;}
+.lb .nav:hover,.lb .x:hover{border-color:var(--gold-500);background:rgba(214,162,62,.12);}
+@media(max-width:560px){.story{width:200px;}.lb .nav{width:42px;height:42px;}}
+
+/* ============ TESTIMONIALS ============ */
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.testi .stars{color:var(--gold-300);font-size:.95rem;letter-spacing:3px;margin-bottom:14px;}
+.testi p{font-size:.98rem;color:var(--ink);line-height:1.6;}
+.testi .who{display:flex;align-items:center;gap:12px;margin-top:20px;}
+.testi .who .ph{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1c4f9c,#0c2350);border:1.5px solid var(--gold-500);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;color:var(--gold-100);}
+.testi .who .nm{font-weight:700;font-size:.94rem;}
+.testi .who .meta{color:var(--muted-dim);font-size:.8rem;}
+.ph-note{text-align:center;color:var(--muted-dim);font-size:.84rem;margin-top:28px;font-style:italic;}
+@media(max-width:860px){.testi-grid{grid-template-columns:1fr;}}
+
+/* ============ VIDEO DEPO ============ */
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:920px;margin:0 auto;}
+.vidcard{border:1.5px solid rgba(214,162,62,.4);border-radius:18px;overflow:hidden;background:#06112a;box-shadow:0 20px 44px rgba(0,0,0,.5);position:relative;}
+.vidcard video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;background:#040a18;}
+.vidcard .vlabel{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;background:rgba(6,17,42,.8);backdrop-filter:blur(4px);border:1px solid var(--gold-500);border-radius:30px;padding:6px 12px;font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.12em;color:var(--gold-100);text-transform:uppercase;z-index:2;pointer-events:none;}
+@media(max-width:760px){.vid-grid{grid-template-columns:1fr;max-width:340px;}}
+
+/* ============ FAQ ============ */
+.faq{max-width:820px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line-soft);}
+.faq-q{width:100%;text-align:left;background:none;border:none;color:var(--ink);cursor:pointer;
+  padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  font-family:"Playfair Display",serif;font-weight:600;font-size:1.15rem;}
+.faq-q .ic{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold-300);transition:transform .3s ease;}
+.faq-item.open .faq-q .ic{transform:rotate(45deg);background:rgba(214,162,62,.1);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a div{padding:0 0 24px;color:var(--muted);font-size:.98rem;}
+
+/* ============ FINAL CTA ============ */
+.finalcta{
+  position:relative;overflow:hidden;text-align:center;
+  background:
+    radial-gradient(70% 80% at 50% 0%, rgba(28,79,156,.4),transparent 60%),
+    radial-gradient(90% 90% at 50% 120%, rgba(214,162,62,.1),transparent 55%),
+    linear-gradient(180deg,#071638,var(--navy-950));
+}
+.finalcta h2{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.08;max-width:18ch;margin:18px auto 0;text-wrap:balance;}
+.finalcta p{color:var(--muted);font-size:1.12rem;margin:20px auto 0;max-width:56ch;}
+.finalcta .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:38px;}
+
+/* ============ LEAD MAGNET (guia grátis) ============ */
+.lead-mag{position:relative;overflow:hidden;}
+.lm-card{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;border:1px solid var(--line);border-radius:24px;padding:44px;
+  background:radial-gradient(80% 120% at 0% 0%,rgba(28,79,156,.3),transparent 55%),linear-gradient(180deg,rgba(12,35,80,.5),rgba(6,17,42,.6));box-shadow:var(--shadow-card);}
+.lm-cover{position:relative;display:flex;justify-content:center;}
+.lm-book{width:230px;aspect-ratio:2/3;border-radius:8px;display:block;object-fit:cover;box-shadow:-12px 20px 44px rgba(0,0,0,.6),0 0 0 1px rgba(214,162,62,.35);transform:rotate(-4deg);transition:transform .4s ease;}
+.lm-book:hover{transform:rotate(0)}
+.lm-tag{position:absolute;top:14px;left:-6px;background:var(--gold-grad-flat);color:#2a1c04;font-family:"Cinzel",serif;font-weight:700;font-size:.58rem;letter-spacing:.12em;padding:6px 13px;border-radius:4px;box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.lm-info h2{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.12}
+.lm-info .lead{color:var(--muted);margin-top:12px;font-size:1.04rem}
+.lm-form{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.lm-form input{flex:1;min-width:200px;background:rgba(4,10,24,.6);border:1px solid var(--line-soft);border-radius:12px;padding:15px 18px;color:var(--ink);font-family:inherit;font-size:1rem;transition:border-color .2s}
+.lm-form input:focus{outline:none;border-color:var(--gold-500);box-shadow:0 0 0 3px rgba(214,162,62,.12)}
+.lm-form input::placeholder{color:var(--muted-dim)}
+.lm-form button{white-space:nowrap}
+.lm-note{display:flex;align-items:center;gap:9px;margin-top:16px;color:var(--muted-dim);font-size:.84rem}
+.lm-note svg{color:var(--gold-300);flex:none}
+.lm-ok{display:none;margin-top:24px;border:1px solid rgba(31,158,87,.4);background:rgba(31,158,87,.08);border-radius:14px;padding:20px 22px;}
+.lm-ok.show{display:block}
+.lm-ok h4{display:flex;align-items:center;gap:10px;color:#7fe0a6;font-family:"Playfair Display",serif;font-size:1.2rem}
+.lm-ok p{color:var(--muted);font-size:.94rem;margin-top:8px}
+.lm-ok a{color:var(--gold-100);font-weight:600;text-decoration:underline}
+@media(max-width:760px){.lm-card{grid-template-columns:1fr;gap:32px;padding:30px;text-align:center}.lm-cover{order:-1}.lm-note{justify-content:center}.lm-form{justify-content:center}}
+
+/* ============ FOOTER ============ */
+footer.site{background:linear-gradient(180deg,var(--navy-950),#020611);padding:64px 0 36px;border-top:1px solid var(--line-soft);}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+.foot-brand img{height:120px;width:auto;margin:0 0 18px -10px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.45));}
+.foot-brand p{color:var(--muted-dim);font-size:.9rem;max-width:36ch;}
+.foot-col h5{font-family:"Cinzel",serif;letter-spacing:.16em;font-size:.74rem;text-transform:uppercase;color:var(--gold-300);margin-bottom:18px;}
+.foot-col a{display:block;color:var(--muted);font-size:.94rem;padding:7px 0;transition:color .2s;}
+.foot-col a:hover{color:var(--gold-100);}
+.foot-bottom{border-top:1px solid var(--line-soft);margin-top:48px;padding-top:26px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted-dim);font-size:.82rem;}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:34px;}}
+
+/* ============ FLOATING WA ============ */
+.wa-float{
+  position:fixed;bottom:26px;right:26px;z-index:70;
+  display:flex;align-items:center;gap:0;
+  background:linear-gradient(180deg,#23b85c,#16894a);color:#fff;
+  border-radius:50px;padding:0;height:60px;
+  box-shadow:0 14px 36px rgba(31,158,87,.45);overflow:hidden;
+  transition:padding .3s ease, transform .2s ease;
+}
+.wa-float:hover{transform:scale(1.04);}
+.wa-float .ico{width:60px;height:60px;display:flex;align-items:center;justify-content:center;flex:none;}
+.wa-float .lbl{font-weight:700;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .35s ease, padding .35s ease;}
+.wa-float:hover .lbl{max-width:200px;padding-right:24px;}
+@media(max-width:560px){.wa-float .lbl{display:none;}}
+</style>
+<style id="premium-polish">
+/* ===== Pricing tiers ===== */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;}
+.tier{border:1px solid var(--line);border-radius:20px;padding:36px 30px;background:linear-gradient(180deg,rgba(12,35,80,.4),rgba(6,17,42,.5));display:flex;flex-direction:column;position:relative;transition:transform .3s ease,box-shadow .3s ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 14px 40px rgba(0,0,0,.3);}
+.tier:hover{transform:translateY(-7px);box-shadow:0 28px 64px rgba(0,0,0,.5),0 0 30px rgba(214,162,62,.12);}
+.tier.feat{border-color:var(--gold-500);background:radial-gradient(90% 120% at 50% 0%,rgba(28,79,156,.42),transparent 60%),linear-gradient(180deg,rgba(13,38,86,.8),rgba(6,17,42,.78));box-shadow:0 30px 76px rgba(0,0,0,.58),0 0 44px rgba(214,162,62,.2);}
+.tier .feat-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold-grad-flat);color:#2a1c04;font-family:"Cinzel",serif;font-weight:700;font-size:.6rem;letter-spacing:.16em;padding:7px 18px;border-radius:30px;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.tier h3{font-family:"Playfair Display",serif;font-weight:700;font-size:1.42rem;}
+.tier .tsub{color:var(--muted);font-size:.9rem;margin-top:7px;min-height:42px;}
+.tier .tprice{font-family:"Playfair Display",serif;font-weight:800;font-size:1.95rem;margin:18px 0 2px;line-height:1;}
+.tier .tprice.consulta{font-size:1.5rem;color:var(--ink);}
+.tier .tprice small{font-size:.86rem;color:var(--muted);font-weight:400;}
+.tier .tnote{color:var(--muted-dim);font-size:.8rem;}
+.tier ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:12px;flex:1;}
+.tier li{display:flex;gap:11px;font-size:.93rem;align-items:flex-start;color:var(--ink);}
+.tier li .ck{flex:none;width:21px;height:21px;border-radius:50%;background:rgba(214,162,62,.13);border:1px solid var(--gold-500);color:var(--gold-300);display:flex;align-items:center;justify-content:center;font-size:.66rem;margin-top:2px;}
+@media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto;}}
+/* ===== Real ebook showcase ===== */
+.ebook-real{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:stretch;}
+.ebook-real .shot{position:relative;display:flex;justify-content:center;align-items:center;padding:10px;min-height:300px;}
+.ebook-real .shot::before{content:"";position:absolute;width:74%;height:74%;left:13%;top:13%;background:radial-gradient(circle,rgba(214,162,62,.28),transparent 72%);filter:blur(44px);}
+.ebook-real .shot img{position:relative;max-width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 32px 60px rgba(0,0,0,.6),0 0 40px rgba(214,162,62,.16);filter:none;animation:floatBook 5.5s ease-in-out infinite;}
+@keyframes floatBook{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+/* ===== live ebook combo: flat cover + overlapping phone ===== */
+.ebook-combo{position:relative;width:100%;max-width:430px;margin:0 auto;animation:floatBook 5.5s ease-in-out infinite;}
+.ec-cover{width:100%;aspect-ratio:3/4.4;position:relative;overflow:hidden;border-radius:10px;
+  background:linear-gradient(170deg,#0d2456 0%,#071434 42%,#040c22 100%);display:flex;flex-direction:column;
+  box-shadow:0 34px 64px rgba(0,0,0,.6),0 0 0 1px rgba(214,162,62,.25);}
+.ec-cover::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold-grad-flat);z-index:5;}
+.ec-tex{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.3px);background-size:17px 17px;opacity:.55;-webkit-mask-image:radial-gradient(90% 70% at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(90% 70% at 50% 30%,#000 20%,transparent 75%);}
+.ec-glow{position:absolute;top:16%;left:50%;transform:translateX(-50%);width:70%;height:48%;background:radial-gradient(circle,rgba(28,79,156,.5),transparent 65%);filter:blur(38px);}
+.ec-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(30px,6%,48px) clamp(26px,7%,40px) 22px;}
+.ec-logo{width:clamp(50px,15%,68px);height:clamp(50px,15%,68px);object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5));margin-bottom:6px;}
+.ec-org{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:clamp(.5rem,1.7vw,.64rem);color:var(--gold-100);text-transform:uppercase;}
+.ec-div{width:clamp(44px,14%,60px);height:1.5px;background:var(--gold-grad-flat);margin:clamp(15px,3vw,22px) 0 clamp(16px,3vw,22px);}
+.ec-cover h4{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.5rem,5vw,2.1rem);line-height:1.07;color:var(--ink);margin:0;}
+.ec-cover h4 em{font-style:italic;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.ec-sub{font-size:clamp(.74rem,2.3vw,.96rem);color:var(--muted);margin-top:14px;line-height:1.5;max-width:26ch;}
+.ec-feats{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:auto;padding-top:18px;}
+.ec-feat{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid rgba(214,162,62,.35);border-radius:30px;font-size:clamp(.56rem,1.7vw,.72rem);font-weight:600;color:var(--gold-100);background:rgba(214,162,62,.06);}
+.ec-feat svg{color:var(--gold-300);flex:none;}
+.ec-bottom{position:relative;z-index:2;border-top:1px solid rgba(214,162,62,.3);padding:clamp(12px,2.6vw,17px) clamp(22px,5%,30px);display:flex;align-items:center;justify-content:space-between;}
+.ec-bottom .bl{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(.82rem,2.5vw,1.04rem);font-style:italic;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.ec-bottom .br{font-family:"Cinzel",serif;letter-spacing:.12em;font-size:clamp(.5rem,1.6vw,.64rem);color:var(--gold-300);text-transform:uppercase;}
+/* overlapping phone */
+.ec-phone{position:absolute;right:-40px;bottom:-34px;width:clamp(128px,40%,168px);background:linear-gradient(165deg,#1a1d26,#0d0f16);border-radius:26px;padding:8px;z-index:6;
+  box-shadow:0 26px 50px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.07),0 0 0 1px rgba(255,255,255,.06);}
+.ec-phone .scr{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:9/16;background:#040c22;display:flex;flex-direction:column;}
+.ec-phone .ntc{position:absolute;top:0;left:50%;transform:translateX(-50%);width:48px;height:14px;background:#0d0f16;border-radius:0 0 9px 9px;z-index:8;}
+.ec-phone .hb{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:54px;height:3px;border-radius:3px;background:rgba(255,255,255,.14);z-index:8;}
+.ecp-in{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:22px 10px 8px;position:relative;
+  background:linear-gradient(170deg,#0d2456,#071434 50%,#040c22);}
+.ecp-in::after{content:"";position:absolute;top:14%;left:50%;transform:translateX(-50%);width:70%;height:40%;background:radial-gradient(circle,rgba(28,79,156,.5),transparent 65%);filter:blur(16px);}
+.ecp-logo{width:26px;height:26px;object-fit:contain;position:relative;z-index:2;}
+.ecp-org{font-family:"Cinzel",serif;letter-spacing:.14em;font-size:.3rem;color:var(--gold-100);text-transform:uppercase;margin-top:4px;position:relative;z-index:2;}
+.ecp-div{width:20px;height:1px;background:var(--gold-grad-flat);margin:7px 0;position:relative;z-index:2;}
+.ecp-in h5{font-family:"Playfair Display",serif;font-weight:800;font-size:.62rem;line-height:1.1;color:var(--ink);margin:0;position:relative;z-index:2;}
+.ecp-in h5 em{font-style:italic;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.ecp-bar{border-top:1px solid rgba(214,162,62,.3);padding:5px 8px;font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:.4rem;text-align:center;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+@media(max-width:760px){.ebook-combo{max-width:300px;}.ec-phone{right:-24px;width:120px;}}
+.encontra{display:grid;grid-template-columns:1fr 1fr;gap:11px 20px;margin:20px 0 26px;}
+.encontra div{display:flex;gap:9px;font-size:.91rem;align-items:flex-start;color:var(--ink);}
+.encontra .ck{color:var(--gold-300);flex:none;margin-top:1px;}
+.ebook-note{display:flex;gap:12px;align-items:flex-start;padding:16px 20px;border:1px solid var(--line);border-radius:13px;background:rgba(214,162,62,.05);color:var(--muted);font-size:.9rem;margin-bottom:24px;}
+.ebook-note svg{flex:none;color:var(--gold-300);margin-top:2px;}
+@media(max-width:760px){.ebook-real{grid-template-columns:1fr;gap:24px}.encontra{grid-template-columns:1fr}}
+/* ===== Premium polish pass ===== */
+/* subtle film grain for richness */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* animated metallic sheen on gold headline text */
+.gold{background-size:220% 220%;animation:goldShift 9s ease-in-out infinite;}
+@keyframes goldShift{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+/* refined buttons with a light-sweep on hover */
+.btn{position:relative;overflow:hidden;letter-spacing:.01em;}
+.btn-gold{box-shadow:0 14px 34px rgba(214,162,62,.32),inset 0 1px 0 rgba(255,255,255,.5);}
+.btn-gold::after,.btn-wa::after{content:"";position:absolute;top:0;left:-75%;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);}
+.btn-gold:hover::after,.btn-wa:hover::after{animation:sheen .9s ease;}
+@keyframes sheen{to{left:145%}}
+/* elegant flanking hairlines on centered section eyebrows */
+.sec-head .eyebrow{display:inline-flex;align-items:center;gap:14px;}
+.sec-head .eyebrow::before,.sec-head .eyebrow::after{content:"";width:30px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-500));}
+.sec-head .eyebrow::after{background:linear-gradient(270deg,transparent,var(--gold-500));}
+/* type finesse */
+.sec-title{letter-spacing:-.015em;line-height:1.06;}
+.hero h1{letter-spacing:-.022em;}
+/* deeper, softer card depth + warm lift on hover */
+.card{box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 18px 48px rgba(0,0,0,.34);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;}
+.svc:hover,.testi:hover{box-shadow:0 26px 64px rgba(0,0,0,.5),0 0 34px rgba(214,162,62,.14);}
+/* breathing glow on the hero portrait */
+.globe-bg{will-change:transform;}
+/* refined sticky nav + glass float stats */
+.nav.scrolled{box-shadow:0 1px 0 rgba(214,162,62,.22),0 10px 30px rgba(0,0,0,.4);}
+.float-stat{box-shadow:0 18px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07);}
+/* silkier reveal easing */
+.reveal{transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);}
+/* gold gradient scrollbar accent on the approvals rail kept; add focus ring polish */
+.btn:focus-visible{outline:2px solid var(--gold-300);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){.gold,.globe-bg{animation:none;}}
+</style>
+</head>
+<body class="fx-site">
+<canvas id="siteHexBg" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+<style>
+body.fx-site #site-fx{display:none !important;}
+#siteHexBg{background:linear-gradient(180deg,#071435,#040A18 60%);}
+</style>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <div class="wrap row">
+    <a href="#topo" class="brand">
+      <img src="assets/globo-logo.png" class="brand-globe-img" alt="Descomplica Visto">
+      <span class="nm">Descomplica Visto<small>Assessoria Consular</small></span>
+    </a>
+    <div class="links">
+      <a href="#servicos">Serviços</a>
+      <a href="#ebook">Ebook</a>
+      <a href="#guia">Guia grátis</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Resultados</a>
+      <a href="#faq">Dúvidas</a>
+      <a class="btn btn-wa" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Agendar assessoria
+      </a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu" aria-label="Fechar"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#servicos">Serviços</a>
+  <a href="#ebook">Ebook</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#depoimentos">Resultados</a>
+  <a href="#faq">Dúvidas</a>
+  <a class="btn btn-wa btn-block" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener">Falar no WhatsApp</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="topo" data-screen-label="Hero">
+  <svg class="flight" style="top:12%;right:6%;width:340px;opacity:.5" viewBox="0 0 300 160" fill="none">
+    <path d="M0 150 C70 60 160 30 290 16" stroke="url(#hg)" stroke-width="1.6" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <defs><linearGradient id="hg" x1="0" x2="300"><stop stop-color="#A9781F" stop-opacity="0"/><stop offset="1" stop-color="#F7E2A0"/></linearGradient></defs>
+  </svg>
+  <div class="wrap grid" style="position:relative;z-index:2">
+    <div>
+      <span class="tag">✦ Assessoria Consular</span>
+      <h1>Seu visto aprovado<br>com <span class="gold serif">segurança</span> e<br>orientação profissional</h1>
+      <p class="sub">Há mais de 14 anos descomplicamos o processo de visto para brasileiros. Você sonha com a viagem — nós cuidamos de cada detalhe, do formulário à entrevista.</p>
+      <div class="cta-row">
+        <a class="btn btn-wa btn-lg" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span id="heroCtaLabel">Agendar assessoria</span>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#ebook">Ebook de Assessoria · R$97</a>
+      </div>
+      <div class="reassure">
+        <span class="av"><span>JC</span><span>MR</span><span>AS</span><span>+</span></span>
+        <span>Mais de <b style="color:var(--ink)">500 vistos aprovados</b> · resposta no mesmo dia</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="portrait-stage">
+        <div class="globe-bg" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none">
+            <defs>
+              <radialGradient id="gsph" cx="40%" cy="34%" r="74%">
+                <stop offset="0%" stop-color="#2f6bc2"/><stop offset="55%" stop-color="#143a82"/><stop offset="100%" stop-color="#08183a"/>
+              </radialGradient>
+              <linearGradient id="ggold" x1="0" y1="0" x2="200" y2="200">
+                <stop offset="0" stop-color="#FCEFC0"/><stop offset=".5" stop-color="#EBC56A"/><stop offset="1" stop-color="#A9781F"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="86" fill="url(#gsph)" stroke="url(#ggold)" stroke-width="1.4"/>
+            <g stroke="url(#ggold)" stroke-width="1" fill="none" opacity=".7">
+              <ellipse cx="100" cy="100" rx="38" ry="86"/><ellipse cx="100" cy="100" rx="68" ry="86"/>
+              <line x1="14" y1="100" x2="186" y2="100"/><path d="M22 64H178"/><path d="M22 136H178"/>
+            </g>
+          </svg>
+        </div>
+        <img class="portrait-cut" src="assets/isis-hero-office.png" alt="Isis Salles, especialista da Descomplica Visto, em seu escritório com passaportes">
+      </div>
+      <div class="hero-seal" style="font-family: Cinzel"><span class="v">90%</span><span class="t">Aprovação</span></div>
+      <div class="hero-chip">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <span class="tx"><span class="n" style="font-family: Merriweather">+14</span><span class="l">anos de experiência</span></span>
+      </div>
+      <div class="hero-name">
+        <div class="orn"><span class="ln"></span><span class="dia"></span><span class="ln r"></span></div>
+        <div class="nm">Isis Salles</div>
+        <div class="ro">Especialista em Assessoria Consular</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TRUST BAR ================= -->
+<section class="trustbar">
+  <div class="wrap row" style="display:block">
+    <div class="row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:34px 0">
+      <div class="tstat"><div class="n gold">+14</div><div class="l">anos de experiência</div></div>
+      <div class="tstat"><div class="n gold">90%</div><div class="l">taxa de aprovação</div></div>
+      <div class="tstat"><div class="n gold">+500</div><div class="l">vistos aprovados</div></div>
+      <div class="tstat"><div class="n gold">+13</div><div class="l">países atendidos</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAIN ================= -->
+<section class="band section-pad" data-screen-label="Dores">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">O processo não precisa ser assim</span>
+      <h2 class="sec-title">Por que o processo de visto<br>gera <span class="gold">tanta insegurança?</span></h2>
+      <p class="sec-intro">Quem está tentando tirar o visto enfrenta informações confusas, medo de errar documentos e muita ansiedade em relação à entrevista. Cada detalhe importa — e pequenos erros geram retrabalho e frustração.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain card reveal"><span class="x">?</span><div><h4>Informações confusas</h4><p>Dificuldade em encontrar informações claras e atualizadas sobre o processo.</p></div></div>
+      <div class="pain card reveal"><span class="x">!</span><div><h4>Medo de errar documentos</h4><p>Insegurança sobre quais documentos são necessários e como apresentá-los.</p></div></div>
+      <div class="pain card reveal"><span class="x">⚠</span><div><h4>Dúvidas sobre formulários</h4><p>Formulários complexos que geram confusão e possibilidade de erros.</p></div></div>
+      <div class="pain card reveal" style="text-align: justify"><span class="x">⏱</span><div><h4>Ansiedade com a entrevista</h4><p>Preocupação constante sobre o que será perguntado e como responder.</p></div></div>
+    </div>
+    <p class="pain-cta reveal">A Descomplica Visto existe para <span class="gold serif">organizar esse processo</span> e orientar você com tranquilidade.</p>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="band-alt section-pad" id="servicos" data-screen-label="Serviços">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nossos serviços</span>
+      <h2 class="sec-title">Assessoria completa para <span class="gold">cada tipo de visto</span></h2>
+      <p class="sec-intro">Atendemos diferentes perfis e objetivos com orientação especializada — do lazer ao trabalho, do estudo à reunião familiar.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc card reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.8 19.2L16 11l3.5-3.5a2.12 2.12 0 0 0-3-3L13 8 4.8 6.2a1 1 0 0 0-.9.3l-.9.9a1 1 0 0 0 .2 1.5L8 12l-2 3H4l-1 1 3 2 2 3 1-1v-2l3-2 2.5 4.5a1 1 0 0 0 1.5.2l.9-.9a1 1 0 0 0 .3-.9z"/></svg></div>
+        <h3>Visto de Turismo</h3>
+        <p>Orientação completa para vistos de lazer e visitas familiares ao exterior.</p>
+        <a class="more" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20o%20visto%20de%20turismo." target="_blank" rel="noopener">Solicitar orientação →</a>
+      </div>
+      <div class="svc card reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div>
+        <h3>Visto de Estudo</h3>
+        <p>Apoio para estudantes em programas de intercâmbio e graduação no exterior.</p>
+        <a class="more" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20o%20visto%20de%20estudo." target="_blank" rel="noopener">Solicitar orientação →</a>
+      </div>
+      <div class="svc card reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <h3>Visto de Trabalho</h3>
+        <p>Assessoria para profissionais que buscam oportunidades de trabalho fora do país.</p>
+        <a class="more" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20o%20visto%20de%20trabalho." target="_blank" rel="noopener">Solicitar orientação →</a>
+      </div>
+      <div class="svc card reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Visto Familiar</h3>
+        <p>Reunião familiar e vistos para dependentes com toda a documentação correta.</p>
+        <a class="more" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20o%20visto%20familiar." target="_blank" rel="noopener">Solicitar orientação →</a>
+      </div>
+      <div class="svc card reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 14l2 2 4-4"/></svg></div>
+        <h3>Renovação de Visto</h3>
+        <p>Auxílio na renovação e atualização de vistos vigentes, com agilidade e segurança.</p>
+        <a class="more" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20renova%C3%A7%C3%A3o%20de%20visto." target="_blank" rel="noopener">Solicitar orientação →</a>
+      </div>
+      <div class="svc card reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3 4 7 4 10s-1 7-4 10c-3-3-4-7-4-10s1-7 4-10z"/></svg></div>
+        <h3>Consultoria Personalizada</h3>
+        <p>Análise de perfil e orientação individual para cada caso e cada destino.</p>
+        <a class="more" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20consultoria%20personalizada." target="_blank" rel="noopener">Solicitar orientação →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EBOOK (ASSESSORIA EM EBOOK) ================= -->
+<section class="band section-pad ebook" id="ebook" data-screen-label="Ebook">
+  <div class="dots"></div>
+  <svg class="flight" style="bottom:8%;left:-30px;width:280px;opacity:.4;transform:scaleX(-1)" viewBox="0 0 300 160" fill="none">
+    <path d="M0 150 C70 60 160 30 290 16" stroke="url(#eg)" stroke-width="1.6" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <defs><linearGradient id="eg" x1="0" x2="300"><stop stop-color="#A9781F" stop-opacity="0"/><stop offset="1" stop-color="#F7E2A0"/></linearGradient></defs>
+  </svg>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Para quem quer fazer sozinho</span>
+      <h2 class="sec-title">A assessoria completa, <span class="gold">agora em formato digital</span></h2>
+      <p class="sec-intro">Nem todo mundo precisa (ou pode) contratar o acompanhamento individual da especialista. Por isso criamos a <b style="color:var(--ink)">Assessoria em Ebook</b>: todo o método da Descomplica Visto em ebook, vídeos explicativos e audiobook — para você conduzir o seu próprio processo, com direcionamento, do início ao fim.</p>
+    </div>
+    <div class="ebook-real reveal">
+      <div class="shot">
+        <div class="ebook-combo">
+          <div class="ec-cover">
+            <span class="ec-tex"></span><span class="ec-glow"></span>
+            <div class="ec-inner">
+              <img class="ec-logo" src="assets/globo-logo.png" alt="Descomplica Visto">
+              <div class="ec-org">Descomplica Visto</div>
+              <div class="ec-div"></div>
+              <h4>Guia Completo de<br><em>Assessoria Consular</em></h4>
+              <p class="ec-sub">Do preenchimento do DS-160 ao treinamento da entrevista</p>
+              <div class="ec-feats">
+                <span class="ec-feat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> DS-160</span>
+                <span class="ec-feat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg> Agendamento</span>
+                <span class="ec-feat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Entrevista</span>
+              </div>
+            </div>
+            <div class="ec-bottom"><div class="bl">Assessoria em Ebook</div><div class="br">R$97</div></div>
+          </div>
+          <div class="ec-phone">
+            <span class="ntc"></span>
+            <div class="scr">
+              <div class="ecp-in">
+                <img class="ecp-logo" src="assets/globo-logo.png" alt="">
+                <div class="ecp-org">Descomplica Visto</div>
+                <div class="ecp-div"></div>
+                <h5>Guia Completo de<br><em>Assessoria Consular</em></h5>
+              </div>
+              <div class="ecp-bar">Assessoria em Ebook</div>
+            </div>
+            <span class="hb"></span>
+          </div>
+        </div>
+      </div>
+      <div class="ebook-info">
+        <div class="fmt-badges" style="margin-top:0">
+          <span class="fmt-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Ebook completo</span>
+          <span class="fmt-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg> Vídeos explicativos</span>
+          <span class="fmt-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3zM3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg> Audiobook</span>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.12;margin:6px 0 4px">O mesmo conteúdo da assessoria — no seu ritmo</h3>
+        <p class="lead" style="color:var(--muted);margin-top:10px;font-size:1.04rem">Você aprende exatamente o que a especialista ensina no acompanhamento individual, mas conduz o processo por conta própria. Ideal para quem quer economizar e tem autonomia para seguir o passo a passo.</p>
+        <div style="font-family:'Cinzel',serif;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--gold-300);margin:24px 0 12px">O que está incluído</div>
+        <div class="encontra">
+          <div><span class="ck">✓</span>Passo a passo completo do processo</div>
+          <div><span class="ck">✓</span>Vídeos explicando cada etapa</div>
+          <div><span class="ck">✓</span>Audiobook para ouvir onde quiser</div>
+          <div><span class="ck">✓</span>Como preencher os formulários</div>
+          <div><span class="ck">✓</span>Organização da documentação</div>
+          <div><span class="ck">✓</span>Erros comuns que causam negativa</div>
+          <div><span class="ck">✓</span>Preparação para a entrevista</div>
+          <div><span class="ck">✓</span>Checklists práticos para seguir</div>
+        </div>
+        <div class="ebook-note">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>É a alternativa econômica à assessoria com a especialista — sem o acompanhamento individual, mas com todo o direcionamento que você precisa.</span>
+        </div>
+        <div class="price-row">
+          <span class="old">R$197</span>
+          <span class="now gold">R$97</span>
+          <span class="note">à vista ou em até 12x no cartão</span>
+        </div>
+        <a class="btn btn-gold btn-lg btn-block" href="https://pay.kiwify.com.br/dVyPXzk" target="_blank" rel="noopener">
+          Quero a Assessoria em Ebook
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="ebook-guarantee">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          Acesso imediato no seu e-mail · Garantia de 7 dias
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="band-alt section-pad" id="sobre" data-screen-label="Sobre">
+  <div class="dots"></div>
+  <div class="wrap about">
+    <div class="about-photo reveal"><img src="assets/isis-mug-hd.jpeg" alt="Isis Salles — Descomplica Visto" style="object-position:50% 30%"></div>
+    <div class="reveal">
+      <span class="eyebrow">Quem está por trás</span>
+      <h2>Prazer, eu sou <span class="gold serif">Isis Salles</span></h2>
+      <p>Há mais de 14 anos ajudo brasileiros a realizarem o sonho de viajar para o exterior com segurança e orientação profissional. Ao longo da minha trajetória, desenvolvi uma <b style="color:var(--ink)">metodologia própria de preparação</b> para o processo consular — com foco especial na entrevista do visto, a etapa decisiva para a aprovação.</p>
+      <p>Centenas de clientes atendidos e mais de <b style="color:var(--ink)">90% de aprovação</b>. Meu compromisso é simples: tratar o seu visto com a mesma atenção que daria ao meu — atendimento humanizado, transparente e descomplicado do começo ao fim.</p>
+      <div class="sig">Isis Salles<small>ESPECIALISTA EM ASSESSORIA CONSULAR</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEPS ================= -->
+<section class="band section-pad" data-screen-label="Como funciona">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nosso processo</span>
+      <h2 class="sec-title">Como funciona a <span class="gold">assessoria consular</span></h2>
+      <p class="sec-intro">Um processo estruturado para você se sentir seguro em cada etapa, desde o primeiro contato até a aprovação.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="num">1</div><div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 13 0M19 8l2 2 2-3"/></svg></div><h4>Análise do perfil</h4><p>Avaliação inicial do solicitante para entender suas necessidades.</p></div>
+      <div class="step"><div class="num">2</div><div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg></div><h4>Orientação sobre o visto</h4><p>Identificação do tipo de visto mais adequado ao seu objetivo.</p></div>
+      <div class="step"><div class="num">3</div><div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h6l2 2h8v12a2 2 0 0 1-2 2H4z"/><path d="M9 14l2 2 4-4"/></svg></div><h4>Documentação</h4><p>Organização e conferência de todos os documentos necessários.</p></div>
+      <div class="step"><div class="num">4</div><div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h4M9 17h6"/></svg></div><h4>Preenchimento de formulários</h4><p>Apoio completo no preenchimento correto de cada formulário.</p></div>
+      <div class="step"><div class="num">5</div><div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M9 15l2 2 4-4"/></svg></div><h4>Agendamento consular</h4><p>Orientação sobre como realizar o agendamento no consulado.</p></div>
+      <div class="step"><div class="num">6</div><div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>Preparação para entrevista</h4><p>Orientações sobre postura, documentos e perguntas frequentes.</p></div>
+      <div class="step"><div class="num">7</div><div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div><h4>Acompanhamento</h4><p>Suporte durante todo o processo até a finalização.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <a class="btn btn-wa btn-lg" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener">Agendar assessoria</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COUNTRIES ================= -->
+<section class="band-alt section-pad" data-screen-label="Países">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Para qual país deseja viajar?</span>
+      <h2 class="sec-title">Atendemos vistos para <span class="gold">14 países</span></h2>
+    </div>
+    <div class="countries reveal">
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/us.png" alt="" loading="lazy"> EUA</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/ca.png" alt="" loading="lazy"> Canadá</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/cn.png" alt="" loading="lazy"> China</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/in.png" alt="" loading="lazy"> Índia</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/kr.png" alt="" loading="lazy"> Coreia do Sul</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/kh.png" alt="" loading="lazy"> Camboja</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/eg.png" alt="" loading="lazy"> Egito</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/la.png" alt="" loading="lazy"> Laos</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/cu.png" alt="" loading="lazy"> Cuba</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/mx.png" alt="" loading="lazy"> México</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/vn.png" alt="" loading="lazy"> Vietnã</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/gb.png" alt="" loading="lazy"> Reino Unido</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/nz.png" alt="" loading="lazy"> Nova Zelândia</span>
+      <span class="country"><img class="fl" src="https://flagcdn.com/w40/au.png" alt="" loading="lazy"> Austrália</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPROVED WALL ================= -->
+<section class="band section-pad" id="depoimentos" data-screen-label="Mural de Aprovações">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Resultados reais, não promessas</span>
+      <h2 class="sec-title">Mural de <span class="gold">vistos aprovados</span></h2>
+      <p class="sec-intro">Cada carimbo abaixo é o sonho de um cliente realizado. EUA, Canadá, renovações e até reversão de negativas — de Norte a Sul do Brasil.</p>
+    </div>
+    <div class="wall-rail reveal" id="wallRail">
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-01.jpeg" alt="Visto americano aprovado de cliente" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-02.jpeg" alt="Visto americano aprovado de cliente" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-03.jpeg" alt="Visto de turismo Canadá aprovado" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-04.jpeg" alt="Passaportes renovados" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-05.jpeg" alt="Vistos americanos aprovados" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-06.jpeg" alt="Visto aprovado cliente São Luís" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-07.jpeg" alt="Família com visto renovado" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Reversão</span><img src="assets/aprovados/ap-08.jpeg" alt="Reversão de negativa e visto aprovado" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-09.jpeg" alt="Renovação de visto clientes de Natal" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-10.jpeg" alt="Visto aprovado malas prontas" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Aprovado</span><img src="assets/aprovados/ap-11.jpeg" alt="Família com visto aprovado para Orlando" loading="lazy"><span class="zoom">⚶</span></div>
+      <div class="story"><span class="vbadge"><span class="ck">✔</span> Canadá</span><img src="assets/aprovados/ap-canada-ok.jpeg" alt="Cliente no aeroporto com visto canadense aprovado" loading="lazy"><span class="zoom">⚶</span></div>
+    </div>
+    <p class="wall-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M5 12l5-5M5 12l5 5"/></svg> Arraste para o lado · clique para ampliar</p>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="band-alt section-pad" data-screen-label="Depoimentos">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Quem confiou, aprovou</span>
+      <h2 class="sec-title">Histórias de quem <span class="gold">confiou na Descomplica Visto</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>“Passando para agradecer o atendimento <b style="color:var(--gold-100)">excelente da Isis</b>. Sempre atenciosa, prestativa e competente. Super indico seus serviços! Passaporte com visto em mãos, agora é só arrumar as malas!”</p>
+        <div class="who"><span class="ph">AD</span><div><div class="nm">Aline Diógenes</div><div class="meta">Comerciante · Mossoró/RN</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>“Gostaria de agradecer o seu empenho, cuidado e delicadeza na orientação para a <b style="color:var(--gold-100)">aprovação do visto americano</b>. Seu trabalho tornou o processo muito menos estressante — e o valor cobrado foi muito justo.”</p>
+        <div class="who"><span class="ph">GC</span><div><div class="nm">Gisele Carvalho</div><div class="meta">Professora · Parnamirim/RN</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>“Parabéns pelo excelente trabalho no meu processo de visto americano. Sua <b style="color:var(--gold-100)">dedicação foi fundamental</b>. Mesmo em pleno domingo, você prontamente me atendeu. São poucos os profissionais com esse nível de dedicação.”</p>
+        <div class="who"><span class="ph">GO</span><div><div class="nm">George Oliveira</div><div class="meta">Petroleiro · Macaé/RJ</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>“Agradeço imensamente pela sua atenção e por todo o suporte. Cada detalhe que você orientou, nós seguimos, e <b style="color:var(--gold-100)">não encontramos nenhuma dificuldade</b> até a entrevista. Mais uma vez, obrigada!”</p>
+        <div class="who"><span class="ph">MP</span><div><div class="nm">Mariana Porto</div><div class="meta">Visto Americano · Aprovado</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Isis!!! Nem sabemos como agradecer pela sua assessoria! Muito, muito, muito obrigada de verdade. Com as suas orientações, <b style="color:var(--gold-100)">todo o processo se tornou bem mais fácil</b> e nós nos sentimos muito seguros o tempo todo. Durante a entrevista, foram feitas exatamente as perguntas que você nos disse. Recomendo demais sua agência!!!"</p>
+        <div class="who"><span class="ph">MF</span><div><div class="nm">Marília Freitas</div><div class="meta">Visto Americano · Aprovado</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Venho aqui agradecer ao incrível trabalho realizado pela Isis na tratativa de retirada do visto americano, tudo feito com <b style="color:var(--gold-100)">muita competência, agilidade e atenção</b>. Obrigado demais e super recomendo."</p>
+        <div class="who"><span class="ph">FO</span><div><div class="nm">Fábio de Oliveira</div><div class="meta">Visto Americano · Aprovado</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Gostaria de expressar minha profunda gratidão pela sua assistência na aprovação do nosso visto. <b style="color:var(--gold-100)">Sua dedicação e apoio foram fundamentais</b> para tornar esse processo um sucesso. Não tenho palavras para agradecer o suficiente por todo o seu empenho e gentileza."</p>
+        <div class="who"><span class="ph">LM</span><div><div class="nm">Luciano e Miriam</div><div class="meta">Empresários · Natal/RN</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Agradeço por todo o suporte e apoio que a Isis da Descomplica Visto me deu durante a solicitação do meu visto canadense. Graças a Deus e à ajuda dela, que é uma <b style="color:var(--gold-100)">profissional exemplar</b>, consegui a aprovação do meu visto tão sonhado."</p>
+        <div class="who"><span class="ph">FE</span><div><div class="nm">Fernando</div><div class="meta">Engenheiro Químico · Natal/RN</div></div></div>
+      </div>
+      <div class="testi card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Tivemos um ótimo atendimento, super atenciosos e muito organizados! Fomos <b style="color:var(--gold-100)">muito bem instruídos e deu tudo certo com o visto da família toda</b>! Super recomendo! Só elogios do início ao fim!! Obrigada!!"</p>
+        <div class="who"><span class="ph">AL</span><div><div class="nm">Adriana Leite</div><div class="meta">Empresária · Natal/RN</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VIDEO DEPO ================= -->
+<section class="band section-pad" data-screen-label="Vídeos">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Veja e ouça</span>
+      <h2 class="sec-title">Depoimentos <span class="gold">em vídeo</span></h2>
+      <p class="sec-intro">Nada como ouvir de quem viveu. Clientes reais contando como foi conquistar o visto com a Descomplica.</p>
+    </div>
+    <div class="vid-grid reveal">
+      <div class="vidcard"><span class="vlabel"><span style="color:var(--green)">●</span> Cliente</span><video src="assets/videos/depo-01.mp4" controls playsinline preload="metadata"></video></div>
+      <div class="vidcard"><span class="vlabel"><span style="color:var(--green)">●</span> Cliente</span><video src="assets/videos/depo-02.mp4" controls playsinline preload="metadata"></video></div>
+      <div class="vidcard"><span class="vlabel"><span style="color:var(--green)">●</span> Cliente</span><video src="assets/videos/depo-03.mp4" controls playsinline preload="metadata"></video></div>
+    </div>
+  </div>
+</section>
+
+<!-- lightbox -->
+<div class="lb" id="lightbox">
+  <button class="x" id="lbClose" aria-label="Fechar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="nav prev" id="lbPrev" aria-label="Anterior"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <img id="lbImg" alt="Visto aprovado ampliado">
+  <button class="nav next" id="lbNext" aria-label="Próximo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+
+<!-- ================= FAQ ================= -->
+<section class="band-alt section-pad" id="faq" data-screen-label="FAQ">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Perguntas frequentes</span>
+      <h2 class="sec-title">Ainda com dúvidas?</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q">A assessoria garante a aprovação do visto?<span class="ic">+</span></button>
+        <div class="faq-a"><div>Nenhuma assessoria séria pode garantir a decisão do consulado — ela é soberana. O que garantimos é preparar você da melhor forma possível: documentação correta, formulário sem erros e entrevista bem treinada. É isso que sustenta nossa taxa de 90% de aprovação.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Qual a diferença entre a assessoria e o ebook?<span class="ic">+</span></button>
+        <div class="faq-a"><div>A assessoria com a especialista é o acompanhamento individual da Isis do início ao fim — com apoio no preenchimento, agendamento, preparação de entrevista e suporte personalizado (por isso tem um valor mais alto). A <b>Assessoria em Ebook</b> (R$97) reúne todo esse método em ebook, vídeos explicativos e audiobook, para quem prefere conduzir o próprio processo com direcionamento, por um valor bem mais acessível.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como recebo o ebook depois de pagar?<span class="ic">+</span></button>
+        <div class="faq-a"><div>O acesso é imediato: assim que o pagamento é confirmado, a Assessoria em Ebook (ebook + vídeos explicativos + audiobook) é liberada automaticamente no seu e-mail. Você acessa pelo celular, tablet ou computador, quando quiser.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quais países a Descomplica realiza o processo de solicitação?<span class="ic">+</span></button>
+        <div class="faq-a"><div>Atendemos vistos para 14 países: Estados Unidos, Canadá, China, Índia, Coreia do Sul, Camboja, Egito, Laos, Cuba, México, Vietnã, Reino Unido, Nova Zelândia e Austrália. Chame no WhatsApp com o seu destino e te orientamos.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quanto custa a assessoria?<span class="ic">+</span></button>
+        <div class="faq-a"><div>O valor depende do tipo de visto e do nível de acompanhamento. Fazemos um orçamento personalizado e transparente — sem surpresas. Chame no WhatsApp para receber o seu.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEAD MAGNET (guia grátis) ================= -->
+<section class="band section-pad lead-mag" id="guia" data-screen-label="Guia grátis">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="lm-card reveal">
+      <div class="lm-cover">
+        <span class="lm-tag">GRÁTIS</span>
+        <img class="lm-book" src="assets/capa-guia-gratis.png" alt="Guia Prático do Visto — capa">
+      </div>
+      <div class="lm-info">
+        <span class="eyebrow">Material gratuito</span>
+        <h2>Baixe o <span class="gold">Guia Prático do Visto</span></h2>
+        <p class="lead">Do passaporte à entrevista: tudo o que você precisa saber antes de começar o seu processo. Deixe seu melhor e-mail e receba o guia agora mesmo.</p>
+        <form class="lm-form" id="leadForm" novalidate>
+          <input type="text" id="leadName" placeholder="Seu nome" autocomplete="name" aria-label="Seu nome">
+          <input type="email" id="leadEmail" placeholder="Seu melhor e-mail" autocomplete="email" aria-label="Seu e-mail" required>
+          <button type="submit" class="btn btn-gold">Quero o guia gratuito</button>
+        </form>
+        <div class="lm-note">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Seus dados estão seguros. Sem spam — só conteúdo útil sobre vistos.
+        </div>
+        <div class="lm-ok" id="leadOk">
+          <h4><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 6"/></svg> Prontinho!</h4>
+          <p>Seu guia está liberado. <a href="https://guia.descomplicavisto.com" target="_blank" rel="noopener">Abrir o Guia Prático agora →</a><br>Também enviamos o acesso para o seu e-mail.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="finalcta section-pad" data-screen-label="CTA final">
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="divider reveal" style="margin-bottom:6px"><span class="ln"></span><span class="dia"></span><span class="ln r"></span></div>
+    <span class="eyebrow reveal">Seu próximo carimbo no passaporte</span>
+    <h2 class="reveal">Está a uma conversa de distância</h2>
+    <p class="reveal">Fale agora com a Descomplica Visto e agende sua assessoria — ou comece hoje mesmo com a Assessoria em Ebook, no seu próprio ritmo.</p>
+    <div class="cta-row reveal">
+      <a class="btn btn-wa btn-lg" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Agendar assessoria
+      </a>
+      <a class="btn btn-gold btn-lg" href="https://pay.kiwify.com.br/dVyPXzk" target="_blank" rel="noopener">Ebook de Assessoria · R$97</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site" data-screen-label="Rodapé">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo-full-transparent.png" alt="Descomplica Visto — Assessoria Consular Internacional">
+        <p>Assessoria consular. Há mais de 14 anos descomplicando o visto de brasileiros com segurança e atendimento humano.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navegação</h5>
+        <a href="#servicos">Serviços</a>
+        <a href="#ebook">Ebook</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#faq">Dúvidas frequentes</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contato</h5>
+        <a href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener">WhatsApp: (84) 99918-5400</a>
+        <a href="https://instagram.com/descomplicavisto.contato" id="igLink" target="_blank" rel="noopener">Instagram: @descomplicavisto.contato</a>
+        <a href="mailto:contato@descomplicavisto.com">contato@descomplicavisto.com</a>
+        <a href="https://pay.kiwify.com.br/dVyPXzk" target="_blank" rel="noopener">Assessoria em Ebook</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Descomplica Visto — Assessoria Consular. Todos os direitos reservados.</span>
+      <span>Não somos vinculados a nenhum órgão governamental ou consulado.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+<a class="wa-float" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Descomplica%20e%20quero%20saber%20mais%20sobre%20a%20assessoria." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <span class="ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></span>
+  <span class="lbl">Fale conosco</span>
+</a>
+
+<script>
+// sticky nav
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);});
+// mobile menu
+const mm=document.getElementById('mobileMenu');
+document.getElementById('burger').onclick=()=>mm.classList.add('open');
+document.getElementById('closeMenu').onclick=()=>mm.classList.remove('open');
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>mm.classList.remove('open'));
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(it=>{
+  const q=it.querySelector('.faq-q'),a=it.querySelector('.faq-a');
+  q.onclick=()=>{
+    const open=it.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  };
+});
+// LEAD MAGNET — guia grátis (integração MailerLite)
+(function(){
+  const form=document.getElementById('leadForm');
+  if(!form) return;
+  // Endpoint padrão de formulário embed da MailerLite (conta 2443268 · form 190257445346477418)
+  const ML_ACTION='https://assets.mailerlite.com/jsonp/2443268/forms/190257445346477418/subscribe';
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    const name=document.getElementById('leadName').value.trim();
+    const email=document.getElementById('leadEmail').value.trim();
+    const okEmail=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+    if(!okEmail){const ei=document.getElementById('leadEmail');ei.style.borderColor='#cf6a5e';ei.focus();return;}
+    // envia para a MailerLite
+    const fd=new FormData();
+    fd.append('fields[email]',email);
+    fd.append('fields[name]',name);
+    fd.append('ml-submit','1');
+    fd.append('anticsrf','true');
+    fetch(ML_ACTION,{method:'POST',body:fd,mode:'no-cors'}).catch(()=>{});
+    // backup local
+    try{const leads=JSON.parse(localStorage.getItem('descomplica_leads')||'[]');leads.push({name,email,ts:Date.now()});localStorage.setItem('descomplica_leads',JSON.stringify(leads));}catch(err){}
+    form.style.display='none';
+    document.getElementById('leadOk').classList.add('show');
+  });
+})();
+// scroll reveal
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// approved wall: drag-to-scroll
+const rail=document.getElementById('wallRail');
+let down=false,sx=0,sl=0,moved=0;
+rail.addEventListener('mousedown',e=>{down=true;moved=0;rail.classList.add('drag');sx=e.pageX;sl=rail.scrollLeft;});
+addEventListener('mouseup',()=>{down=false;rail.classList.remove('drag');});
+rail.addEventListener('mouseleave',()=>{down=false;rail.classList.remove('drag');});
+rail.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();const d=e.pageX-sx;moved+=Math.abs(d);rail.scrollLeft=sl-d;});
+// lightbox
+const imgs=[...rail.querySelectorAll('img')];
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+let idx=0;
+function openLb(i){idx=i;lbImg.src=imgs[idx].src;lb.classList.add('open');}
+function step(n){idx=(idx+n+imgs.length)%imgs.length;lbImg.src=imgs[idx].src;}
+imgs.forEach((im,i)=>im.closest('.story').addEventListener('click',()=>{if(moved<6)openLb(i);}));
+document.getElementById('lbClose').onclick=()=>lb.classList.remove('open');
+document.getElementById('lbPrev').onclick=e=>{e.stopPropagation();step(-1);};
+document.getElementById('lbNext').onclick=e=>{e.stopPropagation();step(1);};
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open');};
+addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1);});
+// premium: count-up on stats when they enter view
+function countUp(el){
+  const txt = el.dataset.cu || el.textContent; el.dataset.cu = txt;
+  const m = txt.match(/^(\D*)(\d[\d.]*)(.*)$/);
+  if(!m) return;
+  const pre = m[1], target = parseInt(m[2].replace(/\D/g,''),10), suf = m[3];
+  if(!isFinite(target)) return;
+  const dur = 1300, t0 = performance.now();
+  function tick(t){
+    const p = Math.min(1,(t-t0)/dur);
+    const e2 = 1-Math.pow(1-p,3);
+    el.textContent = pre + Math.round(target*e2) + suf;
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statObs = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);statObs.unobserve(e.target);}});},{threshold:.6});
+document.querySelectorAll('.tstat .n, .hero-chip .n, .hero-seal .v').forEach(el=>statObs.observe(el));
+</script>
+
+<!-- ===== TWEAKS PANEL (React, só para o painel) ===== -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "goldTone": "Vivo",
+  "logoMode": "Globo + nome",
+  "showStats": true,
+  "heroCta": "Agendar assessoria"
+}/*EDITMODE-END*/;
+
+function DescomplicaTweaks(){
+  const [t,setTweak]=useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(()=>{
+    const r=document.documentElement.style;
+    if(t.goldTone==='Vivo'){
+      r.setProperty('--gold-100','#FFE7A0');
+      r.setProperty('--gold-300','#FAD25A');
+      r.setProperty('--gold-500','#F0B72A');
+      r.setProperty('--gold-700','#B07D12');
+      r.setProperty('--gold-grad','linear-gradient(174deg,#FFF0BE 0%,#FAD25A 38%,#F0B72A 64%,#B07D12 100%)');
+      r.setProperty('--gold-grad-flat','linear-gradient(180deg,#FFE08A 0%,#F0B72A 60%,#C8901A 100%)');
+    }else{
+      ['--gold-100','--gold-300','--gold-500','--gold-700','--gold-grad','--gold-grad-flat'].forEach(v=>r.removeProperty(v));
+    }
+  },[t.goldTone]);
+  React.useEffect(()=>{
+    const nm=document.querySelector('.nav .brand .nm');
+    if(nm) nm.style.display = t.logoMode==='Globo' ? 'none' : '';
+  },[t.logoMode]);
+  React.useEffect(()=>{
+    const tb=document.querySelector('.trustbar');
+    if(tb) tb.style.display = t.showStats ? '' : 'none';
+  },[t.showStats]);
+  React.useEffect(()=>{
+    const l=document.getElementById('heroCtaLabel');
+    if(l) l.textContent = t.heroCta;
+  },[t.heroCta]);
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Marca" />
+      <TweakRadio label="Tom do dourado" value={t.goldTone} options={['Premium','Vivo']}
+                  onChange={(v)=>setTweak('goldTone',v)} />
+      <TweakRadio label="Logo do topo" value={t.logoMode} options={['Globo','Globo + nome']}
+                  onChange={(v)=>setTweak('logoMode',v)} />
+      <TweakSection label="Conteúdo" />
+      <TweakToggle label="Barra de números" value={t.showStats}
+                   onChange={(v)=>setTweak('showStats',v)} />
+      <TweakText label="CTA do topo" value={t.heroCta}
+                 onChange={(v)=>setTweak('heroCta',v)} />
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<DescomplicaTweaks/>);
+</script>
+<script>
+(function(){
+  if(!window.THREE) return;
+  var cv=document.getElementById('siteHexBg'); if(!cv) return;
+  var renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.setClearColor(0x000000,0);
+  var scene=new THREE.Scene(),camera=new THREE.OrthographicCamera(-1,1,1,-1,0,1),clock=new THREE.Clock();
+  var uniforms={iTime:{value:0},iResolution:{value:new THREE.Vector3(1,1,1)}};
+  var mat=new THREE.ShaderMaterial({depthWrite:false,depthTest:false,uniforms:uniforms,
+    vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}',
+    fragmentShader:'precision highp float;uniform vec3 iResolution;uniform float iTime;void mainImage(out vec4 O,vec2 I){O=vec4(0.0);float i,z,t=iTime;for(i=0.0;i<1.0;i+=0.01){vec2 v=iResolution.xy;vec2 p=(I+I-v)/v.y*i;p/=.2+sqrt(z=max(1.0-dot(p,p),0.0))*.3;p.y+=fract(ceil(p.x=p.x/.9+t)*.5)+t*.2;v=abs(fract(p)-.5);O+=vec4(2.0,3.0,5.0,1.0)/4e3*z/(abs(max(v.x*1.5+v,v+v).y-1.0)+.1-i*.09);}O=tanh(O*O)*0.3;}void main(){vec4 O;mainImage(O,gl_FragCoord.xy);gl_FragColor=O;}'});
+  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){var w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);uniforms.iResolution.value.set(w,h,1);}
+  size();addEventListener('resize',function(){clearTimeout(window._hbt);window._hbt=setTimeout(size,200);});
+  function loop(){uniforms.iTime.value=clock.getElapsedTime();renderer.render(scene,camera);if(!reduce)requestAnimationFrame(loop);}
+  loop();
+})();
+</script>
+</body>
+</html>
