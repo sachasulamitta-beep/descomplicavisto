@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS-160 — Templates do vídeo · Descomplica Visto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#040A18; --navy-900:#06112A; --navy-800:#091a3d; --navy-700:#0c2350; --navy-600:#123067;
+  --royal:#1c4f9c;
+  --gold-50:#FCEFC0; --gold-100:#F7E2A0; --gold-300:#EBC56A; --gold-500:#D6A23E; --gold-600:#C2902F; --gold-700:#A9781F;
+  --ink:#ECF2FE; --muted:#9DB0D6; --muted-dim:#6F82A8;
+  --line:rgba(214,162,62,.28); --line-soft:rgba(157,176,214,.16);
+  --green:#1f9e57; --green-d:#16804a;
+  --red:#cf6a5e; --red-soft:rgba(207,106,94,.12);
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Hanken Grotesk",system-ui,sans-serif;
+  background:#02060f;color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+deck-stage:not(:defined){visibility:hidden}
+
+/* ============ shared slide stage ============ */
+.slide{
+  position:relative;
+  width:1920px;height:1080px;
+  background:
+    radial-gradient(70% 60% at 50% 14%, rgba(28,79,156,.42), transparent 60%),
+    radial-gradient(90% 80% at 50% 120%, rgba(214,162,62,.07), transparent 55%),
+    linear-gradient(180deg,#071435 0%, #050e25 50%, #040a18 100%);
+  color:var(--ink);
+  overflow:hidden;
+  font-family:"Hanken Grotesk",sans-serif;
+}
+.slide .dots{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.5px);
+  background-size:42px 42px;
+  -webkit-mask-image:radial-gradient(110% 90% at 50% 30%, #000 30%, transparent 80%);
+  mask-image:radial-gradient(110% 90% at 50% 30%, #000 30%, transparent 80%);
+  opacity:.5;
+}
+.slide .grain{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 80% at 8% 100%, rgba(28,79,156,.32), transparent 60%),
+             radial-gradient(50% 70% at 92% 0%, rgba(214,162,62,.10), transparent 60%);
+  mix-blend-mode:screen;opacity:.85;
+}
+
+/* serif/cinzel utilities */
+.serif{font-family:"Playfair Display",Georgia,serif}
+.cinzel{font-family:"Cinzel",serif;letter-spacing:.18em;text-transform:uppercase}
+.hand{font-family:"Caveat",cursive}
+.gold-text{
+  background:var(--gold-grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* ============ header / footer chrome ============ */
+.s-head{
+  position:absolute;top:48px;left:72px;display:flex;align-items:center;gap:18px;z-index:3;
+}
+.s-head .logo{height:62px;width:62px;object-fit:contain;}
+.s-head .a{font-family:"Playfair Display",serif;font-weight:700;font-size:1.5rem;line-height:1;}
+.s-head .b{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.74rem;color:var(--gold-300);text-transform:uppercase;margin-top:6px;}
+
+.s-step{
+  position:absolute;top:56px;right:72px;z-index:3;
+  display:flex;align-items:center;gap:14px;
+}
+.s-step .pill{
+  font-family:"Cinzel",serif;letter-spacing:.2em;text-transform:uppercase;
+  font-size:.84rem;color:var(--gold-100);
+  border:1px solid var(--line);border-radius:40px;padding:11px 22px;
+  background:rgba(214,162,62,.06);
+}
+
+.s-foot{
+  position:absolute;bottom:36px;left:72px;right:72px;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  color:var(--muted-dim);
+}
+.s-foot .brand{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.78rem;text-transform:uppercase;color:var(--muted)}
+.s-foot .legal{
+  font-size:.78rem;line-height:1.5;max-width:1000px;text-align:right;color:var(--muted-dim);
+  font-style:italic;
+}
+
+/* ============ COVER (slide 1) ============ */
+.cover{
+  display:flex;align-items:center;justify-content:center;
+}
+.cover .inner{
+  position:relative;z-index:2;text-align:center;max-width:1400px;padding:0 80px;
+}
+.cover .crest{
+  width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%, #1c4f9c, #06112A);
+  border:2px solid var(--gold-500);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 32px;
+  box-shadow:0 14px 40px rgba(214,162,62,.22), inset 0 0 30px rgba(214,162,62,.18);
+}
+.cover .crest img{width:74px;height:74px;object-fit:contain}
+.cover .eyebrow{
+  font-family:"Cinzel",serif;letter-spacing:.4em;font-size:1rem;
+  color:var(--gold-300);text-transform:uppercase;margin-bottom:34px;
+}
+.cover h1{
+  font-family:"Playfair Display",serif;font-weight:800;
+  font-size:7rem;line-height:1.02;letter-spacing:-.015em;
+  margin-bottom:30px;text-wrap:balance;
+}
+.cover h1 em{font-style:italic}
+.cover .sub{
+  font-size:1.5rem;color:var(--muted);max-width:880px;margin:0 auto;
+  text-wrap:pretty;line-height:1.55;
+}
+.cover .badges{
+  display:flex;gap:14px;justify-content:center;margin-top:48px;flex-wrap:wrap;
+}
+.cover .badges span{
+  font-family:"Cinzel",serif;letter-spacing:.2em;text-transform:uppercase;
+  font-size:.78rem;color:var(--gold-100);
+  border:1px solid var(--line);border-radius:40px;padding:11px 22px;
+  background:rgba(214,162,62,.05);
+}
+.cover .ornament{
+  display:flex;align-items:center;gap:18px;justify-content:center;margin:54px auto 0;
+}
+.cover .ornament .ln{height:1px;width:140px;background:linear-gradient(90deg,transparent,var(--gold-500))}
+.cover .ornament .ln.r{background:linear-gradient(270deg,transparent,var(--gold-500))}
+.cover .ornament .dia{width:14px;height:14px;background:var(--gold-grad-flat);transform:rotate(45deg);box-shadow:0 0 18px rgba(214,162,62,.6)}
+.cover .corner{
+  position:absolute;width:340px;height:340px;border:1px solid var(--line);
+  border-radius:6px;opacity:.5;
+}
+.cover .corner.tl{top:64px;left:64px;border-right:none;border-bottom:none}
+.cover .corner.tr{top:64px;right:64px;border-left:none;border-bottom:none}
+.cover .corner.bl{bottom:64px;left:64px;border-right:none;border-top:none}
+.cover .corner.br{bottom:64px;right:64px;border-left:none;border-top:none}
+
+/* flight path arc */
+.flight{
+  position:absolute;left:-50px;right:-50px;top:54%;height:280px;pointer-events:none;opacity:.4;
+}
+
+/* ============ OPENING (slide 2) ============ */
+.opening{padding:160px 140px 120px;}
+.opening .col{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center;height:100%;
+}
+.opening .lead .eyebrow{
+  font-family:"Cinzel",serif;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold-300);font-size:.95rem;margin-bottom:24px;
+}
+.opening h2{
+  font-family:"Playfair Display",serif;font-weight:700;
+  font-size:5.4rem;line-height:1.04;letter-spacing:-.01em;
+  margin-bottom:34px;text-wrap:balance;
+}
+.opening h2 em{font-style:italic}
+.opening p{font-size:1.45rem;line-height:1.55;color:var(--muted);max-width:680px;}
+.opening p strong{color:var(--ink);font-weight:600;background:linear-gradient(transparent 60%, rgba(214,162,62,.25) 60%);padding:0 4px;}
+.opening .bullets{
+  margin-top:50px;display:flex;flex-direction:column;gap:18px;
+}
+.opening .bullets .b{
+  display:flex;gap:18px;align-items:center;font-size:1.2rem;color:var(--ink);
+}
+.opening .bullets .num{
+  width:48px;height:48px;border-radius:50%;
+  border:1px solid var(--gold-500);background:rgba(214,162,62,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Playfair Display",serif;font-weight:700;color:var(--gold-100);font-size:1.1rem;flex:none;
+}
+
+.opening .visual{
+  position:relative;height:680px;
+  display:flex;align-items:center;justify-content:center;
+}
+.opening .visual .ring{
+  position:absolute;width:560px;height:560px;border-radius:50%;
+  border:1px solid var(--line);opacity:.6;
+}
+.opening .visual .ring.r2{width:680px;height:680px;border-color:var(--line-soft)}
+.opening .visual .passport{
+  width:380px;height:520px;border-radius:18px;
+  background:linear-gradient(160deg,#0a2152,#06112a 60%,#040a18);
+  border:1px solid var(--gold-500);
+  box-shadow:0 40px 80px rgba(0,0,0,.55), inset 0 0 60px rgba(214,162,62,.08);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 40px;position:relative;
+  transform:rotate(-6deg);
+}
+.opening .visual .passport::before{
+  content:"";position:absolute;inset:14px;border:1px solid var(--gold-500);border-radius:12px;opacity:.45;
+}
+.opening .visual .passport .seal{
+  width:140px;height:140px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%, #1c4f9c, #06112a);
+  border:2px solid var(--gold-500);margin-bottom:30px;
+  display:flex;align-items:center;justify-content:center;
+}
+.opening .visual .passport .seal img{width:80px;height:80px;object-fit:contain}
+.opening .visual .passport .nm{font-family:"Cinzel",serif;font-size:.82rem;letter-spacing:.24em;color:var(--gold-100);margin-bottom:8px;text-align:center}
+.opening .visual .passport .ds{font-family:"Playfair Display",serif;font-size:2.4rem;font-weight:700;color:var(--gold-100);letter-spacing:.04em}
+
+/* ============ TRANSITION (slide 3) ============ */
+.transit{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+}
+.transit .inner{position:relative;z-index:2;max-width:1400px;padding:0 100px;}
+.transit .step{
+  font-family:"Cinzel",serif;letter-spacing:.42em;text-transform:uppercase;
+  font-size:1.05rem;color:var(--gold-300);margin-bottom:30px;
+}
+.transit .num{
+  font-family:"Playfair Display",serif;font-weight:800;font-style:italic;
+  font-size:14rem;line-height:.85;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+.transit h2{
+  font-family:"Playfair Display",serif;font-weight:700;
+  font-size:5.4rem;line-height:1.05;letter-spacing:-.01em;
+  margin:18px 0 30px;text-wrap:balance;
+}
+.transit h2 em{font-style:italic}
+.transit p{font-size:1.45rem;color:var(--muted);max-width:850px;margin:0 auto;line-height:1.55}
+.transit .ornament{display:flex;align-items:center;gap:18px;justify-content:center;margin-top:50px}
+.transit .ornament .ln{height:1px;width:120px;background:linear-gradient(90deg,transparent,var(--gold-500))}
+.transit .ornament .ln.r{background:linear-gradient(270deg,transparent,var(--gold-500))}
+.transit .ornament .dia{width:12px;height:12px;background:var(--gold-grad-flat);transform:rotate(45deg);box-shadow:0 0 16px rgba(214,162,62,.5)}
+
+/* ============ generic card slide (4 autoridade cards + 2 case cards) ============ */
+.cardslide{padding:170px 140px 140px;}
+.cardslide .col{
+  display:grid;grid-template-columns:1.02fr 1.18fr;gap:80px;align-items:center;height:100%;
+}
+.cardslide .left .eyebrow{
+  font-family:"Cinzel",serif;letter-spacing:.32em;text-transform:uppercase;
+  font-size:.92rem;margin-bottom:24px;
+}
+.cardslide .left h2{
+  font-family:"Playfair Display",serif;font-weight:700;
+  font-size:4.6rem;line-height:1.04;letter-spacing:-.01em;
+  margin-bottom:34px;text-wrap:balance;
+}
+.cardslide .left h2 em{font-style:italic}
+.cardslide .left p{font-size:1.32rem;line-height:1.55;color:var(--muted);max-width:580px;}
+.cardslide .left p strong{color:var(--ink);font-weight:600;background:linear-gradient(transparent 60%, rgba(214,162,62,.25) 60%);padding:0 4px;}
+.cardslide .left .when{
+  margin-top:36px;display:inline-flex;align-items:center;gap:12px;
+  font-family:"Cinzel",serif;letter-spacing:.18em;text-transform:uppercase;font-size:.72rem;
+  color:var(--muted-dim);border:1px dashed var(--line-soft);border-radius:30px;padding:9px 18px;
+}
+
+/* big floating card */
+.qcard{
+  position:relative;border-radius:24px;
+  padding:64px 60px 60px;
+  background:linear-gradient(180deg, rgba(12,35,80,.55), rgba(6,17,42,.78));
+  border:1px solid var(--line);
+  box-shadow:0 50px 100px rgba(0,0,0,.55), inset 0 0 100px rgba(28,79,156,.10);
+  overflow:hidden;
+}
+.qcard::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+  background:var(--gold-grad-flat);
+}
+.qcard .ribbon{
+  position:absolute;top:0;right:48px;
+  padding:14px 28px 18px;
+  background:var(--gold-grad-flat);color:#2a1c04;
+  font-family:"Cinzel",serif;letter-spacing:.22em;text-transform:uppercase;
+  font-size:.84rem;font-weight:700;
+  clip-path:polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+  box-shadow:0 18px 30px rgba(214,162,62,.32);
+}
+.qcard .ribbon.red{background:linear-gradient(180deg,#e58479,#b94e44);color:#fff}
+.qcard .ribbon.green{background:linear-gradient(180deg,#3bc977,#1f9e57);color:#fff}
+.qcard .ribbon.blue{background:linear-gradient(180deg,#5b9be3,#1c4f9c);color:#fff}
+
+.qcard .icn{
+  width:96px;height:96px;border-radius:24px;
+  background:rgba(214,162,62,.10);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--gold-100);
+  margin-bottom:28px;
+}
+.qcard .icn.red{background:rgba(207,106,94,.10);border-color:rgba(207,106,94,.4);color:#f4b3aa}
+.qcard .icn.green{background:rgba(31,158,87,.10);border-color:rgba(31,158,87,.4);color:#7ce6a8}
+.qcard .icn.blue{background:rgba(28,79,156,.18);border-color:rgba(91,155,227,.4);color:#9cc4f0}
+
+.qcard h3{
+  font-family:"Playfair Display",serif;font-weight:700;
+  font-size:2.4rem;line-height:1.1;margin-bottom:16px;
+}
+.qcard .lead{
+  font-size:1.32rem;color:var(--muted);line-height:1.55;margin-bottom:30px;text-wrap:pretty;
+}
+.qcard .lead strong{color:var(--ink);font-weight:600}
+.qcard .quote{
+  position:absolute;top:30px;right:40px;
+  font-family:"Playfair Display",serif;font-style:italic;font-weight:700;
+  font-size:8rem;line-height:.7;
+  color:var(--gold-500);opacity:.18;
+}
+.qcard ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:6px;}
+.qcard ul li{
+  display:flex;gap:14px;align-items:flex-start;
+  font-size:1.16rem;color:var(--ink);line-height:1.5;
+}
+.qcard ul li .chk{
+  width:28px;height:28px;border-radius:8px;
+  background:rgba(31,158,87,.16);border:1px solid rgba(31,158,87,.5);
+  display:flex;align-items:center;justify-content:center;color:#3bc977;flex:none;margin-top:2px;
+}
+.qcard ul li .dot{
+  width:10px;height:10px;border-radius:50%;background:var(--gold-grad-flat);
+  flex:none;margin-top:11px;box-shadow:0 0 12px rgba(214,162,62,.5)
+}
+.qcard .scribble{
+  font-family:"Caveat",cursive;color:var(--gold-100);font-size:1.7rem;line-height:1.2;
+  margin-top:26px;padding:18px 24px;border-left:3px solid var(--gold-500);
+  background:rgba(214,162,62,.06);border-radius:0 12px 12px 0;
+}
+
+/* visa case card row of pills */
+.qcard .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.qcard .pills span{
+  font-family:"Cinzel",serif;letter-spacing:.18em;text-transform:uppercase;
+  font-size:.72rem;color:var(--gold-100);
+  border:1px solid var(--line);border-radius:30px;padding:8px 16px;
+  background:rgba(214,162,62,.06);
+}
+
+/* ============ ENCERRAMENTO WHATSAPP (last slide) ============ */
+.closing{padding:160px 140px;display:flex;align-items:center;justify-content:center;}
+.closing .col{
+  display:grid;grid-template-columns:1fr .92fr;gap:90px;align-items:center;height:100%;
+}
+.closing .lead .eyebrow{
+  font-family:"Cinzel",serif;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--gold-300);font-size:.95rem;margin-bottom:24px;
+}
+.closing h2{
+  font-family:"Playfair Display",serif;font-weight:700;
+  font-size:5.4rem;line-height:1.02;letter-spacing:-.01em;
+  margin-bottom:32px;text-wrap:balance;
+}
+.closing h2 em{font-style:italic}
+.closing p{font-size:1.4rem;color:var(--muted);line-height:1.55;max-width:680px;}
+.closing p strong{color:var(--ink);font-weight:600}
+.closing .cta{
+  margin-top:48px;display:inline-flex;align-items:center;gap:18px;
+  padding:24px 38px;border-radius:18px;
+  background:linear-gradient(180deg,#23b85c,#16894a);
+  color:#fff;font-weight:700;font-size:1.5rem;
+  box-shadow:0 28px 60px rgba(31,158,87,.42);
+  font-family:"Hanken Grotesk",sans-serif;
+}
+.closing .cta svg{flex:none}
+.closing .sub-row{
+  margin-top:32px;display:flex;flex-direction:column;gap:14px;color:var(--muted);font-size:1.1rem;
+}
+.closing .sub-row .row{display:flex;gap:14px;align-items:center;}
+.closing .sub-row .row svg{color:var(--gold-300);flex:none}
+.closing .sub-row .row b{color:var(--ink);font-weight:600}
+
+.closing .right{
+  position:relative;display:flex;align-items:center;justify-content:center;height:680px;
+}
+.closing .phone{
+  width:420px;height:760px;border-radius:48px;
+  background:linear-gradient(160deg,#0c2350,#06112a);
+  border:1px solid var(--gold-500);
+  box-shadow:0 50px 100px rgba(0,0,0,.6), inset 0 0 60px rgba(28,79,156,.18);
+  padding:32px 24px;position:relative;overflow:hidden;
+}
+.closing .phone::before{
+  content:"";position:absolute;left:50%;top:18px;transform:translateX(-50%);
+  width:120px;height:26px;border-radius:30px;background:#040a18;
+}
+.closing .phone .screen{
+  margin-top:54px;background:#04101f;border-radius:24px;padding:18px 16px;height:calc(100% - 70px);
+  display:flex;flex-direction:column;gap:14px;
+}
+.closing .phone .hdr{
+  display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line-soft);
+}
+.closing .phone .hdr .av{
+  width:46px;height:46px;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%,#1c4f9c,#06112a);
+  border:1.5px solid var(--gold-500);
+  display:flex;align-items:center;justify-content:center;
+}
+.closing .phone .hdr .av img{width:30px;height:30px;object-fit:contain}
+.closing .phone .hdr .nm{font-family:"Playfair Display",serif;font-weight:700;font-size:1rem;color:var(--ink)}
+.closing .phone .hdr .st{font-size:.72rem;color:var(--green);display:flex;gap:6px;align-items:center;margin-top:4px}
+.closing .phone .hdr .st::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+.closing .phone .msgs{flex:1;display:flex;flex-direction:column;gap:10px;padding-top:8px;}
+.closing .phone .msg{
+  max-width:80%;padding:11px 14px;border-radius:14px;font-size:.84rem;line-height:1.45;
+}
+.closing .phone .msg.in{align-self:flex-start;background:rgba(28,79,156,.22);color:var(--ink);border-bottom-left-radius:4px}
+.closing .phone .msg.out{align-self:flex-end;background:rgba(31,158,87,.22);color:#cdf2dc;border-bottom-right-radius:4px}
+.closing .phone .input{
+  margin-top:auto;display:flex;align-items:center;gap:10px;
+  background:#0a1a36;border:1px solid var(--line-soft);border-radius:30px;padding:9px 14px;
+}
+.closing .phone .input .ph{flex:1;color:var(--muted-dim);font-size:.78rem}
+.closing .phone .input .send{
+  width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.closing .qr{
+  position:absolute;bottom:-30px;right:-20px;
+  width:170px;height:170px;border-radius:18px;background:#fff;padding:14px;
+  box-shadow:0 24px 50px rgba(0,0,0,.5);
+}
+.closing .qr .grid{
+  width:100%;height:100%;
+  background:
+    linear-gradient(#040a18 2px, transparent 2px) 0 0/100% 11.1%,
+    linear-gradient(90deg,#040a18 2px, transparent 2px) 0 0/11.1% 100%;
+  background-color:#fff;
+  position:relative;
+}
+.closing .qr .grid::before, .closing .qr .grid::after{
+  content:"";position:absolute;width:30px;height:30px;border:6px solid #040a18;
+}
+.closing .qr .grid::before{top:0;left:0}
+.closing .qr .grid::after{top:0;right:0}
+
+/* ============ progress dots on every slide ============ */
+.progress{
+  position:absolute;left:50%;bottom:82px;transform:translateX(-50%);
+  display:flex;gap:10px;z-index:3;
+}
+.progress i{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(157,176,214,.22);
+}
+.progress i.on{background:var(--gold-grad-flat);box-shadow:0 0 12px rgba(214,162,62,.55);width:30px;border-radius:6px}
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+<!-- ============ 1. CAPA ============ -->
+<section data-label="Capa" data-screen-label="01 Capa">
+  <div class="slide cover">
+    <span class="dots"></span><span class="grain"></span>
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+
+    <svg class="flight" viewBox="0 0 2020 280" fill="none" preserveAspectRatio="none">
+      <path d="M0 240 C 500 40, 1500 40, 2020 240" stroke="url(#g1)" stroke-width="1.5" stroke-dasharray="6 8"/>
+      <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#D6A23E" stop-opacity="0"/><stop offset=".5" stop-color="#EBC56A" stop-opacity=".8"/><stop offset="1" stop-color="#D6A23E" stop-opacity="0"/></linearGradient></defs>
+    </svg>
+
+    <div class="inner">
+      <div class="crest"><img src="assets/globo-logo.png" alt=""></div>
+      <div class="eyebrow">Descomplica Visto · Assessoria Consular</div>
+      <h1>Como preencher o<br><em class="gold-text">DS-160</em> sem errar</h1>
+      <p class="sub">O passo a passo do formulário oficial do visto americano — campo a campo, com as orientações da especialista.</p>
+      <div class="badges">
+        <span>Módulo 01</span>
+        <span>Formulário DS-160</span>
+        <span>Visto B1/B2</span>
+      </div>
+      <div class="ornament"><span class="ln"></span><span class="dia"></span><span class="ln r"></span></div>
+    </div>
+
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · descomplicavisto.com.br</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano e no portal de agendamento vigente no Brasil.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. ABERTURA ============ -->
+<section data-label="Abertura" data-screen-label="02 Abertura">
+  <div class="slide opening">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Antes de começar</span></div>
+
+    <div class="col">
+      <div class="lead">
+        <div class="eyebrow gold-text">Bem-vindo ao módulo</div>
+        <h2>Antes de abrir o formulário, <em class="gold-text">organize tudo.</em></h2>
+        <p>O DS-160 é o primeiro passo para o visto americano. Ele leva cerca de <strong>90 minutos</strong> para ser preenchido e <strong>não permite correções</strong> depois do envio. Por isso, comece com calma — e com os documentos certos em mãos.</p>
+        <div class="bullets">
+          <div class="b"><span class="num">1</span> Passaporte válido em mãos</div>
+          <div class="b"><span class="num">2</span> CPF e dados pessoais conferidos</div>
+          <div class="b"><span class="num">3</span> Histórico de viagens dos últimos 5 anos</div>
+          <div class="b"><span class="num">4</span> Computador, navegador Chrome ou Edge</div>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="ring r2"></div>
+        <div class="ring"></div>
+        <div class="passport">
+          <div class="seal"><img src="assets/globo-logo.png" alt=""></div>
+          <div class="nm">Visto Americano</div>
+          <div class="ds">DS-160</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. TRANSIÇÃO ============ -->
+<section data-label="Transição" data-screen-label="03 Transição">
+  <div class="slide transit">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Transição entre etapas</span></div>
+
+    <div class="inner">
+      <div class="step">Etapa</div>
+      <div class="num">04</div>
+      <h2>Informações <em class="gold-text">da Viagem</em></h2>
+      <p>A partir daqui o formulário começa a perguntar sobre o motivo da viagem, datas previstas e onde você ficará nos Estados Unidos. Vamos com calma — campo por campo.</p>
+      <div class="ornament"><span class="ln"></span><span class="dia"></span><span class="ln r"></span></div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. DICA DA ESPECIALISTA ============ -->
+<section data-label="Dica da especialista" data-screen-label="04 Dica da especialista">
+  <div class="slide cardslide">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Card · Dica</span></div>
+
+    <div class="col">
+      <div class="left">
+        <div class="eyebrow gold-text">Quadro de autoridade</div>
+        <h2>Dica da <em class="gold-text">especialista</em></h2>
+        <p>Use este card sempre que houver um <strong>cuidado importante</strong> em um campo específico — algo que faz a diferença na hora da entrevista, mas que muita gente passa batido.</p>
+        <div class="when">Usar quando: houver cuidado importante</div>
+      </div>
+
+      <div class="qcard">
+        <div class="ribbon">Dica da especialista</div>
+        <div class="quote">"</div>
+        <div class="icn">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 2l2.6 5.3 5.9.9-4.3 4.2 1 5.8L12 15.4 6.8 18.2l1-5.8L3.5 8.2l5.9-.9z"/>
+          </svg>
+        </div>
+        <h3>Coerência é tudo no DS-160.</h3>
+        <p class="lead">Cada resposta precisa <strong>conversar com a próxima</strong>: o motivo da viagem, a duração, a hospedagem e o que você vai dizer na entrevista formam <strong>uma única história</strong>.</p>
+        <div class="scribble">Se a resposta não bate com o resto do formulário, o oficial percebe na hora — e isso vira pergunta na entrevista.</div>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. ERRO COMUM ============ -->
+<section data-label="Erro comum" data-screen-label="05 Erro comum">
+  <div class="slide cardslide">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Card · Erro</span></div>
+
+    <div class="col">
+      <div class="left">
+        <div class="eyebrow" style="color:#f4b3aa">Quadro de autoridade</div>
+        <h2>Erro <em class="gold-text">comum</em></h2>
+        <p>Quando um <strong>erro acontece com frequência</strong> entre os solicitantes, marcamos com este card. É o aviso para parar, conferir duas vezes e seguir só depois.</p>
+        <div class="when">Usar quando: muita gente erra neste campo</div>
+      </div>
+
+      <div class="qcard">
+        <div class="ribbon red">Erro comum</div>
+        <div class="quote" style="color:#cf6a5e">!</div>
+        <div class="icn red">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
+            <path d="M12 9v4M12 17h.01"/>
+          </svg>
+        </div>
+        <h3>Nome diferente do passaporte.</h3>
+        <p class="lead">Abreviar o sobrenome, traduzir o nome ou usar apelido é o <strong>erro mais comum</strong> do DS-160 — e um dos que mais leva à negativa.</p>
+        <ul>
+          <li><span class="dot"></span><span>Digite <strong>exatamente</strong> como está no passaporte — incluindo espaços e acentos.</span></li>
+          <li><span class="dot"></span><span>Sobrenomes compostos vão <strong>todos</strong> no campo "Surnames".</span></li>
+          <li><span class="dot"></span><span>Nada de "Jr.", "Filho" abreviado ou nome social — só o nome do documento.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. ATENÇÃO ANTES DE AVANÇAR ============ -->
+<section data-label="Atenção antes de avançar" data-screen-label="06 Atenção antes de avançar">
+  <div class="slide cardslide">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Card · Atenção</span></div>
+
+    <div class="col">
+      <div class="left">
+        <div class="eyebrow gold-text">Quadro de autoridade</div>
+        <h2>Atenção antes <em class="gold-text">de avançar</em></h2>
+        <p>Aparece antes de páginas <strong>críticas</strong> do formulário — telas em que o que você marcar pode mudar todo o resto, ou que <strong>não dá para voltar atrás</strong>.</p>
+        <div class="when">Usar antes de: páginas críticas</div>
+      </div>
+
+      <div class="qcard">
+        <div class="ribbon" style="background:linear-gradient(180deg,#F4D98A,#D6A23E);">Atenção</div>
+        <div class="quote">⚠</div>
+        <div class="icn">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+        <h3>O posto consular não pode ser alterado.</h3>
+        <p class="lead">Depois de finalizar o formulário, <strong>não dá para mudar o local da entrevista</strong>. Se mudar de ideia, você terá que <strong>refazer o DS-160 do zero</strong>.</p>
+        <ul>
+          <li><span class="dot"></span><span>Confirme a cidade do consulado <strong>antes</strong> de clicar em "Start an Application".</span></li>
+          <li><span class="dot"></span><span>Considere disponibilidade de agendamento e logística de viagem.</span></li>
+          <li><span class="dot"></span><span>Anote o <strong>Application ID</strong> antes de fechar o navegador.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. CHECKLIST DA ETAPA ============ -->
+<section data-label="Checklist da etapa" data-screen-label="07 Checklist da etapa">
+  <div class="slide cardslide">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Card · Checklist</span></div>
+
+    <div class="col">
+      <div class="left">
+        <div class="eyebrow" style="color:#7ce6a8">Quadro de autoridade</div>
+        <h2>Checklist <em class="gold-text">da etapa</em></h2>
+        <p>Aparece <strong>no fim de cada bloco</strong> do formulário. É a confirmação rápida de que você não pulou nada antes de avançar para a próxima seção.</p>
+        <div class="when">Usar no: fim de cada bloco</div>
+      </div>
+
+      <div class="qcard">
+        <div class="ribbon green">Checklist</div>
+        <div class="icn green">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </div>
+        <h3>Antes de seguir para a próxima etapa.</h3>
+        <ul>
+          <li><span class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><span>Conferi nome e sobrenome <strong>iguais ao passaporte</strong></span></li>
+          <li><span class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><span>Anotei o <strong>Application ID</strong> em local seguro</span></li>
+          <li><span class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><span>Salvei o formulário antes de fechar o navegador</span></li>
+          <li><span class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><span>Marquei a <strong>resposta de segurança</strong> que eu vou lembrar</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. CASO B1/B2 ============ -->
+<section data-label="Caso B1/B2" data-screen-label="08 Caso B1 B2">
+  <div class="slide cardslide">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Card · Caso B1/B2</span></div>
+
+    <div class="col">
+      <div class="left">
+        <div class="eyebrow" style="color:#9cc4f0">Quadro de autoridade</div>
+        <h2>Caso <em class="gold-text">B1/B2</em></h2>
+        <p>Use este card quando o exemplo for específico do <strong>visto de turismo ou negócios</strong>. Mantém a referência clara para quem está nesta categoria.</p>
+        <div class="when">Usar quando: o exemplo for turismo / negócios</div>
+      </div>
+
+      <div class="qcard">
+        <div class="ribbon blue">B1 / B2</div>
+        <div class="icn blue">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
+          </svg>
+        </div>
+        <h3>Turismo, lazer ou negócios curtos.</h3>
+        <p class="lead">No DS-160, sempre selecione <strong>"Negócios ou Turismo (B1/B2)"</strong> — essa opção <strong>engloba todos os motivos</strong> de turismo, visita à família, congressos e reuniões curtas.</p>
+        <div class="pills">
+          <span>Turismo</span><span>Família</span><span>Compras</span><span>Tratamento médico</span><span>Conferências</span>
+        </div>
+        <div class="scribble">Nunca escolha "Turismo (B2)" sozinho — a configuração oficial mudou para B1/B2 unificado.</div>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. OUTROS TIPOS DE VISTO ============ -->
+<section data-label="Outros tipos de visto" data-screen-label="09 Outros tipos">
+  <div class="slide cardslide">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Card · Outros vistos</span></div>
+
+    <div class="col">
+      <div class="left">
+        <div class="eyebrow gold-text">Quadro de autoridade</div>
+        <h2>Outros <em class="gold-text">tipos de visto</em></h2>
+        <p>Quando o procedimento muda para <strong>estudantes, trabalho, intercâmbio</strong> ou outras categorias, o card abre uma observação rápida — sem fugir do foco principal do vídeo.</p>
+        <div class="when">Usar quando: houver observação para outras categorias</div>
+      </div>
+
+      <div class="qcard">
+        <div class="ribbon">Outros vistos</div>
+        <div class="icn">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.42a12 12 0 0 1 .34 7.42L12 21l-6.5-3a12 12 0 0 1 .34-7.42L12 14z"/>
+          </svg>
+        </div>
+        <h3>O caminho muda — e os cuidados também.</h3>
+        <p class="lead">Para <strong>F-1 (estudante), J-1 (intercâmbio), H/L (trabalho)</strong> e outras categorias, alguns campos do DS-160 têm regras próprias e exigem <strong>documentação extra</strong>.</p>
+        <div class="pills">
+          <span>F-1 Estudante</span><span>J-1 Intercâmbio</span><span>H-1B Trabalho</span><span>L-1 Transferência</span><span>O-1 Talento</span>
+        </div>
+        <div class="scribble">Se o seu caso é diferente de turismo, fale com a especialista antes de começar o formulário.</div>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. ENCERRAMENTO WHATSAPP ============ -->
+<section data-label="Encerramento WhatsApp" data-screen-label="10 Encerramento WhatsApp">
+  <div class="slide closing">
+    <span class="dots"></span><span class="grain"></span>
+
+    <div class="s-head">
+      <img class="logo" src="assets/globo-logo.png" alt="">
+      <div><div class="a">Descomplica Visto</div><div class="b">Assessoria Consular</div></div>
+    </div>
+    <div class="s-step"><span class="pill">Encerramento</span></div>
+
+    <div class="col">
+      <div class="lead">
+        <div class="eyebrow gold-text">Quer ajuda da especialista?</div>
+        <h2>O formulário está pronto. <em class="gold-text">E agora?</em></h2>
+        <p>Se você quer <strong>revisão completa</strong> do seu DS-160, preparação personalizada para a entrevista e acompanhamento do início ao fim — a Isis e a equipe da Descomplica estão a uma mensagem de distância.</p>
+
+        <a class="cta" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20vim%20pelo%20v%C3%ADdeo%20do%20DS-160%20e%20quero%20falar%20com%20a%20especialista." target="_blank" rel="noopener">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zM6.597 20.13a9.866 9.866 0 005.452 1.636h.005c5.448 0 9.886-4.434 9.889-9.885a9.823 9.823 0 00-2.892-6.991 9.823 9.823 0 00-6.992-2.899c-5.452 0-9.887 4.434-9.889 9.885a9.85 9.85 0 001.51 5.26l.235.373-.999 3.648 3.747-.983.36.21z"/></svg>
+          Falar no WhatsApp
+        </a>
+
+        <div class="sub-row">
+          <div class="row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><b>(84) 99918-5400</b> · WhatsApp direto</span></div>
+          <div class="row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg><span><b>@descomplicavisto.contato</b> · Instagram</span></div>
+          <div class="row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span><b>descomplicavisto.com.br</b></span></div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="phone">
+          <div class="screen">
+            <div class="hdr">
+              <div class="av"><img src="assets/globo-logo.png" alt=""></div>
+              <div>
+                <div class="nm">Descomplica Visto</div>
+                <div class="st">online · responde rápido</div>
+              </div>
+            </div>
+            <div class="msgs">
+              <div class="msg in">Olá! Vim pelo vídeo do DS-160 e quero falar com a especialista.</div>
+              <div class="msg out">Oi! Que bom te ver por aqui 👋 Me conta um pouco do seu caso e te oriento agora mesmo.</div>
+              <div class="msg in">Tenho dúvida na parte de viagens anteriores.</div>
+            </div>
+            <div class="input">
+              <div class="ph">Digite uma mensagem…</div>
+              <div class="send"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div>
+    <div class="s-foot">
+      <div class="brand">Descomplica Visto · Assessoria Consular</div>
+      <div class="legal">Conteúdo educativo e orientativo. Sempre confira as informações oficiais nos canais do governo americano e no portal de agendamento vigente no Brasil.</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+<script src="deck-stage.js"></script>
+</body>
+</html>
