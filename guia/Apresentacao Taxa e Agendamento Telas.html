@@ -127,8 +127,8 @@ deck-stage:not(:defined){visibility:hidden}
 /* section divider slide */
 .divslide{display:flex;align-items:center;justify-content:center;text-align:center}
 .divslide .inner{position:relative;z-index:2;max-width:1300px;padding:0 90px}
-.divslide .crest{width:104px;height:104px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#1c4f9c,#06112A);border:2px solid var(--gold-500);display:flex;align-items:center;justify-content:center;margin:0 auto 30px;box-shadow:0 14px 40px rgba(214,162,62,.22)}
-.divslide .crest img{width:62px;height:62px;object-fit:contain}
+.divslide .crest{width:200px;height:200px;display:flex;align-items:center;justify-content:center;margin:0 auto 30px;box-shadow:0 14px 40px rgba(214,162,62,.22)}
+.divslide .crest img{width:200px;height:200px;object-fit:contain;filter:drop-shadow(0 12px 30px rgba(214,162,62,.35))}
 .divslide .step{font-family:"Cinzel",serif;letter-spacing:.42em;text-transform:uppercase;font-size:1rem;color:var(--gold-300);margin-bottom:26px}
 .divslide .num{font-family:"Playfair Display",serif;font-weight:800;font-style:italic;font-size:10rem;line-height:.85;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
 .divslide h1{font-family:"Playfair Display",serif;font-weight:800;font-size:5rem;line-height:1.04;letter-spacing:-.015em;margin-bottom:22px;text-wrap:balance}
@@ -322,7 +322,7 @@ const S=[
   flag:"Opção errada = fluxo errado"},
 
  {sec:"Registrar-se", url:"ais.usvisa-info.com · cadastro",
-  fields:inp("Sacha Sulamitta",{lb:"Nome"})+inp("Cruz de Farias",{lb:"Sobrenome"})+inp("sachasulamitta@gmail.com",{lb:"E-mail"})+radio("Você já teve um visto dos EUA emitido antes?","Sim",{hl:1}),
+  fields:inp("(seu nome aqui)",{lb:"Nome"})+inp("(seu sobrenome aqui)",{lb:"Sobrenome"})+inp("(seu e-mail aqui)",{lb:"E-mail"})+radio("Você já teve um visto dos EUA emitido antes?","Sim",{hl:1}),
   kind:"info", h:"Crie a conta com seus dados", arrow:1,
   tip:"Preencha nome, sobrenome, e-mail e senha. Já teve visto antes? Responda <strong>com a verdade</strong>.",
   flag:null},

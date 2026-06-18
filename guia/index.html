@@ -60,7 +60,7 @@ img{display:block;max-width:100%}
 .modules .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:640px){.modules .grid{grid-template-columns:1fr}}
 
-.mcard{display:flex;gap:18px;align-items:flex-start;background:linear-gradient(180deg,rgba(12,35,80,.44),rgba(6,17,42,.7));border:1px solid var(--line-s);border-radius:16px;padding:22px 20px 20px;position:relative;transition:border-color .22s, box-shadow .22s;cursor:default}
+.mcard{display:flex;gap:18px;align-items:flex-start;background:linear-gradient(180deg,rgba(12,35,80,.44),rgba(6,17,42,.7));border:1px solid var(--line-s);border-radius:16px;padding:22px 54px 20px 20px;position:relative;transition:border-color .22s, box-shadow .22s;cursor:default;min-width:0}
 .mcard:hover{border-color:var(--line);box-shadow:0 16px 40px rgba(0,0,0,.38)}
 .mcard .thumb{width:80px;height:80px;border-radius:12px;overflow:hidden;flex:none;background:linear-gradient(160deg,#0c2350,#06112a);border:1px solid rgba(214,162,62,.22)}
 .mcard .thumb svg{width:100%;height:100%;display:block}
@@ -68,11 +68,24 @@ img{display:block;max-width:100%}
 .mcard .badge{font-family:"Cinzel",serif;letter-spacing:.2em;text-transform:uppercase;font-size:.6rem;color:var(--gold-l);margin-bottom:7px}
 .mcard .title{font-family:"Playfair Display",serif;font-weight:700;font-size:1.26rem;line-height:1.2;color:#fff;margin-bottom:7px}
 .mcard .desc{font-size:.85rem;color:var(--muted);line-height:1.5;max-width:44ch;text-wrap:pretty}
-.mcard .actions{display:flex;align-items:center;gap:14px;margin-top:16px}
+.mcard .actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px 12px;margin-top:16px;min-width:0}
 .mcard .btn-open{display:inline-flex;align-items:center;gap:8px;background:var(--gold-flat);color:#2a1c04;font-weight:700;font-size:.88rem;padding:11px 20px;border-radius:10px;transition:transform .18s,box-shadow .18s;flex:none;box-shadow:0 8px 22px rgba(214,162,62,.3)}
 .mcard .btn-open:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(214,162,62,.42)}
 .mcard .btn-open svg{flex:none}
-.mcard .status{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted-d)}
+.mcard .btn-slides{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:600;color:var(--gold-l);border:1px solid var(--line);border-radius:8px;padding:8px 12px;transition:.18s}
+.mcard .btn-slides:hover{background:rgba(214,162,62,.08);border-color:var(--gold)}
+.mcard .btn-slides svg{flex:none}
+.finalcta{padding:24px 28px 80px;display:flex;justify-content:center}
+.finalcta .box{max-width:780px;width:100%;border:1px solid var(--line);border-radius:22px;padding:60px 40px 56px;text-align:center;background:radial-gradient(110% 90% at 50% 0%,rgba(28,79,156,.42),transparent 60%),linear-gradient(180deg,rgba(12,35,80,.55),rgba(6,17,42,.7))}
+.finalcta .orn{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:26px}
+.finalcta .orn .ln{width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent)}
+.finalcta .orn i{width:10px;height:10px;background:var(--gold-flat);transform:rotate(45deg);box-shadow:0 0 14px rgba(214,162,62,.5)}
+.finalcta h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.12;letter-spacing:-.01em;color:#fff;margin-bottom:18px}
+.finalcta p{color:var(--muted);max-width:46ch;margin:0 auto 30px;line-height:1.55;font-size:1rem;text-wrap:pretty}
+.finalcta .wa-btn{display:inline-flex;align-items:center;gap:11px;background:linear-gradient(180deg,#27c46c,#1f9e57 70%,#178246);color:#fff;font-weight:700;font-size:1.02rem;padding:16px 32px;border-radius:14px;box-shadow:0 14px 32px rgba(31,158,87,.36);transition:transform .2s, box-shadow .2s}
+.finalcta .wa-btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(31,158,87,.46)}
+.finalcta .wa-btn svg{flex:none}
+.mcard .status{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted-d);white-space:nowrap;flex:none}
 .mcard .status .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--muted-d);display:flex;align-items:center;justify-content:center;flex:none}
 .mcard .status.done .dot{background:var(--green);border-color:var(--green)}
 .mcard .status.done{color:#7fe0a6}
@@ -149,7 +162,7 @@ footer .cr{color:var(--muted-d);font-size:.72rem;margin-top:20px}
         <div class="title">Antes de Começar</div>
         <div class="desc">O que é o visto, tipos, passaporte e o checklist inicial para começar com segurança.</div>
         <div class="actions">
-          <a class="btn-open" href="Apresentacao Antes de Comecar.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="btn-open" href="modulo-0.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           <div class="status" id="st-1"><span class="dot"></span>Não iniciado</div>
         </div>
       </div>
@@ -176,7 +189,7 @@ footer .cr{color:var(--muted-d);font-size:.72rem;margin-top:20px}
         <div class="title">Formulário DS-160</div>
         <div class="desc">Simulador interativo do formulário, campo a campo, com a dica da Isis em cada um.</div>
         <div class="actions">
-          <a class="btn-open" href="Apresentacao DS-160 Telas.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="btn-open" href="modulo-1.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           <div class="status" id="st-2"><span class="dot"></span>Não iniciado</div>
         </div>
       </div>
@@ -202,7 +215,7 @@ footer .cr{color:var(--muted-d);font-size:.72rem;margin-top:20px}
         <div class="title">Taxa Consular (MRV)</div>
         <div class="desc">Criar conta na CASV, escolher posto e pagar a taxa — cartão, boleto ou PIX, sem cair em armadilhas.</div>
         <div class="actions">
-          <a class="btn-open" href="Apresentacao Taxa e Agendamento Telas.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="btn-open" href="modulo-2.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           <div class="status" id="st-3"><span class="dot"></span>Não iniciado</div>
         </div>
       </div>
@@ -232,7 +245,7 @@ footer .cr{color:var(--muted-d);font-size:.72rem;margin-top:20px}
         <div class="title">Agendamento</div>
         <div class="desc">Marcar a entrevista no posto certo, entrega do passaporte e a lista de documentos do dia.</div>
         <div class="actions">
-          <a class="btn-open" href="Apresentacao Taxa e Agendamento Telas.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="btn-open" href="modulo-3.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           <div class="status" id="st-4"><span class="dot"></span>Não iniciado</div>
         </div>
       </div>
@@ -259,7 +272,7 @@ footer .cr{color:var(--muted-d);font-size:.72rem;margin-top:20px}
         <div class="title">Treinamento de Entrevista</div>
         <div class="desc">As perguntas mais comuns do cônsul, como responder com segurança e as dicas do dia da entrevista.</div>
         <div class="actions">
-          <a class="btn-open" href="Apresentacao Treinamento Entrevista.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="btn-open" href="modulo-4.html">Abrir módulo<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           <div class="status" id="st-6"><span class="dot"></span>Não iniciado</div>
         </div>
       </div>
@@ -293,6 +306,18 @@ footer .cr{color:var(--muted-d);font-size:.72rem;margin-top:20px}
       <svg class="shield" id="sh-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
     </div>
 
+  </div>
+</section>
+
+<section class="finalcta">
+  <div class="box">
+    <div class="orn"><span class="ln"></span><i></i><span class="ln"></span></div>
+    <h2>Quer acompanhamento<br>do início ao fim?</h2>
+    <p>Este guia te dá autonomia. Se preferir que a especialista conduza cada etapa com você — incluindo o treino completo de entrevista — fale com a Isis.</p>
+    <a class="wa-btn" href="https://wa.me/5584999185400?text=Acabei%20o%20guia%20e%20quero%20acompanhamento%20com%20a%20especialista." target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+      Falar com a especialista
+    </a>
   </div>
 </section>
 

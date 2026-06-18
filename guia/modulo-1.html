@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 1 — Formulário DS-160 | Descomplica Visto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#040A18;--navy-900:#06112A;--navy-800:#091a3d;--navy-700:#0c2350;--navy-600:#123067;
+  --royal:#1c4f9c;--gold-50:#FCEFC0;--gold-100:#F7E2A0;--gold-300:#EBC56A;--gold-500:#D6A23E;--gold-700:#A9781F;
+  --ink:#ECF2FE;--muted:#9DB0D6;--muted-dim:#6F82A8;--line:rgba(214,162,62,.30);--line-soft:rgba(157,176,214,.16);
+  --green:#1f9e57;--red:#cf6a5e;
+  --form-bg:#eef1f6;--form-ink:#1f2a3d;--form-soft:#56607a;--form-field:#fff;--form-border:#c4ccd8;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+  --sb:300px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--navy-950);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;}
+a{color:inherit;text-decoration:none}
+.serif{font-family:"Playfair Display",Georgia,serif;}
+.gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* top bar */
+.topbar{position:fixed;top:0;left:0;right:0;height:64px;z-index:90;display:flex;align-items:center;justify-content:space-between;
+  padding:0 22px;background:rgba(6,17,42,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);}
+.topbar .l{display:flex;align-items:center;gap:13px;min-width:0;}
+.topbar .burger{display:none;background:none;border:none;color:var(--ink);cursor:pointer;padding:4px;}
+.topbar .logo{height:38px;width:38px;object-fit:contain;}
+.topbar .tt{line-height:1.1;min-width:0;}
+.topbar .tt .a{font-family:"Playfair Display",serif;font-weight:700;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.topbar .tt .b{font-family:"Cinzel",serif;letter-spacing:.18em;font-size:.52rem;color:var(--gold-300);text-transform:uppercase;margin-top:3px;}
+.topbar .r{display:flex;align-items:center;gap:14px;flex:none;}
+.tips-toggle{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;font-weight:600;color:var(--gold-100);border:1px solid var(--line);border-radius:30px;padding:8px 14px;cursor:pointer;background:rgba(214,162,62,.05);transition:.2s;}
+.tips-toggle:hover{background:rgba(214,162,62,.12);}
+.tips-toggle .sw{width:30px;height:17px;border-radius:20px;background:rgba(157,176,214,.25);position:relative;transition:.2s;flex:none;}
+.tips-toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:.2s;}
+.tips-toggle.on .sw{background:var(--gold-grad-flat);}
+.tips-toggle.on .sw::after{left:15px;}
+
+/* layout */
+.shell{display:flex;padding-top:64px;}
+.sidebar{position:fixed;top:64px;bottom:0;left:0;width:var(--sb);overflow-y:auto;border-right:1px solid var(--line-soft);
+  background:linear-gradient(180deg,rgba(9,26,61,.5),rgba(6,17,42,.4));padding:24px 16px 60px;z-index:80;
+  scrollbar-width:thin;scrollbar-color:var(--gold-700) transparent;}
+.sidebar::-webkit-scrollbar{width:6px}.sidebar::-webkit-scrollbar-thumb{background:var(--gold-700);border-radius:10px}
+.sb-label{font-family:"Cinzel",serif;letter-spacing:.2em;font-size:.6rem;color:var(--gold-300);text-transform:uppercase;margin:0 0 14px 8px;}
+.nav-step{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:11px;cursor:pointer;transition:background .18s;margin-bottom:2px;}
+.nav-step:hover{background:rgba(214,162,62,.06)}
+.nav-step.active{background:rgba(214,162,62,.1);}
+.nav-step .n{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:"Cinzel",serif;font-size:.68rem;color:var(--gold-300);flex:none;}
+.nav-step.active .n{background:var(--gold-grad-flat);color:var(--navy-900);border-color:transparent;font-weight:700;}
+.nav-step.done .n{background:rgba(31,158,87,.18);border-color:var(--green);color:#7fe0a6;}
+.nav-step .t{font-size:.86rem;font-weight:500;color:var(--muted);}
+.nav-step.active .t{color:var(--ink);font-weight:600;}
+.scrim{display:none;}
+
+/* main */
+.main{margin-left:var(--sb);flex:1;min-width:0;display:flex;justify-content:center;padding:34px 30px 120px;}
+.stage{width:100%;max-width:780px;}
+.crumb{font-family:"Cinzel",serif;letter-spacing:.16em;font-size:.66rem;color:var(--gold-300);text-transform:uppercase;}
+.scr-title{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(1.7rem,3.6vw,2.3rem);line-height:1.12;margin:10px 0 6px;text-wrap:balance;}
+.scr-intro{color:var(--muted);font-size:1.04rem;margin-bottom:8px;}
+.scr-count{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted-dim);margin-top:6px;}
+
+/* browser window recreation */
+.win{margin-top:26px;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.3);box-shadow:0 30px 70px rgba(0,0,0,.5);}
+.win-bar{display:flex;align-items:center;gap:8px;background:#d8dce4;padding:10px 14px;border-bottom:1px solid #b9c0cc;}
+.win-bar .dot{width:11px;height:11px;border-radius:50%;}
+.win-bar .r{background:#ed6a5e}.win-bar .y{background:#f4c14e}.win-bar .g{background:#61c554}
+.win-bar .url{flex:1;margin-left:10px;background:#fff;border-radius:6px;padding:5px 12px;font-size:.74rem;color:#7a8295;display:flex;align-items:center;gap:7px;overflow:hidden;}
+.win-bar .url svg{flex:none;color:#1f9e57}
+.win-body{background:var(--form-bg);padding:26px 26px 30px;color:var(--form-ink);}
+.gov-head{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:2px solid #b9343b;margin-bottom:22px;}
+.gov-head .seal{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#1c4f9c,#0a1f4d);border:2px solid #c9a24a;flex:none;display:flex;align-items:center;justify-content:center;color:#e9c96a;font-size:.7rem;}
+.gov-head .ht .a{font-family:"Playfair Display",serif;font-weight:700;font-size:1rem;color:#15233c;}
+.gov-head .ht .b{font-size:.66rem;letter-spacing:.06em;color:#7a8295;text-transform:uppercase;margin-top:2px;}
+.gov-sec{font-family:"Playfair Display",serif;color:#1f3a66;font-weight:700;font-size:1.15rem;margin:0 0 4px;}
+
+/* form fields */
+.field{padding:14px 0;border-bottom:1px dashed #cdd4df;position:relative;}
+.field:last-child{border-bottom:none}
+.field > label,.field .flabel{display:block;font-size:.92rem;font-weight:600;color:#2a3850;margin-bottom:7px;}
+.field .req{color:#b9343b}
+.inp{width:100%;max-width:420px;background:var(--form-field);border:1px solid var(--form-border);border-radius:6px;padding:9px 12px;font-family:inherit;font-size:.92rem;color:#33405a;}
+.inp[disabled]{background:#e7eaf0;color:#8a93a5}
+.sel{width:100%;max-width:420px;background:var(--form-field);border:1px solid var(--form-border);border-radius:6px;padding:9px 12px;font-size:.92rem;color:#33405a;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.sel.val{background:#fffbe6;border-color:#d8c25a;color:#4a3d12;font-weight:600;}
+.sel svg{flex:none;color:#7a8295}
+.radio{display:flex;gap:22px;align-items:center;}
+.radio .o{display:flex;align-items:center;gap:7px;font-size:.9rem;color:#33405a;}
+.radio .rb{width:16px;height:16px;border-radius:50%;border:1.5px solid #8a93a5;display:flex;align-items:center;justify-content:center;}
+.radio .o.sel .rb{border-color:#1c4f9c}
+.radio .o.sel .rb::after{content:"";width:8px;height:8px;border-radius:50%;background:#1c4f9c}
+.exval{display:inline-block;margin-top:6px;font-size:.78rem;color:#8a93a5;font-style:italic;}
+.help{margin-top:8px;background:#f7f4ea;border-left:3px solid #b9343b;padding:8px 12px;border-radius:0 6px 6px 0;font-size:.8rem;color:#6a6048;max-width:460px;}
+.help b{color:#b9343b;font-family:"Playfair Display",serif;}
+
+/* tip dot + bubble */
+.tipdot{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--gold-grad-flat);color:var(--navy-900);font-weight:800;font-size:.78rem;cursor:pointer;margin-left:8px;vertical-align:middle;box-shadow:0 3px 9px rgba(214,162,62,.4);flex:none;animation:pulse 2.4s infinite;border:none;}
+@keyframes pulse{0%,100%{box-shadow:0 3px 9px rgba(214,162,62,.4)}50%{box-shadow:0 3px 16px rgba(214,162,62,.7)}}
+.flabel-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px;}
+.tip{margin-top:12px;border-radius:12px;padding:0;max-height:0;overflow:hidden;transition:max-height .3s ease,margin .3s ease,padding .3s ease;
+  background:linear-gradient(180deg,#0c2350,#08182f);border:1px solid var(--gold-500);}
+.tip.open{max-height:340px;padding:15px 18px;margin-top:12px;}
+.tips-all .tip{max-height:340px;padding:15px 18px;margin-top:12px;}
+.tip .th{display:flex;align-items:center;gap:9px;font-family:"Cinzel",serif;letter-spacing:.1em;font-size:.66rem;text-transform:uppercase;color:var(--gold-300);margin-bottom:7px;}
+.tip .th .av{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#3a7bd5,#0c2350);border:1px solid var(--gold-500);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.6rem;color:var(--gold-100);flex:none;}
+.tip p{color:#e7eefb;font-size:.92rem;line-height:1.55;}
+.tip p strong{color:#fff}
+.tip.warn{border-color:var(--red)}
+.tip.warn .th{color:#ec9a8e}
+
+/* screen nav */
+.scrnav{display:flex;gap:14px;margin-top:34px;}
+.scrnav button{flex:1;border:1px solid var(--line);border-radius:13px;padding:16px 20px;background:rgba(9,26,61,.4);cursor:pointer;color:var(--ink);text-align:left;transition:.2s;font-family:inherit;}
+.scrnav button:hover:not(:disabled){border-color:var(--gold-500);background:rgba(214,162,62,.06);transform:translateY(-2px)}
+.scrnav button:disabled{opacity:.35;cursor:default}
+.scrnav .dir{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.16em;color:var(--gold-300);text-transform:uppercase;}
+.scrnav .ti{font-family:"Playfair Display",serif;font-weight:600;font-size:1rem;margin-top:5px;}
+.scrnav .next{text-align:right}
+
+.intro-note{display:flex;gap:12px;align-items:flex-start;margin-top:18px;border:1px solid var(--line);border-radius:13px;padding:16px 18px;background:rgba(214,162,62,.05);color:var(--muted);font-size:.92rem;}
+.intro-note svg{flex:none;color:var(--gold-300);margin-top:2px}
+.intro-note b{color:var(--ink)}
+
+@media(max-width:980px){
+  :root{--sb:0px}
+  .sidebar{transform:translateX(-100%);transition:transform .3s ease;width:300px;}
+  .sidebar.open{transform:none}
+  .topbar .burger{display:block}
+  .main{margin-left:0;padding:26px 18px 90px}
+  .scrim.show{display:block;position:fixed;inset:64px 0 0;background:rgba(4,10,24,.6);z-index:70}
+  .tips-toggle span.lbl{display:none}
+}
+</style>
+<link rel="stylesheet" href="assets/module-extras.css">
+</head>
+<body data-mod="1">
+
+<header class="topbar">
+  <div class="l">
+    <button class="burger" id="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <img class="logo" src="assets/globo-logo.png" alt="Descomplica Visto">
+    <div class="tt"><div class="a">Módulo 1 — Formulário DS-160</div><div class="b">Descomplica Visto</div></div>
+  </div>
+  <div class="r">
+    <div class="tips-toggle on" id="tipsToggle"><span class="sw"></span><span class="lbl">Dicas da Isis</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-label">Telas do formulário</div>
+    <div id="navList"></div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main">
+    <div class="stage" id="stage"><!-- rendered --></div>
+  </main>
+</div>
+
+<script>
+/* ============ DADOS DO SIMULADOR DS-160 ============ */
+/* Cada tela = uma página do formulário. Cada campo pode ter "dica" (anotação da Isis). */
+const AV="IS"; // iniciais Isis
+const SCREENS=[
+ {sec:"Início", titulo:"Começando o formulário", url:"ceac.state.gov/genniv",
+  intro:"O DS-160 é o formulário oficial de solicitação do visto. Leva cerca de 90 minutos. Comece escolhendo o posto consular — e anote o código de aplicação assim que ele aparecer.",
+  campos:[
+   {tipo:"select", label:"Posto consular onde fará a entrevista", val:"- SELECIONE -",
+    dica:"Aqui você escolhe o posto consular da entrevista. Ao finalizar o formulário, <strong>não é mais possível mudar o local</strong> — você teria que refazer tudo. Escolha com cuidado."},
+   {tipo:"text", label:"Digite o código mostrado (captcha)", ph:"Ex: R3X T", help:"O site só funciona no Chrome, Edge ou Firefox."},
+   {tipo:"btn", label:"START AN APPLICATION",
+    dica:"Depois de preencher o código, clique aqui para <strong>iniciar a solicitação</strong>."},
+   {tipo:"idcode", label:"Application ID (código DS gerado)", val:"AA00FIHS59",
+    warn:true, dica:"Assim que esse código for gerado, <strong>anote imediatamente e guarde</strong>. É com ele que você recupera o formulário se a página expirar ou se você sair do computador."},
+   {tipo:"select", label:"Pergunta de segurança", val:"Qual o nome da mãe da sua mãe?",
+    dica:"Escolha uma pergunta e <strong>guarde a resposta</strong> (ex.: MARIA). Junto com o Application ID, é o que recupera seu formulário."}
+  ]},
+
+ {sec:"Pessoal 1", titulo:"Informações pessoais — nome e estado civil", url:"ceac.state.gov · Personal 1",
+  intro:"Tudo nesta tela precisa bater exatamente com o passaporte. Qualquer divergência aumenta o risco de negativa.",
+  campos:[
+   {tipo:"text", label:"Surnames (Sobrenomes)", ph:"Ex: FERNANDEZ GARCIA",
+    dica:"Digite o <strong>sobrenome exatamente igual ao passaporte</strong>. Se só houver um nome no passaporte, repita-o aqui."},
+   {tipo:"text", label:"Given Names (Nomes)", ph:"Ex: JUAN MIGUEL",
+    dica:"O <strong>primeiro nome</strong>, mesmo que seja composto (ex.: Ana Gabriela). Sempre igual ao passaporte."},
+   {tipo:"text", label:"Full Name in Native Alphabet (Nome completo)", ph:"Nome completo",
+    dica:"<strong>Nome completo igual ao passaporte.</strong> Se não se aplica, marque a caixinha 'Does Not Apply'."},
+   {tipo:"radio", label:"Você já usou outros nomes? (de solteiro, religioso, social)", val:"Não",
+    dica:"Marque 'Sim' apenas se mudou de nome — casamento, nome religioso ou nome social."},
+   {tipo:"radio", label:"Você possui um telecode que representa seu nome?", val:"Não",
+    dica:"Telecode é um código de 4 dígitos usado em alguns alfabetos não-romanos. Para brasileiros, normalmente 'Não'."},
+   {tipo:"select", label:"Estado civil", val:"- SELECIONE -",
+    dica:"<strong>CASADO</strong> = casado no papel · <strong>CASAMENTO DE FATO</strong> = união estável · <strong>UNIÃO CIVIL/PARCERIA</strong> = só mora junto, sem documentos que comprovem. Escolha o que reflete sua situação real."}
+  ],
+  nota:"Regra de ouro desta tela: <b>se o nome no formulário estiver diferente do passaporte, há risco real de negativa.</b>"},
+
+ {sec:"Pessoal 2", titulo:"Nacionalidade e identificação", url:"ceac.state.gov · Personal 2",
+  intro:"Nacionalidade, CPF e — se você sair do computador — a importância de salvar.",
+  campos:[
+   {tipo:"select", label:"País/Região de origem (Nacionalidade)", val:"BRASIL"},
+   {tipo:"radio", label:"Você possui ou já possuiu outra nacionalidade além desta?", val:"Não",
+    dica:"Responda 'Sim' apenas se tiver cidadania em outro país."},
+   {tipo:"radio", label:"Você é residente permanente em outro país?", val:"Não",
+    dica:"Quem mora em outro país e vai tirar o visto de lá <strong>deve informar onde realmente reside</strong>."},
+   {tipo:"text", label:"Número de Identificação Nacional", val:"04851077408",
+    dica:"Aqui vai o seu <strong>CPF</strong> (só os números)."},
+   {tipo:"text", label:"Número de Segurança Social dos EUA / ID Fiscal", ph:"Não se aplica",
+    dica:"Só preencha <strong>se você tiver</strong> (SSN ou ITIN). Caso contrário, marque 'Não se aplica'."},
+   {tipo:"btn", label:"Salvar",
+    warn:true, dica:"Se for sair do computador, <strong>SALVE</strong>. A página expira, e para voltar de onde parou você precisa daquele Application ID (DS) gerado no início."}
+  ]},
+
+ {sec:"Viagem", titulo:"Informações de viagem", url:"ceac.state.gov · Travel",
+  intro:"Aqui você define a classe do visto, o motivo, as datas e onde vai ficar. Cada escolha tem impacto — atenção às dicas.",
+  campos:[
+   {tipo:"select", label:"Classe de visto", val:"VISITANTE TEMPORÁRIO A NEGÓCIOS OU LAZER (B)"},
+   {tipo:"select", label:"Especificar", val:"NEGÓCIOS OU TURISMO (B1/B2)",
+    dica:"Marque sempre <strong>NEGÓCIOS OU TURISMO (B1/B2)</strong> — engloba tudo relacionado a turismo. Evite escolher só B1 ou só B2."},
+   {tipo:"radio", label:"Você já fez planos de viagem específicos?", val:"Não",
+    dica:"Se já tiver a passagem comprada, precisa informar. Mas <strong>não compre nenhum produto turístico antes do resultado do visto</strong> (hotel, parques, passagem, carro)."},
+   {tipo:"date", label:"Data prevista de chegada", val:"01 · JANEIRO · 2027",
+    dica:"Coloque uma <strong>base</strong>. Ex.: se vai nas férias de dezembro mas não sabe o dia, coloque qualquer data de dezembro."},
+   {tipo:"select", label:"Duração prevista da estadia nos EUA", val:"15 DIA(S)",
+    dica:"<strong>Nunca coloque 3 meses.</strong> Coloque no máximo 30 dias. Quanto mais tempo, mais dinheiro em dólar você precisa comprovar que tem."},
+   {tipo:"text", label:"Endereço onde ficará hospedado — Linha 1", val:"A DEFINIR",
+    dica:"É preferível colocar <strong>'A DEFINIR'</strong>, pois não é aconselhável já ter produto turístico comprado (hotel, parque, passagem, carro alugado)."},
+   {tipo:"text", label:"Cidade", val:"NOVA YORK"},
+   {tipo:"text", label:"Código postal (se conhecido)", ph:"Opcional",
+    dica:"Se o endereço for 'A DEFINIR', <strong>não precisa</strong> preencher o código postal."},
+   {tipo:"select", label:"Pessoa/Entidade que está pagando pela viagem", val:"- SELECIONE -",
+    dica:"Se quem paga é seu chefe, escolha <strong>EMPREGADOR ATUAL</strong> (empregador no Brasil). Há também AUTO (você mesmo), OUTRA PESSOA, EMPREGADOR NOS EUA e OUTRA EMPRESA."}
+  ]},
+
+ {sec:"Companheiros", titulo:"Companheiros de viagem", url:"ceac.state.gov · Travel Companions",
+  intro:"Quem vai com você e qual o parentesco.",
+  campos:[
+   {tipo:"radio", label:"Há mais pessoas viajando com você?", val:"Sim",
+    dica:"A partir de <strong>5 pessoas</strong> é considerado grupo. Responda 'Sim' se viaja com família ou acompanhantes."},
+   {tipo:"radio", label:"Você está viajando como parte de um grupo ou organização?", val:"Não"},
+   {tipo:"select", label:"Relação com a pessoa que viaja com você", val:"- SELECIONE -",
+    dica:"<strong>CRIANÇA</strong> = filhos (pequenos ou adultos) · <strong>OUTRO PARENTE</strong> = neto, neta, cunhado, tio, etc. Há também PAI/MÃE, CÔNJUGE, AMIGO, ASSOCIADO DE NEGÓCIOS e OUTRO."}
+  ]},
+
+ {sec:"Viagens anteriores", titulo:"Viagens anteriores aos EUA", url:"ceac.state.gov · Previous Travel",
+  intro:"Seu histórico com os EUA. Esta seção pesa MUITO na aprovação — preencha com capricho.",
+  campos:[
+   {tipo:"radio", label:"Você já esteve nos Estados Unidos?", val:"Sim",
+    dica:"Se já esteve, informe <strong>data e tempo de estadia</strong>. Até 2019 dá para conferir no carimbo do passaporte (em 2020, por causa da pandemia, deixaram de carimbar). Se não souber o dia exato, pelo menos o mês e o ano."},
+   {tipo:"select", label:"Duração da estadia (visita anterior)", val:"- SELECIONE -",
+    dica:"Se não lembrar a duração, coloque <strong>10 dias</strong>."},
+   {tipo:"btn", label:"+ Adicionar outra visita",
+    dica:"Se foi mais de uma vez, vale a pena adicionar todas. <strong>Ajuda muito na aprovação</strong>, pois mostra que você sempre vai e volta para o país de origem."},
+   {tipo:"radio", label:"Você possui ou já possuiu carteira de motorista americana?", val:"Não",
+    dica:"Informe <strong>mesmo se já perdeu a validade</strong>. Se não lembra o número ou não possui mais, marque 'Não sabe' e selecione o Estado."},
+   {tipo:"radio", label:"Você já foi emitido um visto dos EUA?", val:"Sim",
+    dica:"Se já teve visto, informe a <strong>data de emissão</strong> e o <strong>número do visto</strong> — está em vermelho no canto inferior direito, com uma letra e 7 números."},
+   {tipo:"radio", label:"Você está solicitando o mesmo tipo de visto?", val:"Não",
+    dica:"Se o visto antigo era só <strong>B2</strong>, responda 'Não' — porque a configuração do turismo mudou para B1/B2."},
+   {tipo:"radio", label:"Seu visto americano já foi perdido ou roubado?", val:"Não",
+    dica:"Se sim, <strong>explique como perdeu ou foi roubado e em que ano</strong>."},
+   {tipo:"radio", label:"Seu visto americano já foi cancelado ou revogado?", val:"Não",
+    dica:"Se sim, use uma frase genérica, ex.: <strong>'Solicitei o visto em 2024 e foi negado, não sei o motivo'</strong>."}
+  ]},
+
+ {sec:"Endereço e telefone", titulo:"Endereço, telefone e redes sociais", url:"ceac.state.gov · Address & Phone",
+  intro:"Seus dados de contato no Brasil.",
+  campos:[
+   {tipo:"text", label:"Endereço residencial", ph:"Rua, número, cidade, estado, CEP",
+    dica:"<strong>Dados do Brasil</strong> — seu endereço residencial atual."},
+   {tipo:"radio", label:"Seu endereço de correspondência é o mesmo do residencial?", val:"Não",
+    dica:"Responda 'Não' apenas se você <strong>recebe encomendas em outro local</strong> diferente da sua residência."},
+   {tipo:"text", label:"Número de telefone principal", val:"83 98222 6257"},
+   {tipo:"text", label:"Número de telefone secundário", ph:"Opcional",
+    dica:"Se for criança, coloque o telefone do pai ou da mãe. <strong>Informe o telefone dos pais</strong> se o solicitante não for economicamente ativo e tiver até 24 anos."},
+   {tipo:"text", label:"Número de telefone comercial", ph:"Opcional",
+    dica:"Se o telefone do trabalho for o mesmo, pode repetir."},
+   {tipo:"radio", label:"Usou outro número de telefone nos últimos 5 anos?", val:"Não",
+    dica:"Se teve, informe. Se não souber o número, coloque 'Não'; mas se tiver o número, coloque."},
+   {tipo:"select", label:"Provedor/Plataforma de mídia social", val:"NENHUM",
+    dica:"Se você for <strong>ativo nas redes sociais ou digital influencer</strong>, coloque seu @ (sem senha). Caso contrário, 'NENHUM'."}
+  ]},
+
+ {sec:"Passaporte", titulo:"Informações sobre o passaporte", url:"ceac.state.gov · Passport",
+  intro:"Os dados do seu passaporte — com uma pegadinha importante.",
+  campos:[
+   {tipo:"select", label:"Tipo de passaporte/documento de viagem", val:"- SELECIONE -"},
+   {tipo:"text", label:"Número do passaporte (campo de cima)", ph:"Ex: GJ072267"},
+   {tipo:"text", label:"Número do passaporte (campo de baixo)", ph:"Repita o número",
+    dica:"<strong>Repita os dados do passaporte nos dois campos</strong> — o de cima e o de baixo. Eles precisam ser idênticos."}
+  ]},
+
+ {sec:"Contato nos EUA", titulo:"Pessoa ou organização de contato nos EUA", url:"ceac.state.gov · U.S. Contact",
+  intro:"Quem pode confirmar sua identidade nos EUA — ou onde você vai ficar.",
+  campos:[
+   {tipo:"text", label:"Sobrenomes / Nomes do contato", ph:"Marque 'Não sabe' se for turismo"},
+   {tipo:"text", label:"Nome da organização", val:"HOSPEDAGEM A DEFINIR",
+    dica:"Se a viagem é a turismo, marque 'Não sabe' nos nomes e coloque no nome da organização: <strong>HOSPEDAGEM A DEFINIR</strong>."}
+  ]},
+
+ {sec:"Família", titulo:"Informações familiares", url:"ceac.state.gov · Family",
+  intro:"Dados dos pais, parentes nos EUA e — se você for divorciado(a) — do ex-cônjuge.",
+  campos:[
+   {tipo:"text", label:"Nome completo e data de nascimento do pai e da mãe", ph:"Preencha o que souber"},
+   {tipo:"radio", label:"Você tem parente próximo nos EUA (além dos pais)?", val:"Não",
+    dica:"<strong>Só marque 'Sim'</strong> se for cônjuge, noivo(a), filho(a) ou irmão(ã)."},
+   {tipo:"radio", label:"Você tem outros parentes nos EUA?", val:"Não",
+    dica:"Aqui é para <strong>outros tipos de parente</strong>: primo, tio, etc."},
+   {tipo:"text", label:"Ex-cônjuge — como o casamento terminou", val:"DIVERGÊNCIA DE PENSAMENTO…",
+    dica:"Aparece se você marcou 'Divorciado'. Datas: tente o mês e ano corretos (ou ao menos o ano). Para explicar o fim, use uma frase base como: <strong>'O casamento acabou por motivos de divergência de pensamento em relação a seguir com a união'</strong> — sem se aprofundar."}
+  ]},
+
+ {sec:"Trabalho e Educação", titulo:"Trabalho, educação e formação", url:"ceac.state.gov · Work/Education",
+  intro:"Sua ocupação, renda e histórico. A lista de países visitados é IMPORTANTÍSSIMA.",
+  campos:[
+   {tipo:"select", label:"Ocupação principal", val:"- SELECIONE -",
+    dica:"Selecione <strong>com o que você trabalha de fato</strong>."},
+   {tipo:"text", label:"Renda mensal em moeda local (se empregado)", val:"3000",
+    dica:"Informe o <strong>valor real do contracheque</strong>. Se não tiver contracheque, precisa comprovar com extrato bancário que mostre o nome do empregador."},
+   {tipo:"radio", label:"Onde você trabalhava anteriormente?", val:"Sim",
+    dica:"Informe <strong>somente o último</strong> emprego anterior."},
+   {tipo:"radio", label:"Você já frequentou instituição de ensino (médio/superior)?", val:"Sim",
+    dica:"Informe uma <strong>escolaridade anterior</strong> à que você possui hoje."},
+   {tipo:"radio", label:"Você viajou para algum país nos últimos 5 anos?", val:"Sim",
+    dica:"<strong>IMPORTANTÍSSIMO: preencha TODOS os países</strong> que visitou nos últimos 5 anos. Isso fortalece muito o seu perfil."},
+   {tipo:"radio", label:"Possui habilidade especializada (armas, explosivos, nuclear)?", val:"Não"},
+   {tipo:"text", label:"Idiomas que você fala", val:"PORTUGUÊS",
+    dica:"É necessário <strong>colocar a língua que você fala</strong> (ex.: Português). Use 'Add Another' para mais idiomas."}
+  ]},
+
+ {sec:"Segurança", titulo:"Segurança, antecedentes e foto", url:"ceac.state.gov · Security",
+  intro:"Perguntas de saúde e antecedentes — e o envio da foto.",
+  campos:[
+   {tipo:"radio", label:"Você tem doença transmissível / transtorno / usa drogas?", val:"Não",
+    dica:"São informações pessoais e particulares. <strong>Responda sempre com a verdade.</strong>"},
+   {tipo:"btn", label:"Upload Your Photo (Enviar sua foto)",
+    warn:true, dica:"Em <strong>Recife e Porto Alegre</strong> é preciso inserir a foto no formulário antes de gerar o DS-160. Pode ser tirada pelo celular, mas precisa seguir o padrão: <strong>fundo branco</strong> (pode ser parede branca), <strong>sem óculos, sem sorrir, sem adereços na cabeça</strong>."}
+  ]},
+
+ {sec:"Revisar e finalizar", titulo:"Revisar, assinar e gerar o PDF", url:"ceac.state.gov · Review & Sign",
+  intro:"A reta final do formulário. Aqui não se pode errar.",
+  campos:[
+   {tipo:"info", label:"Revise TUDO antes de finalizar",
+    warn:true, dica:"<strong>Antes de finalizar, revise todas as informações.</strong> Se finalizar com algum erro, NÃO dá para editar — você terá que preencher o formulário inteiro novamente."},
+   {tipo:"info", label:"Confirmar passaporte e código de segurança",
+    dica:"Depois da foto, você vai <strong>confirmar o número do passaporte e o código de segurança</strong>, e então avançar."},
+   {tipo:"info", label:"Quem preencheu o formulário",
+    dica:"O sistema pergunta se você teve ajuda ou fez sozinho. Se teve ajuda, <strong>informe o nome da agência, telefone e o nome de quem preencheu</strong>."},
+   {tipo:"btn", label:"Gerar PDF do DS-160 (Application)",
+    dica:"<strong>Gere e salve o PDF do formulário</strong> (identificado como 'Application' e o PDF do DS-160) para conferência das informações. Você vai precisar dele no agendamento."},
+   {tipo:"info", label:"Próximo passo",
+    dica:"Com o formulário pronto, o próximo passo é <strong>pagar a taxa consular</strong> no site da CASV: ais.usvisa-info.com. Isso é o <strong>Módulo 2</strong> deste guia."}
+  ]},
+
+ {sec:"Recuperar", titulo:"Como recuperar um formulário salvo", url:"ceac.state.gov · Retrieve",
+  intro:"Se a página expirou ou você fechou o navegador, é assim que você volta de onde parou.",
+  campos:[
+   {tipo:"text", label:"Seu ID de inscrição (Application ID)", val:"AA00FIHS59",
+    dica:"O mesmo código DS que você anotou no início."},
+   {tipo:"text", label:"Primeiras 5 letras do sobrenome", val:"CRUZ"},
+   {tipo:"text", label:"Ano de nascimento", val:"1988"},
+   {tipo:"text", label:"Qual o nome da mãe da sua mãe?", val:"MARIA",
+    dica:"A resposta da pergunta de segurança que você definiu no início. Por isso é tão importante guardá-la."}
+  ]}
+];
+
+/* ============ RENDER ============ */
+const stage=document.getElementById('stage');
+const navList=document.getElementById('navList');
+let cur=0;
+const DONE_KEY='descomplica_m1_seen';
+let seen=JSON.parse(localStorage.getItem(DONE_KEY)||'{}');
+
+function fieldHTML(f,i){
+  let control='';
+  if(f.tipo==='text') control=`<div class="inp">${f.val?`<span style="color:#33405a">${f.val}</span>`:`<span style="color:#aab2c2">${f.ph||''}</span>`}</div>`;
+  else if(f.tipo==='select') control=`<div class="sel ${f.val&&!f.val.startsWith('-')?'val':''}">${f.val||'- SELECIONE -'}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>`;
+  else if(f.tipo==='date') control=`<div class="sel val" style="max-width:300px">${f.val}</div>`;
+  else if(f.tipo==='radio'){
+    control=`<div class="radio"><span class="o ${f.val==='Sim'?'sel':''}"><span class="rb"></span>Sim</span><span class="o ${f.val==='Não'?'sel':''}"><span class="rb"></span>Não</span></div>`;
+  }
+  else if(f.tipo==='btn') control=`<div style="display:inline-flex;align-items:center;gap:8px;background:#b9343b;color:#fff;font-weight:700;font-size:.82rem;padding:9px 18px;border-radius:5px;">${f.label} <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></div>`;
+  else if(f.tipo==='idcode') control=`<div style="display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--form-border);border-radius:6px;padding:10px 16px;"><span style="font-size:.72rem;color:#7a8295">ID:</span><b style="font-family:'Playfair Display',serif;color:#b9343b;font-size:1.15rem;letter-spacing:.04em">${f.val}</b></div>`;
+  else if(f.tipo==='info') control='';
+
+  const labelHTML = f.tipo==='btn' ? '' : `<div class="flabel-row"><span class="flabel">${f.label}</span>${f.dica?`<button class="tipdot" data-i="${i}" aria-label="Ver dica">i</button>`:''}</div>`;
+  const btnTip = (f.tipo==='btn'&&f.dica)?`<button class="tipdot" data-i="${i}" aria-label="Ver dica" style="margin-left:10px">i</button>`:'';
+  const exval = (f.val && f.tipo==='text' && f.ph===undefined)?'':'';
+  const help = f.help?`<div class="help"><b>Help:</b> ${f.help}</div>`:'';
+  const tip = f.dica?`<div class="tip ${f.warn?'warn':''}" data-tip="${i}"><div class="th"><span class="av">${AV}</span> ${f.warn?'Atenção — Dica da Isis':'Dica da Isis'}</div><p>${f.dica}</p></div>`:'';
+  return `<div class="field">${labelHTML}<div style="display:flex;align-items:center;flex-wrap:wrap">${control}${btnTip}</div>${help}${tip}</div>`;
+}
+
+function render(){
+  const s=SCREENS[cur];
+  seen[cur]=true;localStorage.setItem(DONE_KEY,JSON.stringify(seen));
+  stage.innerHTML=`
+    <div class="crumb">Módulo 1 · ${s.sec}</div>
+    <h1 class="scr-title">${s.titulo}</h1>
+    <p class="scr-intro">${s.intro}</p>
+    <div class="scr-count"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg> Tela ${cur+1} de ${SCREENS.length}</div>
+    ${s.nota?`<div class="intro-note"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><span>${s.nota}</span></div>`:''}
+    <div class="win">
+      <div class="win-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="url"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> ${s.url}</span>
+      </div>
+      <div class="win-body">
+        <div class="gov-head"><span class="seal">★</span><div class="ht"><div class="a">Consular Electronic Application Center</div><div class="b">U.S. Department of State · DS-160</div></div></div>
+        <div class="gov-sec">${s.titulo}</div>
+        ${s.campos.map((f,i)=>fieldHTML(f,i)).join('')}
+      </div>
+    </div>
+    <div class="scrnav">
+      <button ${cur===0?'disabled':''} onclick="go(${cur-1})"><div class="dir">← Anterior</div><div class="ti">${cur>0?SCREENS[cur-1].sec:'—'}</div></button>
+      <button class="next" ${cur===SCREENS.length-1?'disabled':''} onclick="go(${cur+1})"><div class="dir">Próximo →</div><div class="ti">${cur<SCREENS.length-1?SCREENS[cur+1].sec:'—'}</div></button>
+    </div>
+  `;
+  // tip dot handlers
+  stage.querySelectorAll('.tipdot').forEach(b=>{
+    b.onclick=()=>{const t=stage.querySelector(`.tip[data-tip="${b.dataset.i}"]`);if(t)t.classList.toggle('open');};
+  });
+  buildNav();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){if(i<0||i>=SCREENS.length)return;cur=i;render();if(innerWidth<=980){sidebar.classList.remove('open');scrim.classList.remove('show');}}
+window.go=go;
+
+function buildNav(){
+  navList.innerHTML=SCREENS.map((s,i)=>`<div class="nav-step ${i===cur?'active':''} ${seen[i]&&i!==cur?'done':''}" onclick="go(${i})"><span class="n">${i+1}</span><span class="t">${s.sec}</span></div>`).join('');
+}
+
+/* tips master toggle */
+const tipsToggle=document.getElementById('tipsToggle');
+tipsToggle.onclick=()=>{
+  tipsToggle.classList.toggle('on');
+  document.body.classList.toggle('tips-all',tipsToggle.classList.contains('on'));
+};
+document.body.classList.add('tips-all'); // default: show all tips
+
+/* mobile sidebar */
+const sidebar=document.getElementById('sidebar'),scrim=document.getElementById('scrim');
+document.getElementById('burger').onclick=()=>{sidebar.classList.toggle('open');scrim.classList.toggle('show');};
+scrim.onclick=()=>{sidebar.classList.remove('open');scrim.classList.remove('show');};
+
+render();
+</script>
+<script defer src="assets/module-extras.js"></script>
+</body>
+</html>

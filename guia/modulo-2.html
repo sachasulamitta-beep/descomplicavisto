@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2 — Taxa Consular (CASV/MRV) | Descomplica Visto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#040A18;--navy-900:#06112A;--navy-800:#091a3d;--navy-700:#0c2350;--navy-600:#123067;
+  --royal:#1c4f9c;--gold-50:#FCEFC0;--gold-100:#F7E2A0;--gold-300:#EBC56A;--gold-500:#D6A23E;--gold-700:#A9781F;
+  --ink:#ECF2FE;--muted:#9DB0D6;--muted-dim:#6F82A8;--line:rgba(214,162,62,.30);--line-soft:rgba(157,176,214,.16);
+  --green:#1f9e57;--red:#cf6a5e;
+  --form-bg:#eef1f6;--form-ink:#1f2a3d;--form-soft:#56607a;--form-field:#fff;--form-border:#c4ccd8;
+  --casv:#3b3f8f;--casv-d:#2a2d6b;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+  --sb:300px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--navy-950);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;}
+a{color:inherit;text-decoration:none}
+.serif{font-family:"Playfair Display",Georgia,serif;}
+.gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+.topbar{position:fixed;top:0;left:0;right:0;height:64px;z-index:90;display:flex;align-items:center;justify-content:space-between;
+  padding:0 22px;background:rgba(6,17,42,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);}
+.topbar .l{display:flex;align-items:center;gap:13px;min-width:0;}
+.topbar .burger{display:none;background:none;border:none;color:var(--ink);cursor:pointer;padding:4px;}
+.topbar .logo{height:38px;width:38px;object-fit:contain;}
+.topbar .tt{line-height:1.1;min-width:0;}
+.topbar .tt .a{font-family:"Playfair Display",serif;font-weight:700;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.topbar .tt .b{font-family:"Cinzel",serif;letter-spacing:.18em;font-size:.52rem;color:var(--gold-300);text-transform:uppercase;margin-top:3px;}
+.topbar .r{display:flex;align-items:center;gap:14px;flex:none;}
+.tips-toggle{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;font-weight:600;color:var(--gold-100);border:1px solid var(--line);border-radius:30px;padding:8px 14px;cursor:pointer;background:rgba(214,162,62,.05);transition:.2s;}
+.tips-toggle:hover{background:rgba(214,162,62,.12);}
+.tips-toggle .sw{width:30px;height:17px;border-radius:20px;background:rgba(157,176,214,.25);position:relative;transition:.2s;flex:none;}
+.tips-toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:.2s;}
+.tips-toggle.on .sw{background:var(--gold-grad-flat);}
+.tips-toggle.on .sw::after{left:15px;}
+
+.shell{display:flex;padding-top:64px;}
+.sidebar{position:fixed;top:64px;bottom:0;left:0;width:var(--sb);overflow-y:auto;border-right:1px solid var(--line-soft);
+  background:linear-gradient(180deg,rgba(9,26,61,.5),rgba(6,17,42,.4));padding:24px 16px 60px;z-index:80;
+  scrollbar-width:thin;scrollbar-color:var(--gold-700) transparent;}
+.sidebar::-webkit-scrollbar{width:6px}.sidebar::-webkit-scrollbar-thumb{background:var(--gold-700);border-radius:10px}
+.sb-label{font-family:"Cinzel",serif;letter-spacing:.2em;font-size:.6rem;color:var(--gold-300);text-transform:uppercase;margin:0 0 14px 8px;}
+.nav-step{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:11px;cursor:pointer;transition:background .18s;margin-bottom:2px;}
+.nav-step:hover{background:rgba(214,162,62,.06)}
+.nav-step.active{background:rgba(214,162,62,.1);}
+.nav-step .n{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:"Cinzel",serif;font-size:.68rem;color:var(--gold-300);flex:none;}
+.nav-step.active .n{background:var(--gold-grad-flat);color:var(--navy-900);border-color:transparent;font-weight:700;}
+.nav-step.done .n{background:rgba(31,158,87,.18);border-color:var(--green);color:#7fe0a6;}
+.nav-step .t{font-size:.86rem;font-weight:500;color:var(--muted);}
+.nav-step.active .t{color:var(--ink);font-weight:600;}
+.scrim{display:none;}
+
+.main{margin-left:var(--sb);flex:1;min-width:0;display:flex;justify-content:center;padding:34px 30px 120px;}
+.stage{width:100%;max-width:780px;}
+.crumb{font-family:"Cinzel",serif;letter-spacing:.16em;font-size:.66rem;color:var(--gold-300);text-transform:uppercase;}
+.scr-title{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(1.7rem,3.6vw,2.3rem);line-height:1.12;margin:10px 0 6px;text-wrap:balance;}
+.scr-intro{color:var(--muted);font-size:1.04rem;margin-bottom:8px;}
+.scr-count{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted-dim);margin-top:6px;}
+
+.win{margin-top:26px;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.3);box-shadow:0 30px 70px rgba(0,0,0,.5);}
+.win-bar{display:flex;align-items:center;gap:8px;background:#d8dce4;padding:10px 14px;border-bottom:1px solid #b9c0cc;}
+.win-bar .dot{width:11px;height:11px;border-radius:50%;}
+.win-bar .r{background:#ed6a5e}.win-bar .y{background:#f4c14e}.win-bar .g{background:#61c554}
+.win-bar .url{flex:1;margin-left:10px;background:#fff;border-radius:6px;padding:5px 12px;font-size:.74rem;color:#7a8295;display:flex;align-items:center;gap:7px;overflow:hidden;}
+.win-bar .url svg{flex:none;color:#1f9e57}
+.win-body{background:var(--form-bg);padding:0 0 30px;color:var(--form-ink);}
+.casv-head{background:linear-gradient(180deg,var(--casv),var(--casv-d));padding:16px 26px;display:flex;align-items:center;gap:12px;}
+.casv-head .seal{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid #b9c0e8;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.66rem;}
+.casv-head .ht .a{font-weight:700;font-size:.96rem;color:#fff;}
+.casv-head .ht .b{font-size:.62rem;letter-spacing:.06em;color:#c3c6ee;text-transform:uppercase;margin-top:2px;}
+.win-pad{padding:24px 26px 0;}
+.casv-sec{font-family:"Playfair Display",serif;color:#2a2d6b;font-weight:700;font-size:1.15rem;margin:0 0 4px;}
+
+.field{padding:14px 0;border-bottom:1px dashed #cdd4df;position:relative;}
+.field:last-child{border-bottom:none}
+.field .flabel{display:block;font-size:.92rem;font-weight:600;color:#2a3850;margin-bottom:7px;}
+.req{color:#b9343b}
+.inp{width:100%;max-width:420px;background:var(--form-field);border:1px solid var(--form-border);border-radius:6px;padding:9px 12px;font-size:.92rem;color:#33405a;}
+.inp[data-ph]{color:#aab2c2}
+.sel{width:100%;max-width:420px;background:var(--form-field);border:1px solid var(--form-border);border-radius:6px;padding:9px 12px;font-size:.92rem;color:#33405a;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.sel.val{background:#eef0fb;border-color:#9aa0d8;color:#2a2d6b;font-weight:600;}
+.sel svg{flex:none;color:#7a8295}
+.radio{display:flex;gap:22px;align-items:center;flex-wrap:wrap;}
+.radio .o{display:flex;align-items:center;gap:7px;font-size:.9rem;color:#33405a;}
+.radio .rb{width:16px;height:16px;border-radius:50%;border:1.5px solid #8a93a5;display:flex;align-items:center;justify-content:center;}
+.radio .o.sel .rb{border-color:var(--casv)}
+.radio .o.sel .rb::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--casv)}
+.greenbtn{display:inline-flex;align-items:center;gap:8px;background:#2e9e54;color:#fff;font-weight:700;font-size:.84rem;padding:10px 20px;border-radius:5px;}
+.pay-opt{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid var(--form-border);border-radius:9px;margin-bottom:10px;background:#fff;max-width:480px;}
+.pay-opt.sel{border-color:var(--casv);box-shadow:0 0 0 2px rgba(59,63,143,.15);background:#f4f5fd;}
+.pay-opt .rb{width:17px;height:17px;border-radius:50%;border:2px solid #8a93a5;flex:none;display:flex;align-items:center;justify-content:center;}
+.pay-opt.sel .rb{border-color:var(--casv)}.pay-opt.sel .rb::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--casv)}
+.pay-opt .nm{font-weight:700;font-size:.96rem;color:#2a3850;}
+.pay-opt .pr{margin-left:auto;font-family:"Playfair Display",serif;font-weight:700;color:#2a2d6b;}
+.feebox{background:#fff;border:1px solid var(--form-border);border-radius:9px;padding:16px 18px;max-width:480px;}
+.feebox .ttl{font-weight:700;color:#2a2d6b;margin-bottom:8px;}
+.feebox .ln{display:flex;justify-content:space-between;font-size:.9rem;color:#46506a;padding:5px 0;}
+.feebox .tot{border-top:1px solid #e0e3ec;margin-top:6px;padding-top:10px;font-weight:700;color:#1f2a3d;}
+.feebox .tot b{font-family:"Playfair Display",serif;font-size:1.2rem}
+.dates{background:#fff;border:1px solid var(--form-border);border-radius:9px;padding:14px 16px;max-width:300px;}
+.dates .dh{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:#7a8295;margin-bottom:8px;}
+.dates .dr{display:flex;justify-content:space-between;font-size:.88rem;color:#33405a;padding:4px 0;border-bottom:1px dashed #e6e9f0;}
+.dates .dr:last-child{border-bottom:none}
+.dates .dr b{color:#2a2d6b}
+.qrbox{width:120px;height:120px;background:#fff;border:1px solid var(--form-border);border-radius:8px;display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);padding:8px;gap:2px;}
+.qrbox i{background:#1a1d4a;border-radius:1px;}
+.help{margin-top:8px;background:#eef0fb;border-left:3px solid var(--casv);padding:8px 12px;border-radius:0 6px 6px 0;font-size:.8rem;color:#3a3d6e;max-width:480px;}
+
+.tipdot{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--gold-grad-flat);color:var(--navy-900);font-weight:800;font-size:.78rem;cursor:pointer;margin-left:8px;vertical-align:middle;box-shadow:0 3px 9px rgba(214,162,62,.4);flex:none;animation:pulse 2.4s infinite;border:none;}
+@keyframes pulse{0%,100%{box-shadow:0 3px 9px rgba(214,162,62,.4)}50%{box-shadow:0 3px 16px rgba(214,162,62,.7)}}
+.flabel-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px;}
+.tip{margin-top:12px;border-radius:12px;padding:0;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;background:linear-gradient(180deg,#0c2350,#08182f);border:1px solid var(--gold-500);}
+.tip.open,.tips-all .tip{max-height:360px;padding:15px 18px;}
+.tip .th{display:flex;align-items:center;gap:9px;font-family:"Cinzel",serif;letter-spacing:.1em;font-size:.66rem;text-transform:uppercase;color:var(--gold-300);margin-bottom:7px;}
+.tip .th .av{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#3a7bd5,#0c2350);border:1px solid var(--gold-500);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.6rem;color:var(--gold-100);flex:none;}
+.tip p{color:#e7eefb;font-size:.92rem;line-height:1.55;}
+.tip p strong{color:#fff}
+.tip.warn{border-color:var(--red)}.tip.warn .th{color:#ec9a8e}
+
+.scrnav{display:flex;gap:14px;margin-top:34px;}
+.scrnav button{flex:1;border:1px solid var(--line);border-radius:13px;padding:16px 20px;background:rgba(9,26,61,.4);cursor:pointer;color:var(--ink);text-align:left;transition:.2s;font-family:inherit;}
+.scrnav button:hover:not(:disabled){border-color:var(--gold-500);background:rgba(214,162,62,.06);transform:translateY(-2px)}
+.scrnav button:disabled{opacity:.35;cursor:default}
+.scrnav .dir{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.16em;color:var(--gold-300);text-transform:uppercase;}
+.scrnav .ti{font-family:"Playfair Display",serif;font-weight:600;font-size:1rem;margin-top:5px;}
+.scrnav .next{text-align:right}
+.intro-note{display:flex;gap:12px;align-items:flex-start;margin-top:18px;border:1px solid var(--line);border-radius:13px;padding:16px 18px;background:rgba(214,162,62,.05);color:var(--muted);font-size:.92rem;}
+.intro-note svg{flex:none;color:var(--gold-300);margin-top:2px}.intro-note b{color:var(--ink)}
+
+@media(max-width:980px){
+  :root{--sb:0px}
+  .sidebar{transform:translateX(-100%);transition:transform .3s ease;width:300px;}
+  .sidebar.open{transform:none}.topbar .burger{display:block}
+  .main{margin-left:0;padding:26px 18px 90px}
+  .scrim.show{display:block;position:fixed;inset:64px 0 0;background:rgba(4,10,24,.6);z-index:70}
+  .tips-toggle span.lbl{display:none}
+}
+</style>
+<link rel="stylesheet" href="assets/module-extras.css">
+</head>
+<body data-mod="2">
+
+<header class="topbar">
+  <div class="l">
+    <button class="burger" id="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <img class="logo" src="assets/globo-logo.png" alt="Descomplica Visto">
+    <div class="tt"><div class="a">Módulo 2 — Taxa Consular (MRV)</div><div class="b">Descomplica Visto</div></div>
+  </div>
+  <div class="r"><div class="tips-toggle on" id="tipsToggle"><span class="sw"></span><span class="lbl">Dicas da Isis</span></div></div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"><div class="sb-label">Etapas do pagamento</div><div id="navList"></div></aside>
+  <div class="scrim" id="scrim"></div>
+  <main class="main"><div class="stage" id="stage"></div></main>
+</div>
+
+<script>
+const AV="IS";
+const SCREENS=[
+ {sec:"Acessar a CASV", titulo:"Onde pagar a taxa consular", url:"ais.usvisa-info.com",
+  intro:"Com o DS-160 finalizado, o próximo passo é pagar a taxa consular (MRV) no site oficial da CASV. Acesse ais.usvisa-info.com e crie sua conta.",
+  campos:[
+   {tipo:"info", label:"Acesse o site da CASV", dica:"O endereço oficial é <strong>https://ais.usvisa-info.com</strong>. É por aqui que você paga a taxa e, depois, agenda a entrevista."},
+   {tipo:"green", label:"Continuar"},
+   {tipo:"green", label:"Criar uma conta",
+    dica:"Se é a primeira vez, clique em <strong>'Criar uma conta'</strong>. Se já tem conta, use 'Continuar'."}
+  ]},
+
+ {sec:"Selecionar condição", titulo:"Qual condição se aplica a você", url:"ais.usvisa-info.com · Início",
+  intro:"O sistema pergunta qual é a sua situação. Há uma opção certa para quem já preencheu o DS-160.",
+  campos:[
+   {tipo:"radio2", label:"Sou diplomata / programa do governo dos EUA", val:""},
+   {tipo:"radio2", label:"Completei o DS-160 e preciso solicitar o visto", val:"sel",
+    dica:"<strong>Sempre essa opção.</strong> É a condição de quem já finalizou o formulário DS-160 e vai pagar a taxa para solicitar o visto."},
+   {tipo:"radio2", label:"Sou empresa/agência que agenda para um grupo", val:""},
+   {tipo:"radio2", label:"Preciso de visto K (noivo/esposo/filho)", val:""},
+   {tipo:"green", label:"Continuar"}
+  ]},
+
+ {sec:"Registrar-se", titulo:"Criando a sua conta", url:"ais.usvisa-info.com · Registrar-se",
+  intro:"Preencha seus dados para criar o login. Você vai usar esse e-mail e senha para voltar ao processo.",
+  campos:[
+   {tipo:"text", label:"Nome", val:"(seu nome aqui)"},
+   {tipo:"text", label:"Sobrenome", val:"(seu sobrenome aqui)"},
+   {tipo:"text", label:"E-mail", val:"(seu e-mail aqui)",
+    dica:"Use um <strong>e-mail que você acessa</strong> — as confirmações e alertas chegam por ele."},
+   {tipo:"text", label:"Senha / Confirmação de senha", ph:"Crie uma senha"},
+   {tipo:"info", label:"Aceitar os termos de serviço",
+    dica:"Aceite os termos para concluir o cadastro. Depois, <strong>ative a conta pelo link enviado no seu e-mail</strong>."}
+  ]},
+
+ {sec:"Visto anterior", titulo:"Você já teve visto americano?", url:"ais.usvisa-info.com · Dados",
+  intro:"O sistema pergunta sobre visto anterior. Se já teve, informe o posto de emissão.",
+  campos:[
+   {tipo:"radio", label:"Você teve um visto para os EUA emitido anteriormente?", val:"Sim"},
+   {tipo:"select", label:"Nome do posto de emissão do visto", val:"- SELECIONE -",
+    dica:"Escolha o posto: Brasília, Porto Alegre, Recife, Rio de Janeiro ou São Paulo. <strong>Caso seu visto tenha sido emitido antes do ano mais antigo da lista, selecione o ano mais antigo disponível.</strong>"},
+   {tipo:"info", label:"Após ativar a conta e preencher os dados",
+    dica:"Depois de ativar a conta e preencher os dados, a tela avança para o <strong>pagamento da taxa</strong>. Clique em 'Continuar'."}
+  ]},
+
+ {sec:"Taxa MRV", titulo:"Pagar a taxa de visto (MRV)", url:"ais.usvisa-info.com · Pagar taxa",
+  intro:"A taxa do visto B1/B2 é de US$ 185 por pessoa. Confira os dados e veja as primeiras datas de entrevista disponíveis.",
+  campos:[
+   {tipo:"fee", label:"Detalhes da taxa MRV",
+    dica:"A taxa é por solicitante e <strong>não é reembolsável nem transferível</strong> (nem para outra pessoa, nem para outro país). Confira o nome, a data de nascimento e a classe do visto (B1/B2) antes de pagar."},
+   {tipo:"dates", label:"Primeiros agendamentos disponíveis",
+    dica:"Essas são as <strong>primeiras datas de entrevista</strong> por posto. A disponibilidade muda o tempo todo — pagar a taxa não garante que a data ainda estará livre depois."}
+  ]},
+
+ {sec:"Forma de pagamento", titulo:"Como pagar: Cartão, Boleto ou PIX", url:"ais.usvisa-info.com · Pagamento",
+  intro:"Três formas de pagamento. Cada uma tem uma particularidade que pode atrasar (ou agilizar) o seu agendamento.",
+  campos:[
+   {tipo:"payc", label:"Pagar com Cartão de Crédito", pr:"185,00 USD",
+    dica:"No cartão de crédito há <strong>cobrança de IOF</strong>. Em compensação, o calendário de agendamento abre na hora após a confirmação."},
+   {tipo:"payc", label:"Pagar com Boleto", pr:"962,00 BRL",
+    warn:true, dica:"No boleto, o calendário <strong>só abre 24h após o pagamento</strong>. Fique atento ao prazo do boleto. Se você tem pressa para agendar, essa não é a melhor opção."},
+   {tipo:"payc", label:"Pagar com PIX", pr:"962,00 BRL",
+    dica:"O PIX é por <strong>QR Code</strong> e libera o calendário rapidamente, como o cartão. Costuma ser a opção mais prática para quem tem pressa."}
+  ]},
+
+ {sec:"Pagar no Cartão", titulo:"Pagamento com cartão de crédito", url:"ais.usvisa-info.com · Cartão",
+  intro:"Ao escolher cartão, preencha o endereço de faturamento e os dados do cartão com muito cuidado nos formatos.",
+  campos:[
+   {tipo:"info", label:"Confirme a caixa de termos",
+    dica:"Marque a caixa confirmando que as taxas serão designadas ao solicitante e que <strong>não são reembolsáveis nem transferíveis</strong>. Depois, 'Continuar'."},
+   {tipo:"text", label:"Linha de endereço 1", ph:"Endereço sucinto",
+    dica:"Use seu <strong>nome próprio completo sem acentos</strong>. No endereço: <strong>sem traço, sem vírgula</strong>, campo pequeno — só nome da rua e número da casa/prédio."},
+   {tipo:"text", label:"Nome conforme aparece no cartão", ph:"Igual ao cartão"},
+   {tipo:"text", label:"Número do cartão / CVV / Validade", ph:"Mastercard ou Visa"}
+  ]},
+
+ {sec:"Pagar no Boleto", titulo:"Pagamento com boleto", url:"ais.usvisa-info.com · Boleto",
+  intro:"O boleto exige CPF e endereço válidos para registro junto ao banco.",
+  campos:[
+   {tipo:"text", label:"CPF (11 dígitos, sem pontos ou traços)", ph:"12345678901",
+    dica:"Informe o <strong>CPF como 11 dígitos seguidos</strong>, sem letras, espaços ou traços. O CPF e o endereço válidos são exigidos para registrar o boleto."},
+   {tipo:"text", label:"Nome completo / E-mail / Endereço", ph:"Dados do pagador"},
+   {tipo:"info", label:"Atenção ao prazo",
+    warn:true, dica:"Lembre: com boleto, o <strong>calendário só abre 24h após o pagamento</strong>. Planeje-se."}
+  ]},
+
+ {sec:"Pagar no PIX", titulo:"Pagamento com PIX", url:"ais.usvisa-info.com · PIX",
+  intro:"O PIX é pago via QR Code pelo app do seu banco. Rápido e prático.",
+  campos:[
+   {tipo:"qr", label:"Escaneie o QR Code (PIX)",
+    dica:"1) Escaneie o QR Code pelo app do banco. 2) Confira os dados da transação. 3) <strong>Salve o comprovante</strong>. 4) O QR Code vale por <strong>1 hora</strong> — se expirar, gere um novo."}
+  ]},
+
+ {sec:"Após o pagamento", titulo:"O calendário é liberado", url:"ais.usvisa-info.com · Status",
+  intro:"Pagamento confirmado: agora você pode agendar a entrevista.",
+  campos:[
+   {tipo:"info", label:"Calendário liberado",
+    dica:"Após o pagamento da taxa consular, o calendário abre <strong>automaticamente para Cartão e PIX</strong>. No <strong>Boleto, apenas 24h depois</strong>."},
+   {tipo:"green", label:"Realizar Agendamento",
+    dica:"Clique em <strong>'Realizar Agendamento'</strong> para escolher a data da entrevista. Isso é o <strong>Módulo 3</strong> deste guia."}
+  ],
+  nota:"Guarde o <b>comprovante de pagamento</b> da taxa MRV — você pode visualizá-lo a qualquer momento em 'Visualizar comprovante de pagamento'."}
+];
+
+const stage=document.getElementById('stage');
+const navList=document.getElementById('navList');
+let cur=0;
+const DONE_KEY='descomplica_m2_seen';
+let seen=JSON.parse(localStorage.getItem(DONE_KEY)||'{}');
+
+function ctrl(f){
+  if(f.tipo==='text') return `<div class="inp" ${f.val?'':'data-ph'}>${f.val||f.ph||''}</div>`;
+  if(f.tipo==='select') return `<div class="sel ${f.val&&!f.val.startsWith('-')?'val':''}">${f.val}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>`;
+  if(f.tipo==='radio') return `<div class="radio"><span class="o ${f.val==='Sim'?'sel':''}"><span class="rb"></span>Sim</span><span class="o ${f.val==='Não'?'sel':''}"><span class="rb"></span>Não</span></div>`;
+  if(f.tipo==='radio2') return `<div class="radio"><span class="o ${f.val==='sel'?'sel':''}"><span class="rb"></span>${f.label}</span></div>`;
+  if(f.tipo==='green') return `<div class="greenbtn">${f.label}</div>`;
+  if(f.tipo==='payc') return `<div class="pay-opt ${f.warn?'':'sel'}"><span class="rb"></span><span class="nm">${f.label}</span><span class="pr">${f.pr}</span></div>`;
+  if(f.tipo==='fee') return `<div class="feebox"><div class="ttl">Detalhes da taxa MRV</div><div class="ln"><span>Poliana G. Herraiz · B1/B2</span><span>185.00 USD</span></div><div class="ln tot"><span>Total</span><b>185.00 USD</b></div></div>`;
+  if(f.tipo==='dates') return `<div class="dates"><div class="dh">Primeiros agendamentos</div><div class="dr"><span>Brasília</span><b>1 Jun 2026</b></div><div class="dr"><span>Rio de Janeiro</span><b>14 Mai 2026</b></div><div class="dr"><span>São Paulo</span><b>26 Out 2026</b></div><div class="dr"><span>Recife</span><b>13 Mai 2026</b></div><div class="dr"><span>Porto Alegre</span><b>28 Mai 2026</b></div></div>`;
+  if(f.tipo==='qr'){let c='';for(let i=0;i<81;i++)c+=Math.random()>.5?'<i></i>':'<span></span>';return `<div class="qrbox">${c}</div>`;}
+  return '';
+}
+function fieldHTML(f,i){
+  const isBtnLike=['green','payc','fee','dates','qr','radio2'].includes(f.tipo);
+  const label = (f.tipo==='info'||isBtnLike) ? (f.tipo==='info'?`<div class="flabel-row"><span class="flabel">${f.label}</span>${f.dica?`<button class="tipdot" data-i="${i}">i</button>`:''}</div>`:'') : `<div class="flabel-row"><span class="flabel">${f.label}</span>${f.dica?`<button class="tipdot" data-i="${i}">i</button>`:''}</div>`;
+  const control = f.tipo==='info' ? '' : ctrl(f);
+  const btnTip = (isBtnLike&&f.dica)?`<button class="tipdot" data-i="${i}" style="margin-left:10px">i</button>`:'';
+  const tip = f.dica?`<div class="tip ${f.warn?'warn':''}" data-tip="${i}"><div class="th"><span class="av">${AV}</span> ${f.warn?'Atenção — Dica da Isis':'Dica da Isis'}</div><p>${f.dica}</p></div>`:'';
+  return `<div class="field">${label}<div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px">${control}${btnTip}</div>${tip}</div>`;
+}
+function render(){
+  const s=SCREENS[cur];
+  seen[cur]=true;localStorage.setItem(DONE_KEY,JSON.stringify(seen));
+  stage.innerHTML=`
+    <div class="crumb">Módulo 2 · ${s.sec}</div>
+    <h1 class="scr-title">${s.titulo}</h1>
+    <p class="scr-intro">${s.intro}</p>
+    <div class="scr-count"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2"><path d="M3 10h18M7 15h2M3 6h18v12H3z"/></svg> Etapa ${cur+1} de ${SCREENS.length}</div>
+    ${s.nota?`<div class="intro-note"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>${s.nota}</span></div>`:''}
+    <div class="win">
+      <div class="win-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="url"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> ${s.url}</span></div>
+      <div class="win-body">
+        <div class="casv-head"><span class="seal">US</span><div class="ht"><div class="a">U.S. Visa Information & Appointment Services</div><div class="b">CASV · ais.usvisa-info.com</div></div></div>
+        <div class="win-pad"><div class="casv-sec">${s.titulo}</div>${s.campos.map((f,i)=>fieldHTML(f,i)).join('')}</div>
+      </div>
+    </div>
+    <div class="scrnav">
+      <button ${cur===0?'disabled':''} onclick="go(${cur-1})"><div class="dir">← Anterior</div><div class="ti">${cur>0?SCREENS[cur-1].sec:'—'}</div></button>
+      <button class="next" ${cur===SCREENS.length-1?'disabled':''} onclick="go(${cur+1})"><div class="dir">Próximo →</div><div class="ti">${cur<SCREENS.length-1?SCREENS[cur+1].sec:'—'}</div></button>
+    </div>`;
+  stage.querySelectorAll('.tipdot').forEach(b=>{b.onclick=()=>{const t=stage.querySelector(`.tip[data-tip="${b.dataset.i}"]`);if(t)t.classList.toggle('open');};});
+  buildNav();window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(i){if(i<0||i>=SCREENS.length)return;cur=i;render();if(innerWidth<=980){sidebar.classList.remove('open');scrim.classList.remove('show');}}
+window.go=go;
+function buildNav(){navList.innerHTML=SCREENS.map((s,i)=>`<div class="nav-step ${i===cur?'active':''} ${seen[i]&&i!==cur?'done':''}" onclick="go(${i})"><span class="n">${i+1}</span><span class="t">${s.sec}</span></div>`).join('');}
+const tipsToggle=document.getElementById('tipsToggle');
+tipsToggle.onclick=()=>{tipsToggle.classList.toggle('on');document.body.classList.toggle('tips-all',tipsToggle.classList.contains('on'));};
+document.body.classList.add('tips-all');
+const sidebar=document.getElementById('sidebar'),scrim=document.getElementById('scrim');
+document.getElementById('burger').onclick=()=>{sidebar.classList.toggle('open');scrim.classList.toggle('show');};
+scrim.onclick=()=>{sidebar.classList.remove('open');scrim.classList.remove('show');};
+render();
+</script>
+<script defer src="assets/module-extras.js"></script>
+</body>
+</html>
