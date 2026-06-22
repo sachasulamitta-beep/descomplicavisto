@@ -457,10 +457,11 @@ footer.site{background:linear-gradient(180deg,var(--navy-950),#020611);padding:6
 .tier li .ck{flex:none;width:21px;height:21px;border-radius:50%;background:rgba(214,162,62,.13);border:1px solid var(--gold-500);color:var(--gold-300);display:flex;align-items:center;justify-content:center;font-size:.66rem;margin-top:2px;}
 @media(max-width:860px){.tiers{grid-template-columns:1fr;max-width:440px;margin:0 auto;}}
 /* ===== Real ebook showcase ===== */
-.ebook-real{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:stretch;}
-.ebook-real .shot{position:relative;display:flex;justify-content:center;align-items:center;padding:10px;min-height:300px;}
-.ebook-real .shot::before{content:"";position:absolute;width:74%;height:74%;left:13%;top:13%;background:radial-gradient(circle,rgba(214,162,62,.28),transparent 72%);filter:blur(44px);}
-.ebook-real .shot img{position:relative;max-width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 32px 60px rgba(0,0,0,.6),0 0 40px rgba(214,162,62,.16);filter:none;animation:floatBook 5.5s ease-in-out infinite;}
+.ebook-real{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;position:relative;z-index:2;}
+.ebook-real .shot{position:relative;display:flex;justify-content:center;align-items:center;padding:0;min-height:300px;overflow:visible;z-index:5;}
+.ebook-real .shot::before{content:"";position:absolute;width:104%;height:98%;left:-2%;top:1%;background:radial-gradient(ellipse at 50% 50%,rgba(0,10,31,.55) 30%,rgba(0,10,31,0) 72%);z-index:0;}
+.ebook-real .shot::after{content:"";position:absolute;width:66%;height:54%;left:17%;top:40%;background:radial-gradient(ellipse,rgba(214,162,62,.16),transparent 70%);filter:blur(62px);z-index:1;}
+.ebook-real .shot img{position:relative;z-index:3;width:clamp(360px,42vw,560px);height:auto;max-width:none;border:none;border-radius:0;background:transparent;filter:drop-shadow(0 32px 52px rgba(0,0,0,.55));animation:floatBook 6.5s ease-in-out infinite;}
 @keyframes floatBook{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
 /* ===== live ebook combo: flat cover + overlapping phone ===== */
 .ebook-combo{position:relative;width:100%;max-width:430px;margin:0 auto;animation:floatBook 5.5s ease-in-out infinite;}
@@ -737,37 +738,7 @@ body.fx-site #site-fx{display:none !important;}
     </div>
     <div class="ebook-real reveal">
       <div class="shot">
-        <div class="ebook-combo">
-          <div class="ec-cover">
-            <span class="ec-tex"></span><span class="ec-glow"></span>
-            <div class="ec-inner">
-              <img class="ec-logo" src="assets/globo-logo.png" alt="Descomplica Visto">
-              <div class="ec-org">Descomplica Visto</div>
-              <div class="ec-div"></div>
-              <h4>Guia Completo de<br><em>Assessoria Consular</em></h4>
-              <p class="ec-sub">Do preenchimento do DS-160 ao treinamento da entrevista</p>
-              <div class="ec-feats">
-                <span class="ec-feat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> DS-160</span>
-                <span class="ec-feat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg> Agendamento</span>
-                <span class="ec-feat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Entrevista</span>
-              </div>
-            </div>
-            <div class="ec-bottom"><div class="bl">Assessoria em Ebook</div><div class="br">R$97</div></div>
-          </div>
-          <div class="ec-phone">
-            <span class="ntc"></span>
-            <div class="scr">
-              <div class="ecp-in">
-                <img class="ecp-logo" src="assets/globo-logo.png" alt="">
-                <div class="ecp-org">Descomplica Visto</div>
-                <div class="ecp-div"></div>
-                <h5>Guia Completo de<br><em>Assessoria Consular</em></h5>
-              </div>
-              <div class="ecp-bar">Assessoria em Ebook</div>
-            </div>
-            <span class="hb"></span>
-          </div>
-        </div>
+        <img src="assets/ebook-mockup-full.png" alt="Guia Completo de Assessoria Consular — ebook e app">
       </div>
       <div class="ebook-info">
         <div class="fmt-badges" style="margin-top:0">
@@ -803,7 +774,7 @@ body.fx-site #site-fx{display:none !important;}
         </a>
         <div class="ebook-guarantee">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="1.5"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
-          Acesso imediato no seu e-mail · Garantia de 7 dias
+          Acesso imediato no seu e-mail · Garantia de 14 dias
         </div>
       </div>
     </div>
