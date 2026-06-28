@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste de Elegibilidade — Descomplica Visto</title>
+<meta name="description" content="Faça o teste gratuito de elegibilidade para o visto americano. 12 perguntas rápidas e resultado imediato.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Cinzel:wght@500;600&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#040A18;--navy-900:#06112A;--navy-800:#091a3d;--navy-700:#0c2350;
+  --gold-50:#FCEFC0;--gold-100:#F7E2A0;--gold-300:#EBC56A;--gold-500:#D6A23E;--gold-700:#A9781F;
+  --ink:#ECF2FE;--muted:#9DB0D6;--muted-dim:#6F82A8;
+  --line:rgba(214,162,62,.28);--line-soft:rgba(157,176,214,.16);
+  --green:#1f9e57;--red:#cf6a5e;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--navy-950);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.55;}
+a{color:inherit;text-decoration:none;}
+.gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.serif{font-family:"Playfair Display",Georgia,serif;}
+
+/* ─── Header ─── */
+.hdr{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(6,17,42,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);}
+.hdr-brand{display:flex;align-items:center;gap:10px;}
+.hdr-brand .dot{width:32px;height:32px;border-radius:50%;background:var(--gold-grad-flat);display:flex;align-items:center;justify-content:center;color:#2a1c04;font-family:"Playfair Display",serif;font-weight:800;font-size:.9rem;}
+.hdr-brand .nm{font-family:"Playfair Display",serif;font-weight:700;font-size:.98rem;}
+.hdr-brand .nm small{display:block;font-family:"Cinzel",serif;font-size:.5rem;letter-spacing:.2em;color:var(--gold-300);margin-top:2px;}
+.hdr-back{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);transition:color .18s;}
+.hdr-back:hover{color:var(--gold-100);}
+
+/* ─── Layout ─── */
+.page{min-height:100vh;display:flex;flex-direction:column;}
+.content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 20px 80px;}
+
+/* ─── Intro ─── */
+.intro{text-align:center;max-width:540px;margin-bottom:36px;}
+.intro .eyebrow{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-300);display:block;margin-bottom:10px;}
+.intro h1{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.1;margin-bottom:12px;}
+.intro p{color:var(--muted);font-size:.95rem;}
+
+/* ─── Progress ─── */
+.progress-wrap{width:100%;max-width:600px;margin-bottom:28px;}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.progress-label{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-300);}
+.progress-count{font-size:.8rem;color:var(--muted-dim);}
+.progress-bar{height:5px;background:rgba(157,176,214,.18);border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--gold-grad-flat);border-radius:10px;transition:width .4s ease;}
+
+/* ─── Card ─── */
+.qcard{width:100%;max-width:600px;background:linear-gradient(170deg,rgba(12,35,80,.6),rgba(6,17,42,.7));border:1px solid var(--line-soft);border-radius:20px;padding:36px 36px 28px;position:relative;overflow:hidden;}
+.qcard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold-grad-flat);}
+.qnum{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:14px;}
+.qtext{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(1.1rem,3vw,1.4rem);line-height:1.2;margin-bottom:6px;text-wrap:balance;}
+.qhint{color:var(--muted-dim);font-size:.82rem;margin-bottom:22px;line-height:1.45;}
+
+/* ─── Options ─── */
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt{display:flex;align-items:center;gap:14px;padding:13px 16px;border:1.5px solid var(--line-soft);border-radius:12px;cursor:pointer;transition:border-color .18s,background .18s;background:rgba(8,18,42,.4);}
+.opt:hover{border-color:rgba(214,162,62,.4);background:rgba(214,162,62,.05);}
+.opt.selected{border-color:var(--gold-500);background:rgba(214,162,62,.1);}
+.opt .rb{width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(157,176,214,.4);flex:none;display:flex;align-items:center;justify-content:center;transition:border-color .18s;}
+.opt.selected .rb{border-color:var(--gold-500);background:var(--gold-grad-flat);}
+.opt.selected .rb::after{content:"";width:7px;height:7px;border-radius:50%;background:#2a1c04;}
+.opt .ot{font-size:.9rem;color:var(--ink);line-height:1.35;}
+.opt.selected .ot{color:var(--gold-100);font-weight:500;}
+
+/* ─── Nav ─── */
+.nav-row{display:flex;gap:12px;margin-top:24px;width:100%;max-width:600px;}
+.btn-nav{flex:1;border:1.5px solid var(--line);border-radius:12px;padding:14px 20px;background:transparent;cursor:pointer;color:var(--ink);font-family:"Hanken Grotesk",sans-serif;font-size:.9rem;font-weight:600;transition:.18s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-nav:hover:not(:disabled){border-color:var(--gold-500);background:rgba(214,162,62,.06);}
+.btn-nav:disabled{opacity:.3;cursor:default;}
+.btn-nav.primary{background:var(--gold-grad-flat);border-color:transparent;color:#2a1c04;}
+.btn-nav.primary:hover:not(:disabled){filter:brightness(1.07);}
+
+/* ─── Result ─── */
+#result{display:none;width:100%;max-width:600px;}
+.result-card{border-radius:20px;padding:36px;border:1.5px solid var(--line-soft);text-align:center;position:relative;overflow:hidden;}
+.result-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;}
+.result-card.green{background:linear-gradient(170deg,rgba(12,55,30,.5),rgba(4,20,10,.6));}
+.result-card.green::before{background:linear-gradient(90deg,#1f9e57,#4dd97d);}
+.result-card.amber{background:linear-gradient(170deg,rgba(50,35,5,.5),rgba(30,20,4,.6));}
+.result-card.amber::before{background:var(--gold-grad-flat);}
+.result-card.red{background:linear-gradient(170deg,rgba(50,10,10,.5),rgba(30,6,6,.6));}
+.result-card.red::before{background:linear-gradient(90deg,#cf6a5e,#e8998e);}
+
+.result-badge{display:inline-flex;align-items:center;gap:7px;font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:7px 16px;border-radius:30px;margin-bottom:18px;}
+.result-badge.green{background:rgba(31,158,87,.15);border:1px solid rgba(77,217,125,.4);color:#7fe0a6;}
+.result-badge.amber{background:rgba(214,162,62,.12);border:1px solid var(--gold-500);color:var(--gold-100);}
+.result-badge.red{background:rgba(207,106,94,.12);border:1px solid rgba(207,106,94,.5);color:#f0b8b0;}
+
+.result-score{font-family:"Playfair Display",serif;font-weight:800;font-size:3.5rem;line-height:1;margin-bottom:4px;}
+.result-score.green{color:#4dd97d;}
+.result-score.amber{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.result-score.red{color:#e8998e;}
+.result-max{color:var(--muted-dim);font-size:.8rem;margin-bottom:18px;}
+.result-title{font-family:"Playfair Display",serif;font-weight:700;font-size:1.4rem;line-height:1.15;margin-bottom:12px;text-wrap:balance;}
+.result-msg{color:var(--muted);font-size:.93rem;line-height:1.6;margin-bottom:6px;text-wrap:pretty;}
+.result-disclaimer{font-size:.76rem;color:var(--muted-dim);font-style:italic;margin:14px 0 24px;padding:10px 14px;border:1px solid var(--line-soft);border-radius:8px;background:rgba(157,176,214,.04);}
+.result-ctas{display:flex;flex-direction:column;gap:11px;}
+.btn-result{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;border-radius:13px;font-family:"Hanken Grotesk",sans-serif;font-size:.96rem;font-weight:700;cursor:pointer;transition:.2s;border:none;}
+.btn-result.gold{background:var(--gold-grad-flat);color:#2a1c04;}
+.btn-result.gold:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.btn-result.wa{background:linear-gradient(180deg,#23b85c,#16894a);color:#fff;}
+.btn-result.wa:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.btn-result.outline{background:transparent;border:1.5px solid var(--line);color:var(--muted);}
+.btn-result.outline:hover{border-color:var(--gold-500);color:var(--gold-100);}
+
+.retry-link{display:block;text-align:center;margin-top:16px;color:var(--muted-dim);font-size:.82rem;cursor:pointer;transition:color .18s;}
+.retry-link:hover{color:var(--gold-300);}
+
+@media(max-width:640px){
+  .qcard{padding:24px 20px 20px;}
+  .result-card{padding:28px 22px;}
+  .nav-row{flex-direction:column-reverse;}
+  .content{padding:28px 16px 60px;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hdr">
+  <div class="hdr-brand">
+    <div class="dot">DV</div>
+    <div class="nm">Descomplica<span class="gold" style="-webkit-text-fill-color:initial;background:none;font-style:italic;">Visto</span>
+      <small>Assessoria Consular</small>
+    </div>
+  </div>
+  <a class="hdr-back" href="index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Voltar ao site
+  </a>
+</header>
+
+<div class="content">
+  <div class="intro">
+    <span class="eyebrow">Análise gratuita de perfil</span>
+    <h1>Seu perfil está pronto para solicitar o <span class="gold">visto americano?</span></h1>
+    <p>Responda 12 perguntas rápidas e receba uma orientação imediata sobre o seu perfil. Sem cadastro, sem compromisso.</p>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-meta">
+      <span class="progress-label">Progresso</span>
+      <span class="progress-count" id="progressCount">0 de 12</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+
+  <div id="quiz">
+    <div class="qcard" id="qcard">
+      <!-- rendered by JS -->
+    </div>
+    <div class="nav-row" id="navRow">
+      <button class="btn-nav" id="btnPrev" onclick="prev()" disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Anterior
+      </button>
+      <button class="btn-nav primary" id="btnNext" onclick="next()" disabled>
+        Próximo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="result"></div>
+</div>
+
+</div><!-- .page -->
+
+<script>
+const QUESTIONS=[
+  {q:"Qual é sua renda mensal aproximada?",
+   hint:"Inclua salário, aluguel, pensão, aposentadoria ou qualquer fonte de renda regular.",
+   opts:[{t:"Menos de R$ 2.000",s:0},{t:"Entre R$ 2.000 e R$ 4.999",s:1},{t:"Entre R$ 5.000 e R$ 9.999",s:2},{t:"Acima de R$ 10.000",s:2}]},
+  {q:"Qual é sua situação profissional atual?",
+   opts:[{t:"Empregado(a) CLT ou servidor(a) público",s:2},{t:"Autônomo(a) ou empresário(a) com renda documentada",s:2},{t:"Trabalhador(a) informal / sem documentação de renda",s:1},{t:"Desempregado(a)",s:0},{t:"Aposentado(a) ou pensionista",s:2}]},
+  {q:"Você tem como comprovar sua renda com documentos?",
+   hint:"Holerite, pró-labore, declaração de IR, extratos bancários, contratos.",
+   opts:[{t:"Sim, tenho documentação completa",s:2},{t:"Tenho renda, mas é difícil de comprovar formalmente",s:1},{t:"Não tenho como comprovar",s:0}]},
+  {q:"Você declara Imposto de Renda?",
+   opts:[{t:"Sim, declaro regularmente",s:2},{t:"Não sou obrigado(a), mas poderia declarar",s:1},{t:"Não declaro Imposto de Renda",s:0}]},
+  {q:"Você possui imóvel, veículo, empresa ou outros bens em seu nome?",
+   opts:[{t:"Sim, possuo um ou mais bens",s:2},{t:"Tenho algum patrimônio modesto",s:1},{t:"Não possuo patrimônio em meu nome",s:0}]},
+  {q:"Você já viajou para o exterior nos últimos 5 anos?",
+   opts:[{t:"Sim, já viajei internacionalmente",s:2},{t:"Não, nunca viajei para o exterior",s:0}]},
+  {q:"Qual é seu estado civil?",
+   opts:[{t:"Casado(a) ou em união estável",s:1},{t:"Solteiro(a)",s:1},{t:"Divorciado(a) ou separado(a)",s:1},{t:"Viúvo(a)",s:1}]},
+  {q:"Pretende viajar sozinho(a) ou acompanhado(a)?",
+   hint:"Se for casado(a) e viajar sem o cônjuge, isso pode ser um ponto de atenção na entrevista.",
+   opts:[{t:"Com cônjuge e/ou filhos",s:2},{t:"Sozinho(a) — sou casado(a) ou em união estável",s:1},{t:"Sozinho(a) — sou solteiro(a), divorciado(a) ou viúvo(a)",s:2},{t:"Com amigos, colegas ou grupo",s:2}]},
+  {q:"Qual é o objetivo principal da viagem?",
+   opts:[{t:"Turismo / lazer",s:2},{t:"Negócios ou participação em eventos",s:2},{t:"Visitar familiares ou amigos",s:1},{t:"Estudos (curta duração)",s:1},{t:"Outro objetivo",s:1}]},
+  {q:"Qual é a duração prevista da viagem?",
+   opts:[{t:"Até 15 dias",s:2},{t:"Entre 15 e 30 dias",s:2},{t:"Entre 30 e 90 dias",s:1},{t:"Mais de 90 dias",s:0}]},
+  {q:"Você tem familiares morando nos Estados Unidos?",
+   opts:[{t:"Não",s:2},{t:"Sim, mas a visita é apenas social e meu retorno ao Brasil está planejado",s:1},{t:"Sim, e pretendo ficar um longo período com eles",s:0}]},
+  {q:"Você já teve algum visto americano negado anteriormente?",
+   opts:[{t:"Não, nunca solicitei ou fui sempre aprovado(a)",s:2},{t:"Sim, mas foi há mais de 3 anos",s:1},{t:"Sim, recentemente (últimos 12 meses)",s:0}]}
+];
+
+const MAX_SCORE=23;
+let cur=0;
+let answers=new Array(QUESTIONS.length).fill(null);
+let scores=new Array(QUESTIONS.length).fill(0);
+
+function render(){
+  const q=QUESTIONS[cur];
+  const answered=answers[cur]!==null;
+  document.getElementById('progressCount').textContent=`${cur+1} de ${QUESTIONS.length}`;
+  document.getElementById('progressFill').style.width=`${(cur/QUESTIONS.length)*100}%`;
+  document.getElementById('btnPrev').disabled=cur===0;
+  document.getElementById('btnNext').disabled=!answered;
+
+  const isLast=cur===QUESTIONS.length-1;
+  document.getElementById('btnNext').innerHTML=isLast
+    ?`Ver resultado <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`
+    :`Próximo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+
+  document.getElementById('qcard').innerHTML=`
+    <div class="qnum">Pergunta ${cur+1} de ${QUESTIONS.length}</div>
+    <div class="qtext">${q.q}</div>
+    ${q.hint?`<div class="qhint">${q.hint}</div>`:''}
+    <div class="opts">
+      ${q.opts.map((o,i)=>`
+        <div class="opt ${answers[cur]===i?'selected':''}" onclick="select(${i},${o.s})">
+          <span class="rb"></span>
+          <span class="ot">${o.t}</span>
+        </div>
+      `).join('')}
+    </div>`;
+}
+window.select=function(i,s){
+  answers[cur]=i;scores[cur]=s;
+  document.getElementById('btnNext').disabled=false;
+  document.querySelectorAll('.opt').forEach((el,idx)=>{
+    el.classList.toggle('selected',idx===i);
+  });
+  const isLast=cur===QUESTIONS.length-1;
+  document.getElementById('btnNext').innerHTML=isLast
+    ?`Ver resultado <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`
+    :`Próximo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+};
+window.next=function(){
+  if(answers[cur]===null)return;
+  if(cur===QUESTIONS.length-1){showResult();return;}
+  cur++;render();
+};
+window.prev=function(){
+  if(cur===0)return;
+  cur--;render();
+};
+window.restart=function(){
+  cur=0;answers=new Array(QUESTIONS.length).fill(null);scores=new Array(QUESTIONS.length).fill(0);
+  document.getElementById('result').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  document.getElementById('progressWrap').style.display='block';
+  document.querySelector('.intro').style.display='block';
+  render();
+};
+
+function showResult(){
+  const total=scores.reduce((a,b)=>a+b,0);
+  const pct=total/MAX_SCORE;
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('progressWrap').style.display='none';
+  document.getElementById('progressFill').style.width='100%';
+
+  let level,badge,title,msg,ctas;
+  const WA="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20an%C3%A1lise%20de%20perfil%20gratuita%20para%20saber%20se%20meu%20perfil%20est%C3%A1%20adequado%20para%20solicitar%20o%20visto%20americano.";
+  const GUIA="https://pay.kiwify.com.br/dVyPXzk";
+
+  if(pct>=0.74){
+    level='green';
+    badge='Perfil favorável';
+    title='Seu perfil tem boas bases para solicitar o visto';
+    msg='Com base nas suas respostas, seu perfil apresenta elementos favoráveis para uma solicitação de visto americano. Isso não garante aprovação — a decisão final é sempre do Oficial Consular — mas indica que você tem condições de iniciar o processo com segurança.';
+    ctas=`
+      <a class="btn-result gold" href="${GUIA}" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Quero a Assessoria em Ebook completa
+      </a>
+      <a class="btn-result wa" href="${WA}" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg>
+        Falar com a especialista — análise gratuita
+      </a>`;
+  } else if(pct>=0.48){
+    level='amber';
+    badge='Pontos de atenção';
+    title='Seu perfil tem bases, mas com pontos a reforçar';
+    msg='Algumas das suas respostas indicam aspectos que podem ser fortalecidos antes ou durante o processo. Recomendamos uma análise gratuita com a especialista para entender melhor sua situação e definir a melhor estratégia antes de prosseguir.';
+    ctas=`
+      <a class="btn-result wa" href="${WA}" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg>
+        Falar com a especialista — análise gratuita
+      </a>
+      <a class="btn-result outline" href="${GUIA}" target="_blank" rel="noopener">Quero a Assessoria em Ebook</a>`;
+  } else {
+    level='red';
+    badge='Análise recomendada';
+    title='Recomendamos uma análise gratuita antes de prosseguir';
+    msg='Com base nas suas respostas, identificamos pontos que merecem atenção antes de iniciar o processo. Uma análise personalizada com a especialista pode ajudar a entender seu momento atual e definir a melhor estratégia para uma solicitação com mais segurança.';
+    ctas=`
+      <a class="btn-result wa" href="${WA}" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg>
+        Solicitar análise gratuita com a especialista
+      </a>`;
+  }
+
+  const pctDisp=Math.round(pct*100);
+  document.getElementById('result').innerHTML=`
+    <div class="result-card ${level}">
+      <div class="result-badge ${level}">${level==='green'?'✓':level==='amber'?'◈':'⚡'} ${badge}</div>
+      <div class="result-score ${level}">${total}<span style="font-size:1.4rem;opacity:.6">/${MAX_SCORE}</span></div>
+      <div class="result-max">pontos · ${pctDisp}% do perfil avaliado</div>
+      <div class="result-title">${title}</div>
+      <div class="result-msg">${msg}</div>
+      <div class="result-disclaimer">
+        Esta análise é orientativa e não garante aprovação do visto. Os critérios avaliados são indicativos — não são regras oficiais do governo americano. A decisão final é sempre do Oficial Consular dos EUA.
+      </div>
+      <div class="result-ctas">${ctas}</div>
+    </div>
+    <div class="retry-link" onclick="restart()">← Refazer o teste</div>`;
+  document.getElementById('result').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>
