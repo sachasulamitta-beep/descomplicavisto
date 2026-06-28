@@ -63,9 +63,6 @@ a{color:inherit;text-decoration:none}
 .mod.locked .mod-head{opacity:.5;cursor:default}
 .mod.locked .mod-head:hover{background:none}
 .mod-head .lk{color:var(--muted-dim);flex:none}
-a.mod-link{display:block;text-decoration:none;color:inherit}
-a.mod-link .mod-head:hover{background:rgba(214,162,62,.06)}
-a.mod-link.done .mod-head .n{background:rgba(31,158,87,.18);border-color:var(--green);color:#7fe0a6;}
 .sublist{list-style:none;margin:2px 0 10px;padding-left:38px;display:none;}
 .mod.active .sublist{display:block;}
 .sublist li a{display:block;padding:7px 10px;font-size:.84rem;color:var(--muted);border-left:2px solid var(--line-soft);border-radius:0 7px 7px 0;transition:.18s;}
@@ -165,19 +162,7 @@ a.mod-link.done .mod-head .n{background:rgba(31,158,87,.18);border-color:var(--g
 .tl h4{font-family:"Playfair Display",serif;font-weight:600;font-size:1.12rem;margin-top:3px;}
 .tl p{font-size:.92rem;color:var(--muted);margin-top:4px;}
 
-/* video embed */
-.vid-embed{margin-top:26px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(18,48,103,.32),rgba(8,20,46,.4));}
-.vid-embed .vh{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap;}
-.vid-embed .vh .l{display:flex;align-items:center;gap:11px;flex-wrap:wrap;}
-.vid-embed .vh .vid-badge{display:inline-flex;align-items:center;gap:6px;font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.2em;color:var(--gold-300);text-transform:uppercase;border:1px solid var(--line);border-radius:30px;padding:5px 11px;}
-.vid-embed .vh h3{font-family:"Playfair Display",serif;font-weight:700;font-size:1.05rem;color:#fff;margin:0;}
-.vid-embed .openfull{font-size:.78rem;font-weight:600;color:var(--gold-100);border:1px solid var(--line);border-radius:8px;padding:7px 12px;transition:.18s;display:inline-flex;align-items:center;gap:6px;}
-.vid-embed .openfull:hover{background:rgba(214,162,62,.1);border-color:var(--gold-500);}
-.vid-embed .frame{position:relative;aspect-ratio:16/9;background:#020611;}
-.vid-embed .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
-
-/* page nav fixed */
-.pagenav a{display:block;color:inherit;text-decoration:none;}
+/* page nav */
 .pagenav{display:flex;gap:14px;margin-top:64px;}
 .pagenav a{flex:1;border:1px solid var(--line);border-radius:14px;padding:20px 22px;transition:.2s;background:rgba(9,26,61,.36);}
 .pagenav a:hover{border-color:var(--gold-500);background:rgba(214,162,62,.06);transform:translateY(-2px)}
@@ -222,7 +207,7 @@ a.mod-link.done .mod-head .n{background:rgba(31,158,87,.18);border-color:var(--g
   </div>
   <div class="r">
     <span class="pct" id="pctTop">0% lido</span>
-    <a class="dl" href="#" onclick="window.print();return false;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M12 3v12M8 11l4 4 4-4"/></svg><span>Baixar PDF</span></a>
+    <a class="dl" href="index.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M12 3v12M8 11l4 4 4-4"/></svg><span>Baixar PDF</span></a>
   </div>
 </header>
 
@@ -239,24 +224,23 @@ a.mod-link.done .mod-head .n{background:rgba(31,158,87,.18);border-color:var(--g
         <li><a href="#s-diferencas">Visto × Passaporte × Carimbo</a></li>
         <li><a href="#s-tipos">Os tipos de visto</a></li>
         <li><a href="#s-passaporte">O passaporte: 1º passo</a></li>
-        <li><a href="#s-slides">Apresentação visual</a></li>
         <li><a href="#s-checklist">Checklist inicial</a></li>
         <li><a href="#s-jornada">A jornada completa</a></li>
       </ul>
     </div>
 
-    <a class="mod mod-link" data-mod="1" href="modulo-1.html">
-      <div class="mod-head"><span class="n">1</span><span class="t">Formulário DS-160<small>Telas guiadas</small></span></div>
-    </a>
-    <a class="mod mod-link" data-mod="2" href="modulo-2.html">
-      <div class="mod-head"><span class="n">2</span><span class="t">Taxa Consular<small>Pagamento MRV</small></span></div>
-    </a>
-    <a class="mod mod-link" data-mod="3" href="modulo-3.html">
-      <div class="mod-head"><span class="n">3</span><span class="t">Agendamento<small>CASV + entrega</small></span></div>
-    </a>
-    <a class="mod mod-link" data-mod="4" href="modulo-4.html">
-      <div class="mod-head"><span class="n">4</span><span class="t">Treinamento de Entrevista<small>Perguntas e respostas</small></span></div>
-    </a>
+    <div class="mod locked" data-mod="1">
+      <div class="mod-head"><span class="n">1</span><span class="t">Formulário DS-160<small>Em breve</small></span><span class="lk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+    <div class="mod locked" data-mod="2">
+      <div class="mod-head"><span class="n">2</span><span class="t">Taxa e Agendamento<small>Em breve</small></span><span class="lk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+    <div class="mod locked" data-mod="3">
+      <div class="mod-head"><span class="n">3</span><span class="t">Treinamento de Entrevista<small>Em breve</small></span><span class="lk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
+    <div class="mod locked" data-mod="x">
+      <div class="mod-head"><span class="n">★</span><span class="t">Materiais de Apoio<small>Em breve</small></span><span class="lk"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+    </div>
   </aside>
   <div class="scrim" id="scrim"></div>
 
@@ -384,24 +368,6 @@ a.mod-link.done .mod-head .n{background:rgba(31,158,87,.18);border-color:var(--g
         </div>
       </section>
 
-      <!-- SLIDES (apresentação visual) -->
-      <section class="sec" id="s-slides">
-        <div class="sec-no">Apresentação visual</div>
-        <h2>Veja em vídeo — fundamentos em slides</h2>
-        <div class="rule"><span class="ln"></span><i></i></div>
-        <p>Prefere assistir? Os slides abaixo cobrem os mesmos fundamentos com narração visual. Use os controles para navegar slide a slide.</p>
-        <div class="vid-embed">
-          <div class="vh">
-            <div class="l">
-              <span class="vid-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Apresentação</span>
-              <h3>Antes de começar</h3>
-            </div>
-            <a class="openfull" href="Apresentacao Antes de Comecar.html" target="_blank" rel="noopener">Abrir em tela cheia <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-          </div>
-          <div class="frame"><iframe src="Apresentacao Antes de Comecar.html" loading="lazy" allowfullscreen title="Apresentação Antes de começar"></iframe></div>
-        </div>
-      </section>
-
       <!-- 0.6 -->
       <section class="sec" id="s-checklist">
         <div class="sec-no">Seção 0.6</div>
@@ -441,8 +407,8 @@ a.mod-link.done .mod-head .n{background:rgba(31,158,87,.18);border-color:var(--g
 
         <!-- page nav -->
         <nav class="pagenav">
-          <a class="prev" href="index.html"><div class="dir">← Anterior</div><div class="ti">Portal do curso</div></a>
-          <a class="next" id="nextMod" href="modulo-1.html"><div class="dir">Próximo →</div><div class="ti">Módulo 1 · DS-160</div></a>
+          <a class="prev disabled"><div class="dir">← Anterior</div><div class="ti">Início</div></a>
+          <a class="next disabled" id="nextMod"><div class="dir">Próximo →</div><div class="ti">Módulo 1 · DS-160 <small style="display:block;font-family:'Hanken Grotesk';font-weight:400;font-size:.74rem;color:var(--muted-dim);margin-top:4px">Em breve</small></div></a>
         </nav>
       </section>
 
@@ -494,27 +460,15 @@ renderCount();
 
 // ===== mark module done persist =====
 const DK='descomplica_ebook_m0_done';
-const PORTAL_KEY='dv_progress';
-const PORTAL_FIELD='m1'; // módulo 0 = card 1 no portal
 const doneBtn=document.getElementById('doneBtn');
 const modEl=document.querySelector('.mod[data-mod="0"]');
-function syncPortal(on){
-  try{const p=JSON.parse(localStorage.getItem(PORTAL_KEY)||'{}');
-    if(on)p[PORTAL_FIELD]=1;else delete p[PORTAL_FIELD];
-    localStorage.setItem(PORTAL_KEY,JSON.stringify(p));}catch(e){}
-}
 function setDone(on){
   doneBtn.classList.toggle('is-done',on);
   doneBtn.querySelector('span').textContent=on?'Módulo concluído':'Marcar como concluído';
   modEl.classList.toggle('done',on);
 }
 setDone(localStorage.getItem(DK)==='1');
-doneBtn.onclick=()=>{
-  const on=localStorage.getItem(DK)!=='1';
-  localStorage.setItem(DK,on?'1':'0');
-  syncPortal(on);
-  setDone(on);
-};
+doneBtn.onclick=()=>{const on=localStorage.getItem(DK)!=='1';localStorage.setItem(DK,on?'1':'0');setDone(on);if(on)window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});};
 </script>
 </body>
 </html>

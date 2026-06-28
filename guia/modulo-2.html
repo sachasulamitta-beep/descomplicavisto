@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 2 — Taxa Consular (CASV/MRV) | Descomplica Visto</title>
+<title>Módulo 2 — Taxa e Agendamento | Descomplica Visto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -143,16 +143,53 @@ a{color:inherit;text-decoration:none}
   .scrim.show{display:block;position:fixed;inset:64px 0 0;background:rgba(4,10,24,.6);z-index:70}
   .tips-toggle span.lbl{display:none}
 }
+/* ── Novos blocos: modo agenda ── */
+.ais-info-block{background:#fff;border:1px solid var(--form-border);border-radius:10px;max-width:560px;overflow:hidden;}
+.ais-info-bar{display:flex;gap:14px;padding:16px;border-left:5px solid #5c5f9e;}
+.ais-ic{flex:none;width:28px;height:28px;border-radius:50%;background:#5c5f9e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;margin-top:2px;}
+.ais-info-block p{color:#2a3850;font-size:.86rem;line-height:1.6;margin-bottom:10px;}
+.ais-info-block p:last-child{margin-bottom:0;}
+.ais-warn{background:#fff8e1;padding:10px 12px;border-radius:6px;font-size:.84rem!important;color:#7a5800!important;margin-top:8px;}
+.appt-form{background:#fff;border:1px solid var(--form-border);border-radius:10px;padding:16px;max-width:560px;color:var(--form-ink);}
+.appt-title{font-size:.76rem;color:#46506a;border:1px solid #dce0e8;border-radius:6px;padding:5px 12px;display:inline-block;margin-bottom:12px;background:#f8f9fb;font-weight:600;}
+.appt-note{font-size:.83rem;color:#46506a;margin-bottom:12px;line-height:1.5;padding:10px 12px;background:#f8f9fb;border-radius:7px;border:1px solid #e5e8ef;}
+.appt-grid{display:grid;grid-template-columns:1fr auto;gap:12px;}
+@media(max-width:600px){.appt-grid{grid-template-columns:1fr;}}
+.appt-addr{background:#f8f9fb;border:1px solid var(--form-border);border-radius:8px;padding:12px 14px;min-width:160px;font-size:.81rem;color:#46506a;line-height:1.5;}
+.appt-addr .ah{font-weight:700;color:#2a3850;margin-bottom:6px;}
+.af-label{font-size:.83rem;color:#46506a;margin-bottom:4px;font-weight:500;}
+.af-inp,.af-sel{background:#fff;border:1px solid #c4ccd8;border-radius:5px;padding:8px 12px;font-size:.87rem;color:#33405a;margin-bottom:10px;max-width:240px;display:block;}
+.obs-box{margin-top:4px;border-radius:10px;padding:14px 16px;max-width:560px;font-size:.87rem;line-height:1.6;}
+.obs-box.amber{background:rgba(214,162,62,.08);border-left:4px solid var(--gold-500);color:var(--form-ink);}
+.obs-box.blue{background:#eef0fb;border-left:4px solid #5c5f9e;color:var(--form-ink);}
+.obs-box.green{background:rgba(31,158,87,.07);border-left:4px solid var(--green);color:var(--form-ink);}
+.obs-box .oh{font-weight:700;color:#1f2a3d;margin-bottom:7px;}
+.doc-card{background:#fff;border:1px solid var(--form-border);border-radius:10px;overflow:hidden;max-width:440px;}
+.doc-card .doc-title{background:#f8f9fb;padding:13px 16px;font-size:1.02rem;font-weight:700;color:#1f2a3d;border-bottom:1px solid var(--form-border);}
+.doc-row{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid #edf0f4;}
+.doc-row:last-of-type{border-bottom:none;}
+.dk{padding:10px 12px;font-size:.78rem;font-weight:700;color:#2a3850;background:#f8f9fb;border-right:1px solid #edf0f4;}
+.dv{padding:10px 12px;font-size:.8rem;color:#46506a;}
+.dv.redact{filter:blur(5px);user-select:none;color:#1f2a3d;font-weight:600;letter-spacing:.1em;}
+.dv.barcode{display:flex;flex-direction:column;gap:4px;padding:10px 12px;}
+.dv.barcode .bc{width:88px;height:36px;background:repeating-linear-gradient(90deg,#222 0px,#222 2px,#fff 2px,#fff 4px);filter:blur(4px);border-radius:2px;}
+.action-menu{background:#fff;border:1px solid var(--form-border);border-radius:10px;overflow:hidden;max-width:500px;}
+.action-menu .am-title{padding:11px 16px;font-weight:700;font-size:.88rem;color:#2a3850;border-bottom:1px solid var(--form-border);background:#f8f9fb;}
+.am-item{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #edf0f4;font-size:.85rem;color:#33405a;}
+.am-item:last-child{border-bottom:none;}
+.am-item.highlight{background:rgba(236,246,238,.6);color:#1a3a22;font-weight:600;}
+.am-ic{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex:none;color:#6a7285;background:#f0f1f5;}
+.am-item.highlight .am-ic{background:rgba(31,158,87,.12);color:#1f9e57;}
+.am-arrow{margin-left:auto;color:#c4ccd8;font-size:1rem;flex:none;}
 </style>
-<link rel="stylesheet" href="assets/module-extras.css">
 </head>
-<body data-mod="2">
+<body>
 
 <header class="topbar">
   <div class="l">
     <button class="burger" id="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     <img class="logo" src="assets/globo-logo.png" alt="Descomplica Visto">
-    <div class="tt"><div class="a">Módulo 2 — Taxa Consular (MRV)</div><div class="b">Descomplica Visto</div></div>
+    <div class="tt"><div class="a">Módulo 2 — Taxa e Agendamento</div><div class="b">Descomplica Visto</div></div>
   </div>
   <div class="r"><div class="tips-toggle on" id="tipsToggle"><span class="sw"></span><span class="lbl">Dicas da Isis</span></div></div>
 </header>
@@ -189,9 +226,9 @@ const SCREENS=[
  {sec:"Registrar-se", titulo:"Criando a sua conta", url:"ais.usvisa-info.com · Registrar-se",
   intro:"Preencha seus dados para criar o login. Você vai usar esse e-mail e senha para voltar ao processo.",
   campos:[
-   {tipo:"text", label:"Nome", val:"(seu nome aqui)"},
-   {tipo:"text", label:"Sobrenome", val:"(seu sobrenome aqui)"},
-   {tipo:"text", label:"E-mail", val:"(seu e-mail aqui)",
+   {tipo:"text", label:"Nome", val:"Sacha Sulamitta"},
+   {tipo:"text", label:"Sobrenome", val:"Cruz de Farias"},
+   {tipo:"text", label:"E-mail", val:"seuemail@gmail.com",
     dica:"Use um <strong>e-mail que você acessa</strong> — as confirmações e alertas chegam por ele."},
    {tipo:"text", label:"Senha / Confirmação de senha", ph:"Crie uma senha"},
    {tipo:"info", label:"Aceitar os termos de serviço",
@@ -264,7 +301,51 @@ const SCREENS=[
    {tipo:"green", label:"Realizar Agendamento",
     dica:"Clique em <strong>'Realizar Agendamento'</strong> para escolher a data da entrevista. Isso é o <strong>Módulo 3</strong> deste guia."}
   ],
-  nota:"Guarde o <b>comprovante de pagamento</b> da taxa MRV — você pode visualizá-lo a qualquer momento em 'Visualizar comprovante de pagamento'."}
+  nota:"Guarde o <b>comprovante de pagamento</b> da taxa MRV — você pode visualizá-lo a qualquer momento em 'Visualizar comprovante de pagamento'."},
+ {sec:"Modo Agenda — CASV", titulo:"Dois agendamentos: CASV e Entrevista Consular",
+  url:"ais.usvisa-info.com · Agendamento",
+  intro:"Para Brasília, Rio de Janeiro e São Paulo, o processo envolve dois agendamentos distintos. Entenda como cada etapa funciona e o que é necessário.",
+  campos:[
+   {tipo:"aisinfo"},
+   {tipo:"casvmock",
+    dica:"No CASV são coletadas a <strong>biometria</strong> (impressões digitais) e a <strong>foto digital</strong>. O comparecimento é obrigatório — se não comparecer, a entrevista consular é <strong>automaticamente cancelada</strong> e ambos os agendamentos precisam ser remarcados."},
+   {tipo:"consulmock",
+    dica:"A entrevista acontece no posto consular escolhido. <strong>Obrigatório comparecer no local agendado</strong>. Comparecer em local diferente pode resultar em cancelamento do atendimento. O CASV pode ser em local diferente do consulado, quando o sistema permitir."},
+   {tipo:"info", label:"Posso marcar CASV e entrevista no mesmo dia?",
+    dica:"Sim, quando o sistema disponibilizar. Mas é necessário um <strong>intervalo mínimo de 4 horas</strong> entre os dois horários para evitar atrasos e risco de perder o atendimento."},
+   {tipo:"obs-pa"},
+   {tipo:"obs-menores"},
+   {tipo:"highlight"}
+  ]},
+ {sec:"Após o agendamento", titulo:"Imprimir as instruções de solicitação",
+  url:"ais.usvisa-info.com · Instruções",
+  intro:"Com o agendamento confirmado, imprima as instruções de solicitação de visto. Esse documento deve ser levado no dia da entrevista.",
+  campos:[
+   {tipo:"doccard"},
+   {tipo:"info", label:"Por que imprimir esse documento?",
+    dica:"As instruções de solicitação confirmam os dados do agendamento e precisam ser apresentadas no dia da entrevista, junto com os demais documentos. <strong>Não dependa apenas do celular — leve impresso.</strong>"}
+  ]},
+ {sec:"Imprimir no AIS", titulo:"Como imprimir os documentos no AIS",
+  url:"ais.usvisa-info.com · Ações",
+  intro:"No painel do AIS, após confirmar o agendamento, você tem acesso a todas as ações — incluindo a impressão dos documentos essenciais para o dia da entrevista.",
+  campos:[
+   {tipo:"actionmenu"},
+   {tipo:"info", label:"Quais documentos imprimir?",
+    dica:"1) Clique em <strong>'Imprimir instruções'</strong> e salve o PDF. 2) Desça a página e clique em <strong>'Visualizar comprovante de pagamento'</strong> para imprimir o comprovante da taxa. 3) Imprima também a <strong>confirmação do DS-160</strong> (disponível em ceac.state.gov)."},
+   {tipo:"info", label:"Posso apresentar os documentos pelo celular?",
+    dica:"<strong>Não há garantia.</strong> Leve todos os documentos <strong>impressos</strong>. O consulado pode solicitar a versão física. Não arrisque depender apenas do celular no dia da entrevista."}
+  ]},
+ {sec:"Alteração do DS-160", titulo:"Corrigir o DS-160 após o pagamento",
+  url:"ais.usvisa-info.com · DS-160",
+  intro:"Se você identificou um erro no DS-160 depois de pagar a taxa consular, entenda o que pode ser feito e quais dados não podem ser alterados no sistema.",
+  campos:[
+   {tipo:"info", label:"Quando é necessário um novo DS-160?",
+    dica:"Depois de pagar, se houver erro no DS-160 finalizado, pode ser necessário preencher um novo formulário. O novo DS-160 gera um novo Application ID — esse código precisa ser atualizado no perfil AIS, <strong>quando o sistema ainda permitir a alteração</strong>."},
+   {tipo:"info", warn:true, label:"Dados que NÃO podem ser alterados no perfil AIS",
+    dica:"O <strong>telefone</strong>, o <strong>e-mail</strong> e o <strong>número do passaporte</strong> não podem ser alterados no perfil criado no site de agendamento. Se esses dados estiverem incorretos, entre em contato com o suporte do AIS antes de prosseguir."},
+   {tipo:"info", label:"Prazo para atualizar o número do DS-160",
+    dica:"Conforme o portal AIS, a atualização do número do DS-160 deve ser feita com pelo menos <strong>3 dias úteis de antecedência</strong> da data da entrevista. A alteração é permitida <strong>apenas uma vez</strong>. Verifique sempre as orientações vigentes em ais.usvisa-info.com."}
+  ]}
 ];
 
 const stage=document.getElementById('stage');
@@ -283,10 +364,18 @@ function ctrl(f){
   if(f.tipo==='fee') return `<div class="feebox"><div class="ttl">Detalhes da taxa MRV</div><div class="ln"><span>Poliana G. Herraiz · B1/B2</span><span>185.00 USD</span></div><div class="ln tot"><span>Total</span><b>185.00 USD</b></div></div>`;
   if(f.tipo==='dates') return `<div class="dates"><div class="dh">Primeiros agendamentos</div><div class="dr"><span>Brasília</span><b>1 Jun 2026</b></div><div class="dr"><span>Rio de Janeiro</span><b>14 Mai 2026</b></div><div class="dr"><span>São Paulo</span><b>26 Out 2026</b></div><div class="dr"><span>Recife</span><b>13 Mai 2026</b></div><div class="dr"><span>Porto Alegre</span><b>28 Mai 2026</b></div></div>`;
   if(f.tipo==='qr'){let c='';for(let i=0;i<81;i++)c+=Math.random()>.5?'<i></i>':'<span></span>';return `<div class="qrbox">${c}</div>`;}
+  if(f.tipo==='aisinfo') return `<div class="ais-info-block"><div class="ais-info-bar"><span class="ais-ic">i</span><div><p>Para completar o processo de solicitação, você deverá agendar e comparecer a duas etapas: <strong>Coleta biométrica</strong> (impressões digitais e fotografia digital) no CASV da CSRA e uma <strong>entrevista na Seção Consular</strong>.</p><p class="ais-warn">⚠ <strong>Aviso:</strong> Se o solicitante não comparecer ao agendamento no CASV, a entrevista consular será <strong>automaticamente cancelada</strong>. O solicitante terá que remarcar os dois agendamentos.</p></div></div></div>`;
+  if(f.tipo==='casvmock') return `<div class="appt-form"><div class="appt-title">Agendamento do CASV</div><div class="appt-grid"><div class="appt-fields"><div class="af-label">Local do CASV <span class="req">*</span></div><div class="af-inp">[Cidade] ASC</div><div class="af-label">Data do agendamento <span class="req">*</span></div><div class="af-inp">AAAA-MM-DD</div><div class="af-label">Horário do agendamento <span class="req">*</span></div><div class="af-sel">HH:MM ▾</div></div><div class="appt-addr"><div class="ah">Endereço do CASV</div><p>O endereço será exibido conforme o local selecionado no sistema.</p></div></div></div>`;
+  if(f.tipo==='consulmock') return `<div class="appt-form"><div class="appt-title">Agendamento Consular</div><div class="appt-note">Selecione o local de Seção Consular onde fará o requerimento. O local selecionado deve ser o mesmo que você escolheu no formulário DS-160.</div><div class="appt-grid"><div class="appt-fields"><div class="af-label">Local da Seção Consular <span class="req">*</span></div><div class="af-inp">[Cidade / Consulado]</div><div class="af-label">Data do agendamento <span class="req">*</span></div><div class="af-inp">AAAA-MM-DD</div><div class="af-label">Horário do agendamento <span class="req">*</span></div><div class="af-sel">HH:MM ▾</div></div><div class="appt-addr"><div class="ah">Endereço da Seção Consular</div><p>O endereço será exibido conforme o posto selecionado no sistema.</p></div></div></div>`;
+  if(f.tipo==='obs-pa') return `<div class="obs-box amber"><div class="oh">📍 Porto Alegre e Recife</div><p>Nos consulados de Porto Alegre e Recife, a biometria e a foto são coletadas diretamente durante a entrevista consular, sem necessidade de agendamento separado no CASV.<br><br><strong>É obrigatório levar uma foto impressa 5×5, colorida, tirada nos últimos seis meses, com fundo branco.</strong></p></div>`;
+  if(f.tipo==='obs-menores') return `<div class="obs-box blue"><div class="oh">ℹ️ Menores de 14 anos ou maiores de 80 anos</div><p>Podem ter orientação diferenciada de comparecimento ao CASV, conforme as regras vigentes e o sistema de agendamento. Quando o comparecimento ao CASV não for necessário, o representante deverá levar: <strong>foto 5×5 do solicitante</strong>, passaporte, confirmação do DS-160, agendamentos impressos e comprovante da taxa consular paga.<br><br><em style="font-size:.82rem;color:#56607a">Verifique sempre as orientações atuais em ais.usvisa-info.com antes do dia da entrevista.</em></p></div>`;
+  if(f.tipo==='doccard') return `<div class="doc-card"><div class="doc-title">Instruções para Solicitação de Visto</div><div class="doc-row"><div class="dk">Nome do Solicitante</div><div class="dv redact">●●●●●●●●●●●●●●●</div></div><div class="doc-row"><div class="dk">Classe do visto</div><div class="dv">B1/B2 Negócio e Turismo</div></div><div class="doc-row"><div class="dk">Número DS-160</div><div class="dv redact">●●●●●●●●●●</div></div><div class="doc-row"><div class="dk">Número do passaporte</div><div class="dv redact">●●●●●●●●</div></div><div class="doc-row"><div class="dk">DS-160 (código de barras)</div><div class="dv barcode"><div class="bc"></div><span class="redact" style="font-size:.75rem">●●●●●●●●●●</span></div></div><div class="doc-row"><div class="dk">Passaporte (código de barras)</div><div class="dv barcode"><div class="bc"></div><span class="redact" style="font-size:.75rem">●●●●●●●●</span></div></div><div style="background:#fff8e1;padding:9px 14px;font-size:.76rem;color:#7a5800;display:flex;gap:7px;align-items:flex-start;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M12 3l9 16H3L12 3z"/></svg>Dados pessoais ocultados por segurança. No documento real, seus dados estarão visíveis.</div></div>`;
+  if(f.tipo==='actionmenu') return `<div class="action-menu"><div class="am-title">Aplicar Ação para esse grupo de solicitantes</div><div class="am-item"><div class="am-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"/></svg></div>Solicitar Serviço de Entrega Premium<span class="am-arrow">›</span></div><div class="am-item highlight"><div class="am-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div><strong>Imprimir instruções</strong><span class="am-arrow" style="color:#1f9e57">›</span></div><div class="am-item"><div class="am-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>Instruções por E-mail<span class="am-arrow">›</span></div><div class="am-item"><div class="am-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></div>Reagendar entrevista<span class="am-arrow">›</span></div><div class="am-item"><div class="am-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg></div>Cancelar Agendamento<span class="am-arrow">›</span></div><div class="am-item"><div class="am-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>Adicionar solicitante<span class="am-arrow">›</span></div><div class="am-item highlight"><div class="am-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><strong>Visualizar comprovante de pagamento</strong><span class="am-arrow" style="color:#1f9e57">›</span></div></div>`;
+  if(f.tipo==='highlight') return `<div class="obs-box green"><div class="oh">⏰ Programe-se com antecedência</div><p>Para evitar atrasos, conflitos de horário ou cancelamento da entrevista, organize seus agendamentos com calma e deixe um intervalo confortável entre o CASV e a entrevista consular.</p></div>`;
   return '';
 }
 function fieldHTML(f,i){
-  const isBtnLike=['green','payc','fee','dates','qr','radio2'].includes(f.tipo);
+  const isBtnLike=['green','payc','fee','dates','qr','radio2','aisinfo','casvmock','consulmock','obs-pa','obs-menores','doccard','actionmenu','highlight'].includes(f.tipo);
   const label = (f.tipo==='info'||isBtnLike) ? (f.tipo==='info'?`<div class="flabel-row"><span class="flabel">${f.label}</span>${f.dica?`<button class="tipdot" data-i="${i}">i</button>`:''}</div>`:'') : `<div class="flabel-row"><span class="flabel">${f.label}</span>${f.dica?`<button class="tipdot" data-i="${i}">i</button>`:''}</div>`;
   const control = f.tipo==='info' ? '' : ctrl(f);
   const btnTip = (isBtnLike&&f.dica)?`<button class="tipdot" data-i="${i}" style="margin-left:10px">i</button>`:'';
@@ -328,6 +417,5 @@ document.getElementById('burger').onclick=()=>{sidebar.classList.toggle('open');
 scrim.onclick=()=>{sidebar.classList.remove('open');scrim.classList.remove('show');};
 render();
 </script>
-<script defer src="assets/module-extras.js"></script>
 </body>
 </html>

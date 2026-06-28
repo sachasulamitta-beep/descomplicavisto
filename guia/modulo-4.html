@@ -119,9 +119,8 @@ a{color:inherit;text-decoration:none}
   .scrim.show{display:block;position:fixed;inset:64px 0 0;background:rgba(4,10,24,.6);z-index:70}
 }
 </style>
-<link rel="stylesheet" href="assets/module-extras.css">
 </head>
-<body data-mod="4">
+<body>
 
 <header class="topbar">
   <div class="l">
@@ -322,6 +321,5 @@ const sidebar=document.getElementById('sidebar'),scrim=document.getElementById('
 document.getElementById('burger').onclick=()=>{sidebar.classList.toggle('open');scrim.classList.toggle('show');};
 scrim.onclick=()=>{sidebar.classList.remove('open');scrim.classList.remove('show');};
 </script>
-<script defer src="assets/module-extras.js"></script>
 </body>
 </html>
