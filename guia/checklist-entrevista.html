@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Completo do Processo | Descomplica Visto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#040A18;--navy-900:#06112A;--navy-800:#091a3d;
+  --gold-50:#FCEFC0;--gold-100:#F7E2A0;--gold-300:#EBC56A;--gold-500:#D6A23E;--gold-700:#A9781F;
+  --ink:#ECF2FE;--muted:#9DB0D6;--muted-dim:#6F82A8;--line:rgba(214,162,62,.28);--line-soft:rgba(157,176,214,.16);
+  --green:#1f9e57;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--navy-950);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65;}
+a{color:inherit;text-decoration:none}
+.gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.serif{font-family:"Playfair Display",Georgia,serif;}
+
+.topbar{position:sticky;top:0;z-index:40;background:rgba(6,17,42,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.topbar .brand{font-family:"Playfair Display",serif;font-weight:700;font-size:.96rem;display:flex;flex-direction:column;line-height:1.1;}
+.topbar .brand small{font-family:"Cinzel",serif;font-size:.46rem;letter-spacing:.22em;color:var(--gold-300);margin-top:2px;}
+.topbar .back{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);transition:color .18s;white-space:nowrap;}
+.topbar .back:hover{color:var(--gold-100);}
+
+.wrap{max-width:780px;margin:0 auto;padding:0 28px;}
+
+.hero{padding:52px 0 34px;text-align:center;background:radial-gradient(70% 60% at 50% 0%,rgba(28,79,156,.35),transparent 65%);}
+.hero .eyebrow{font-family:"Cinzel",serif;letter-spacing:.28em;font-size:.62rem;color:var(--gold-300);text-transform:uppercase;}
+.hero h1{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.9rem,4.2vw,2.8rem);line-height:1.08;margin:12px 0 0;text-wrap:balance;}
+.hero p{color:var(--muted);font-size:.97rem;margin:14px auto 0;max-width:52ch;}
+
+.progress-strip{background:rgba(9,26,61,.5);border:1px solid var(--line-soft);border-radius:12px;padding:14px 20px;margin:24px auto 0;max-width:520px;display:flex;align-items:center;gap:16px;}
+.progress-strip .lbl{font-size:.84rem;color:var(--muted);white-space:nowrap;}
+.progress-strip .lbl b{color:var(--gold-100);}
+.bar-track{flex:1;height:8px;border-radius:20px;background:rgba(157,176,214,.14);overflow:hidden;}
+.bar-fill{height:100%;border-radius:20px;background:var(--gold-grad-flat);width:0%;transition:width .5s ease;box-shadow:0 0 10px rgba(214,162,62,.4);}
+.reset-btn{background:none;border:none;color:var(--muted-dim);font-size:.78rem;cursor:pointer;font-family:inherit;transition:color .18s;white-space:nowrap;}
+.reset-btn:hover{color:var(--gold-300);}
+
+.content{padding:32px 0 80px;}
+
+.bloco{margin-bottom:28px;}
+.bloco-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;padding:16px 20px;border-radius:14px;background:linear-gradient(180deg,rgba(28,79,156,.18),rgba(9,26,61,.3));border:1px solid var(--line-soft);}
+.bloco-head .ic{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(214,162,62,.08);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold-300);}
+.bloco-head .tt .step{font-family:"Cinzel",serif;letter-spacing:.16em;font-size:.58rem;text-transform:uppercase;color:var(--gold-300);}
+.bloco-head .tt h2{font-family:"Playfair Display",serif;font-weight:700;font-size:1.18rem;line-height:1.2;margin-top:2px;}
+.bloco-head .prog{margin-left:auto;font-family:"Cinzel",serif;font-size:.66rem;color:var(--muted-dim);white-space:nowrap;}
+.bloco-head .prog b{color:var(--gold-100);}
+
+.checklist{border:1px solid var(--line-soft);border-radius:12px;overflow:hidden;}
+.ci{display:flex;align-items:flex-start;gap:13px;padding:13px 18px;border-bottom:1px solid rgba(157,176,214,.08);cursor:pointer;transition:background .15s;-webkit-tap-highlight-color:transparent;user-select:none;}
+.ci:last-child{border-bottom:none;}
+.ci:hover{background:rgba(214,162,62,.03);}
+.ci .bx{flex:none;width:22px;height:22px;border-radius:6px;border:1.5px solid var(--muted-dim);display:flex;align-items:center;justify-content:center;color:transparent;margin-top:1px;transition:.18s;}
+.ci.on .bx{background:var(--gold-grad-flat);border-color:transparent;color:var(--navy-900);}
+.ci .tx{font-size:.93rem;line-height:1.5;}
+.ci.on .tx{color:var(--muted-dim);text-decoration:line-through;}
+.ci .tx .note{display:block;font-size:.8rem;color:var(--muted-dim);margin-top:2px;font-style:italic;}
+.ci.on .tx .note{text-decoration:none;}
+
+.obs{display:flex;gap:11px;align-items:flex-start;margin-top:8px;border:1px solid var(--line);border-radius:11px;padding:13px 16px;background:rgba(214,162,62,.04);color:var(--muted);font-size:.86rem;line-height:1.5;}
+.obs svg{flex:none;color:var(--gold-300);margin-top:2px;}
+.obs b{color:var(--ink);}
+
+.disclaimer{margin:32px 0 0;border:1px solid var(--line-soft);border-radius:13px;padding:16px 20px;display:flex;gap:13px;align-items:flex-start;background:rgba(214,162,62,.03);}
+.disclaimer svg{flex:none;color:var(--gold-300);margin-top:2px;}
+.disclaimer p{color:var(--muted);font-size:.87rem;line-height:1.55;}
+.disclaimer b{color:var(--ink);}
+
+.wa-cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;font-size:.9rem;color:#fff;background:linear-gradient(180deg,#23b85c,#16894a);padding:13px 22px;border-radius:11px;}
+
+.print-btn{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:.84rem;color:var(--navy-900);background:var(--gold-grad-flat);padding:11px 18px;border-radius:11px;box-shadow:0 10px 28px rgba(0,0,0,.4);border:none;cursor:pointer;font-family:"Hanken Grotesk",sans-serif;transition:.2s;z-index:30;}
+.print-btn:hover{transform:translateY(-2px);}
+
+@media(max-width:600px){.bloco-head{flex-wrap:wrap;}.bloco-head .prog{margin-left:0;}}
+@media print{
+  .topbar,.print-btn,.reset-btn,.wa-cta,.progress-strip{display:none!important;}
+  body{background:#fff;color:#1a1a1a;}
+  .bloco{page-break-inside:avoid;}
+  .ci .bx{border:1.5px solid #888;background:#fff!important;color:#fff!important;}
+  .ci.on .bx{background:#888!important;}
+  .gold{-webkit-text-fill-color:#a07010!important;background:none!important;}
+  .bloco-head{background:#f4f4f4!important;border-color:#ccc!important;}
+  .checklist{border-color:#ccc!important;}
+  .ci{border-bottom-color:#eee!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Descomplica Visto<small>Assessoria Consular</small></div>
+  <a class="back" href="index.html">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Voltar ao guia
+  </a>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Material bônus</div>
+    <h1 class="serif">Checklist <em class="gold">Completo do Processo</em></h1>
+    <p>Do DS-160 ao dia da entrevista — marque cada item conforme avança. Seu progresso fica salvo neste dispositivo.</p>
+    <div class="progress-strip">
+      <span class="lbl">Progresso: <b id="progTxt">0 / 0</b></span>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+      <button class="reset-btn" id="resetBtn">Limpar tudo</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap content" id="mainContent"></main>
+
+<button class="print-btn" onclick="window.print()">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Imprimir checklist
+</button>
+
+<script>
+const BLOCOS = [
+  {
+    id:"b1", step:"Etapa 1", titulo:"Antes de começar",
+    icon:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    items:[
+      {k:"b1_pass", t:"Passaporte válido — pelo menos 6 meses além da data prevista de retorno"},
+      {k:"b1_passant", t:"Passaporte anterior verificado", n:"Se houver visto americano antigo ou renovação de passaporte, separar o documento anterior."},
+      {k:"b1_foto", t:"Foto 5x5 cm separada", n:"Colorida, fundo branco, tirada nos últimos 6 meses. Obrigatória em Recife e Porto Alegre."},
+      {k:"b1_renda", t:"Comprovantes de renda reunidos", n:"Holerite, contracheque, pró-labore, declaração de IR, extratos bancários (últimos 3 meses)."},
+      {k:"b1_vinc", t:"Documentos de vínculo com o Brasil organizados", n:"Carteira de trabalho, contrato de trabalho, certidão de casamento, certidão de nascimento dos filhos, matrícula escolar, documentos de imóvel ou veículo."},
+      {k:"b1_perf", t:"Perfil avaliado — teste de elegibilidade feito", n:"Entender seu perfil antes de iniciar o processo evita erros e surpresas."}
+    ]
+  },
+  {
+    id:"b2", step:"Etapa 2", titulo:"Preenchimento do DS-160",
+    icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/>',
+    items:[
+      {k:"b2_acesso", t:"Acessado o site oficial", n:"ceac.state.gov — o único site oficial para preenchimento do DS-160."},
+      {k:"b2_appid", t:"Application ID anotado", n:"Gerado ao iniciar o formulário. Necessário para salvar e retomar o preenchimento."},
+      {k:"b2_dados", t:"Dados pessoais preenchidos corretamente", n:"Nome, data de nascimento, passaporte — exatamente como está no documento."},
+      {k:"b2_trab", t:"Dados de trabalho e renda preenchidos"},
+      {k:"b2_viag", t:"Dados da viagem preenchidos", n:"Data de chegada, tempo de permanência e contato nos EUA — coerentes com o objetivo declarado."},
+      {k:"b2_hist", t:"Histórico de viagens informado corretamente", n:"Se viajou ao exterior, informar. Se não informou, não mencionar na entrevista."},
+      {k:"b2_social", t:"Redes sociais informadas"},
+      {k:"b2_revisao", t:"Revisão completa feita antes de enviar"},
+      {k:"b2_conf", t:"Confirmação do DS-160 impressa", n:"Página com código de barras — obrigatória para o agendamento e para o dia da entrevista."}
+    ],
+    obs:"Não é possível editar o DS-160 após o envio. Qualquer correção exige um novo formulário. Revise tudo antes de clicar em 'Sign Application'."
+  },
+  {
+    id:"b3", step:"Etapa 3", titulo:"Pagamento da taxa consular (MRV)",
+    icon:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',
+    items:[
+      {k:"b3_conta", t:"Conta criada no site da CASV", n:"ais.usvisa-info.com — site oficial de agendamento e pagamento."},
+      {k:"b3_posto", t:"Posto consular escolhido", n:"Deve ser o mesmo que será informado no agendamento e no DS-160."},
+      {k:"b3_pag", t:"Taxa MRV paga", n:"Boleto, cartão de crédito ou PIX, conforme disponibilidade."},
+      {k:"b3_comp", t:"Comprovante da taxa MRV salvo e impresso", n:"Guardar o comprovante — pode ser solicitado no dia da entrevista."}
+    ]
+  },
+  {
+    id:"b4", step:"Etapa 4", titulo:"Agendamento da entrevista",
+    icon:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15l2 2 4-4"/>',
+    items:[
+      {k:"b4_data", t:"Data e horário da entrevista agendados", n:"Agendar no site da CASV após confirmação do pagamento da taxa."},
+      {k:"b4_posto", t:"Posto confirmado — o mesmo do DS-160"},
+      {k:"b4_pdf", t:"PDF de instruções do agendamento gerado e impresso", n:"Disponível em 'Imprimir instruções' após o agendamento. Levar no dia."},
+      {k:"b4_entrega", t:"Opção de entrega do passaporte definida", n:"Retirada no CASV (gratuita) ou entrega em casa pelos Correios (paga). Definir no ato do agendamento."}
+    ]
+  },
+  {
+    id:"b5", step:"Etapa 5", titulo:"Documentos para o dia da entrevista",
+    icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+    items:[
+      {k:"b5_pass", t:"Passaporte atual válido"},
+      {k:"b5_ds160", t:"Confirmação do DS-160 impressa"},
+      {k:"b5_agend", t:"Instruções do agendamento impressas"},
+      {k:"b5_taxa", t:"Comprovante da taxa consular (MRV) paga"},
+      {k:"b5_foto", t:"Foto 5x5 cm impressa", n:"Obrigatória nos postos de Recife e Porto Alegre."},
+      {k:"b5_passant", t:"Passaporte anterior", n:"Se houver visto americano antigo ou se houve renovação de passaporte."},
+      {k:"b5_renda", t:"Comprovante de renda", n:"Holerite, contracheque, pró-labore ou declaração de IR."},
+      {k:"b5_banco", t:"Extratos bancários dos últimos 3 meses"},
+      {k:"b5_emprego", t:"Carteira de trabalho, contrato ou documento de vínculo empregatício"},
+      {k:"b5_empresa", t:"Documentos da empresa (se empresário ou autônomo)", n:"Contrato social, CNPJ, declaração de pró-labore."},
+      {k:"b5_estudo", t:"Comprovante de matrícula (se estudante)"},
+      {k:"b5_imovel", t:"Documentos de imóvel, veículo ou outros bens (se houver)"},
+      {k:"b5_casam", t:"Certidão de casamento (se casado/a)"},
+      {k:"b5_filhos", t:"Certidão de nascimento dos filhos (se aplicável)"},
+      {k:"b5_hotel", t:"Reserva de hotel ou endereço de hospedagem (se houver)"},
+      {k:"b5_roteiro", t:"Roteiro básico da viagem (opcional, mas recomendado)"},
+      {k:"b5_convite", t:"Carta convite (se aplicável)"}
+    ],
+    obs:"Documentos de apoio não são obrigatórios, mas fortalecem o perfil. Leve o que for pertinente ao seu caso. Organização e clareza transmitem seriedade."
+  },
+  {
+    id:"b6", step:"Etapa 6", titulo:"No dia da entrevista",
+    icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    items:[
+      {k:"b6_hora", t:"Sair com antecedência — chegar antes do horário marcado"},
+      {k:"b6_cel", t:"Celular e eletrônicos deixados em casa ou com acompanhante", n:"Não é permitido levar celular ou eletrônicos para dentro do consulado."},
+      {k:"b6_roupa", t:"Roupa social separada — discreta e asseada"},
+      {k:"b6_docs", t:"Todos os documentos organizados em ordem"},
+      {k:"b6_treino", t:"Respostas da entrevista revisadas", n:"Use o Módulo 4 do guia para treinar as perguntas mais comuns."},
+      {k:"b6_idioma", t:"Idioma da entrevista definido", n:"A entrevista geralmente é em português. Só responda em inglês se tiver fluência e domínio do idioma."},
+      {k:"b6_calma", t:"Lembrar: respostas curtas, diretas e verdadeiras"}
+    ]
+  }
+];
+
+const CK = 'descomplica_checklist_v1';
+let state = {};
+try { state = JSON.parse(localStorage.getItem(CK) || '{}'); } catch(e) {}
+
+function allKeys(){
+  return BLOCOS.flatMap(b=>b.items.map(i=>i.k));
+}
+function updateProgress(){
+  const keys = allKeys();
+  const done = keys.filter(k=>state[k]).length;
+  const pct = keys.length ? Math.round(done/keys.length*100) : 0;
+  document.getElementById('progTxt').textContent = done + ' / ' + keys.length;
+  document.getElementById('barFill').style.width = pct + '%';
+  // update per-bloco counters
+  BLOCOS.forEach(b=>{
+    const el = document.getElementById('prog_'+b.id);
+    if(!el) return;
+    const total = b.items.length;
+    const bdone = b.items.filter(i=>state[i.k]).length;
+    el.innerHTML = '<b>' + bdone + '</b> / ' + total;
+  });
+}
+
+function toggle(k){
+  state[k] = !state[k];
+  localStorage.setItem(CK, JSON.stringify(state));
+  const ci = document.querySelector('.ci[data-k="'+k+'"]');
+  if(ci) ci.classList.toggle('on', state[k]);
+  updateProgress();
+}
+
+function render(){
+  const icons = {
+    b1:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    b2:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/>',
+    b3:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',
+    b4:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15l2 2 4-4"/>',
+    b5:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+    b6:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
+  };
+  const ck = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>';
+  let html = '';
+  BLOCOS.forEach(b=>{
+    html += `<div class="bloco">
+      <div class="bloco-head">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${icons[b.id]}</svg></div>
+        <div class="tt"><div class="step">${b.step}</div><h2>${b.titulo}</h2></div>
+        <div class="prog" id="prog_${b.id}"></div>
+      </div>
+      <div class="checklist">`;
+    b.items.forEach(item=>{
+      const on = state[item.k] ? ' on' : '';
+      html += `<div class="ci${on}" data-k="${item.k}" onclick="toggle('${item.k}')">
+        <span class="bx">${ck}</span>
+        <span class="tx">${item.t}${item.n ? `<span class="note">${item.n}</span>` : ''}</span>
+      </div>`;
+    });
+    html += `</div>`;
+    if(b.obs){
+      html += `<div class="obs"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>${b.obs}</span></div>`;
+    }
+    html += `</div>`;
+  });
+
+  html += `<div class="disclaimer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <p><b>Importante:</b> este checklist é orientativo e não garante a aprovação do visto. A decisão final é sempre do Oficial Consular. Documentos de apoio devem ser selecionados conforme o perfil de cada solicitante.</p>
+  </div>
+  <div style="text-align:center;margin-top:28px;">
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:14px;">Ficou com dúvida em algum item? Fale com a especialista.</p>
+    <a class="wa-cta" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20estou%20com%20d%C3%BAvida%20sobre%20o%20checklist%20do%20processo%20de%20visto." target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Falar com a especialista
+    </a>
+  </div>`;
+
+  document.getElementById('mainContent').innerHTML = html;
+  updateProgress();
+}
+
+document.getElementById('resetBtn').onclick = () => {
+  if(!confirm('Limpar todo o progresso?')) return;
+  state = {};
+  localStorage.setItem(CK, JSON.stringify(state));
+  document.querySelectorAll('.ci.on').forEach(el=>el.classList.remove('on'));
+  updateProgress();
+};
+
+render();
+</script>
+</body>
+</html>

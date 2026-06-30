@@ -97,6 +97,23 @@ img{max-width:100%;display:block}
 .cta a{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-weight:700;font-size:1.02rem;color:#fff;background:linear-gradient(180deg,#23b85c,#16894a);padding:15px 28px;border-radius:12px;box-shadow:0 14px 32px rgba(31,158,87,.34);transition:.2s;}
 .cta a:hover{transform:translateY(-3px);}
 
+/* bonus */
+.bonus-sec{padding:56px 0 20px;}
+.bonus-head{text-align:center;margin-bottom:36px;}
+.bonus-sub{color:var(--muted);font-size:.96rem;margin:12px auto 0;max-width:54ch;}
+.bonus-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.bcard{display:flex;align-items:center;gap:16px;border:1px solid var(--line-soft);border-radius:14px;padding:18px 20px;background:linear-gradient(180deg,rgba(12,35,80,.3),rgba(6,17,42,.4));transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;color:inherit;position:relative;}
+.bcard:not(.bcard-soon):hover{border-color:var(--gold-500);transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.4),0 0 20px rgba(214,162,62,.1);}
+.bcard-soon{opacity:.65;cursor:default;}
+.bcard-ic{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(214,162,62,.08);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold-300);}
+.bcard-body{flex:1;min-width:0;}
+.bcard-tag{font-family:"Cinzel",serif;letter-spacing:.14em;font-size:.58rem;text-transform:uppercase;color:var(--gold-300);margin-bottom:3px;}
+.bcard-title{font-family:"Playfair Display",serif;font-weight:700;font-size:1rem;line-height:1.2;}
+.bcard-desc{color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.4;}
+.bcard-arrow{flex:none;color:var(--gold-300);opacity:.6;}
+.soon-badge{flex:none;font-size:.72rem;font-weight:700;padding:5px 10px;border-radius:20px;background:rgba(157,176,214,.12);border:1px solid var(--line-soft);color:var(--muted-dim);white-space:nowrap;}
+@media(max-width:680px){.bonus-grid{grid-template-columns:1fr;}}
+
 footer{border-top:1px solid var(--line-soft);padding:30px 0;text-align:center;color:var(--muted-dim);font-size:.82rem;background:#020611;}
 footer .fl{font-family:"Cinzel",serif;letter-spacing:.18em;color:var(--gold-300);font-size:.72rem;margin-bottom:8px;}
 
@@ -197,6 +214,78 @@ footer .fl{font-family:"Cinzel",serif;letter-spacing:.18em;color:var(--gold-300)
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12c.5.5 1 1.5 1 3h6c0-1.5.5-2.5 1-3a7 7 0 0 0-4-12z"/></svg>
     <p><b>Como usar:</b> percorra os módulos na ordem. Em cada tela, os marcadores dourados <b style="color:var(--gold-100)">"i"</b> revelam a dica da especialista para aquele campo. Use o botão <b>"Dicas da Isis"</b> no topo de cada módulo para ver tudo de uma vez ou seguir como simulador. Seu progresso fica salvo neste dispositivo.</p>
   </div>
+
+  <!-- ===== BÔNUS ===== -->
+  <section class="bonus-sec">
+    <div class="bonus-head">
+      <div class="eyebrow">Materiais complementares</div>
+      <h2 class="serif">Materiais <em class="gold">bônus</em> do guia completo</h2>
+      <p class="bonus-sub">Baixe os materiais complementares para revisar, imprimir e acompanhar melhor cada etapa da sua solicitação.</p>
+    </div>
+    <div class="bonus-grid">
+
+      <a class="bcard" href="#" onclick="return false;" title="Link será disponibilizado em breve">
+        <div class="bcard-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="bcard-body">
+          <div class="bcard-tag">PDF</div>
+          <div class="bcard-title">Guia completo em PDF</div>
+          <div class="bcard-desc">eBook completo com todos os módulos da assessoria.</div>
+        </div>
+        <div class="bcard-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+
+      <div class="bcard bcard-soon">
+        <div class="bcard-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3zM3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg></div>
+        <div class="bcard-body">
+          <div class="bcard-tag">Áudio</div>
+          <div class="bcard-title">Audiobook</div>
+          <div class="bcard-desc">Versão em áudio do guia completo.</div>
+        </div>
+        <span class="soon-badge">Em breve</span>
+      </div>
+
+      <div class="bcard bcard-soon">
+        <div class="bcard-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <div class="bcard-body">
+          <div class="bcard-tag">Vídeo</div>
+          <div class="bcard-title">Videobook</div>
+          <div class="bcard-desc">Passo a passo em vídeo: DS-160, taxa e agendamento.</div>
+        </div>
+        <span class="soon-badge">Em breve</span>
+      </div>
+
+      <a class="bcard" href="dicas-importantes.html">
+        <div class="bcard-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
+        <div class="bcard-body">
+          <div class="bcard-tag">PDF</div>
+          <div class="bcard-title">Dicas importantes</div>
+          <div class="bcard-desc">Orientações essenciais para evitar erros comuns no processo.</div>
+        </div>
+        <div class="bcard-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+
+      <a class="bcard" href="glossario-consular.html">
+        <div class="bcard-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 10h6M9 14h4"/></svg></div>
+        <div class="bcard-body">
+          <div class="bcard-tag">Glossário</div>
+          <div class="bcard-title">Glossário consular</div>
+          <div class="bcard-desc">Siglas, termos em inglês e palavras-chave do processo.</div>
+        </div>
+        <div class="bcard-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+
+      <a class="bcard" href="checklist-entrevista.html">
+        <div class="bcard-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 15l2 2 4-4"/></svg></div>
+        <div class="bcard-body">
+          <div class="bcard-tag">Checklist</div>
+          <div class="bcard-title">Checklist completo do processo</div>
+          <div class="bcard-desc">Do DS-160 ao dia da entrevista — interativo e imprimível.</div>
+        </div>
+        <div class="bcard-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </a>
+
+    </div>
+  </section>
 
   <div class="cta">
     <div class="divider"><span class="ln"></span><i></i><span class="ln r"></span></div>

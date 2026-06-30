@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dicas Importantes | Descomplica Visto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#040A18;--navy-900:#06112A;--navy-800:#091a3d;
+  --gold-50:#FCEFC0;--gold-100:#F7E2A0;--gold-300:#EBC56A;--gold-500:#D6A23E;--gold-700:#A9781F;
+  --ink:#ECF2FE;--muted:#9DB0D6;--muted-dim:#6F82A8;--line:rgba(214,162,62,.28);--line-soft:rgba(157,176,214,.16);
+  --green:#1f9e57;--red:#cf6a5e;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--navy-950);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65;}
+a{color:inherit;text-decoration:none}
+.gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.serif{font-family:"Playfair Display",Georgia,serif;}
+
+.topbar{position:sticky;top:0;z-index:40;background:rgba(6,17,42,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.topbar .brand{display:flex;align-items:center;gap:10px;font-family:"Playfair Display",serif;font-weight:700;font-size:.96rem;}
+.topbar .brand small{display:block;font-family:"Cinzel",serif;font-size:.48rem;letter-spacing:.22em;color:var(--gold-300);margin-top:2px;}
+.topbar .back{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);transition:color .18s;}
+.topbar .back:hover{color:var(--gold-100);}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+
+.hero{padding:54px 0 36px;text-align:center;background:radial-gradient(70% 60% at 50% 0%,rgba(28,79,156,.35),transparent 65%);}
+.hero .eyebrow{font-family:"Cinzel",serif;letter-spacing:.28em;font-size:.62rem;color:var(--gold-300);text-transform:uppercase;}
+.hero h1{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.9rem,4.2vw,2.8rem);line-height:1.08;margin:12px 0 0;text-wrap:balance;}
+.hero p{color:var(--muted);font-size:.97rem;margin:14px auto 0;max-width:52ch;}
+
+.content{padding:36px 0 80px;}
+
+.sec-label{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.64rem;text-transform:uppercase;color:var(--gold-300);margin:36px 0 14px;display:flex;align-items:center;gap:12px;}
+.sec-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+
+.tip-card{display:flex;gap:16px;border:1px solid var(--line-soft);border-radius:14px;padding:18px 20px;background:linear-gradient(180deg,rgba(12,35,80,.3),rgba(6,17,42,.4));margin-bottom:10px;}
+.tip-card .num{flex:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-weight:800;font-size:1.1rem;color:var(--gold-300);}
+.tip-card .body .tag{font-family:"Cinzel",serif;letter-spacing:.12em;font-size:.58rem;text-transform:uppercase;color:var(--gold-300);margin-bottom:4px;}
+.tip-card .body h3{font-family:"Playfair Display",serif;font-weight:700;font-size:1.04rem;line-height:1.2;}
+.tip-card .body p{color:var(--muted);font-size:.9rem;margin-top:6px;line-height:1.55;}
+.tip-card.warn{border-color:rgba(207,106,94,.4);background:linear-gradient(180deg,rgba(50,12,12,.3),rgba(6,17,42,.4));}
+.tip-card.warn .num{border-color:rgba(207,106,94,.5);color:#ec9a8e;}
+.tip-card.warn .body .tag{color:#ec9a8e;}
+
+.disclaimer{margin:32px 0;border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;background:rgba(214,162,62,.04);}
+.disclaimer svg{flex:none;color:var(--gold-300);margin-top:2px;}
+.disclaimer p{color:var(--muted);font-size:.88rem;line-height:1.55;}
+.disclaimer b{color:var(--ink);}
+
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:.96rem;color:#fff;background:linear-gradient(180deg,#23b85c,#16894a);padding:14px 24px;border-radius:12px;margin:0 auto;width:fit-content;}
+
+.print-btn{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:.86rem;color:var(--navy-900);background:var(--gold-grad-flat);padding:12px 20px;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.4);border:none;cursor:pointer;font-family:"Hanken Grotesk",sans-serif;transition:.2s;z-index:30;}
+.print-btn:hover{transform:translateY(-2px);}
+
+@media print{
+  .topbar,.print-btn,.wa-cta{display:none!important;}
+  body{background:#fff;color:#1a1a1a;}
+  .tip-card{border:1px solid #ccc;page-break-inside:avoid;}
+  .gold{-webkit-text-fill-color:#a07010!important;background:none!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Descomplica Visto<small>Assessoria Consular</small></div>
+  <a class="back" href="index.html">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Voltar ao guia
+  </a>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Material bônus</div>
+    <h1 class="serif">Dicas <em class="gold">Importantes</em></h1>
+    <p>Orientações essenciais para evitar os erros mais comuns no preenchimento do DS-160, pagamento da taxa e entrevista consular.</p>
+  </div>
+</header>
+
+<main class="wrap content">
+
+  <div class="sec-label">Preenchimento do DS-160</div>
+
+  <div class="tip-card">
+    <div class="num">1</div>
+    <div class="body">
+      <div class="tag">DS-160</div>
+      <h3>Revise tudo antes de finalizar</h3>
+      <p>Depois de enviar o DS-160, não é possível editar. Leia cada campo com atenção antes de clicar em "Sign Application". Uma vez enviado, qualquer correção exige um novo formulário.</p>
+    </div>
+  </div>
+
+  <div class="tip-card warn">
+    <div class="num">2</div>
+    <div class="body">
+      <div class="tag">Atenção</div>
+      <h3>Nunca invente informações</h3>
+      <p>Informações falsas no DS-160 podem resultar em negativa permanente e até vedação de entrada nos EUA. Preencha com dados reais, mesmo que pareçam desfavoráveis.</p>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="num">3</div>
+    <div class="body">
+      <div class="tag">DS-160</div>
+      <h3>Mantenha coerência entre o DS-160 e a entrevista</h3>
+      <p>As respostas da entrevista devem estar alinhadas com o que foi preenchido no formulário. O Oficial Consular tem acesso ao seu DS-160 durante a entrevista.</p>
+    </div>
+  </div>
+
+  <div class="tip-card warn">
+    <div class="num">4</div>
+    <div class="body">
+      <div class="tag">Atenção</div>
+      <h3>Não informe viagem internacional se não declarou no DS-160</h3>
+      <p>Se você viajou ao exterior mas não informou no formulário, não mencione na entrevista. Divergência de informações levanta suspeita e pode comprometer sua solicitação.</p>
+    </div>
+  </div>
+
+  <div class="tip-card warn">
+    <div class="num">5</div>
+    <div class="body">
+      <div class="tag">Atenção</div>
+      <h3>Não exagere renda, cargo ou vínculo</h3>
+      <p>Informe apenas o que você consegue comprovar com documentos reais. O consulado pode pedir comprovação, e inconsistências geram desconfiança e podem levar à negativa.</p>
+    </div>
+  </div>
+
+  <div class="sec-label">Entrevista consular</div>
+
+  <div class="tip-card">
+    <div class="num">6</div>
+    <div class="body">
+      <div class="tag">Entrevista</div>
+      <h3>Use respostas curtas e diretas</h3>
+      <p>Responda apenas o que for perguntado. Respostas longas ou voluntárias podem gerar novas perguntas desnecessárias. Objetividade transmite segurança.</p>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="num">7</div>
+    <div class="body">
+      <div class="tag">Entrevista</div>
+      <h3>Fale em português se não tiver fluência em inglês</h3>
+      <p>A entrevista geralmente é feita em português, que é a sua língua nativa. Só responda em inglês se tiver fluência e domínio do idioma. Se não tiver fluência, não tente — fale em português mesmo.</p>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="num">8</div>
+    <div class="body">
+      <div class="tag">Entrevista</div>
+      <h3>Mantenha calma e responda com firmeza</h3>
+      <p>Nervosismo excessivo pode gerar dúvida no Oficial Consular. Respire fundo, olhe nos olhos e responda com tranquilidade. O treinamento prévio faz toda a diferença.</p>
+    </div>
+  </div>
+
+  <div class="sec-label">Documentação</div>
+
+  <div class="tip-card">
+    <div class="num">9</div>
+    <div class="body">
+      <div class="tag">Documentos</div>
+      <h3>Confira passaporte, DS-160 e agendamento</h3>
+      <p>Esses três documentos são obrigatórios. Verifique se estão impressos, legíveis e corretos antes de sair de casa. O nome no passaporte e no DS-160 devem ser idênticos.</p>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="num">10</div>
+    <div class="body">
+      <div class="tag">Documentos</div>
+      <h3>Leve documentos de apoio organizados</h3>
+      <p>Comprovante de renda, extrato bancário, vínculo empregatício e documentos que comprovem seus vínculos com o Brasil. Organização demonstra preparo e seriedade.</p>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="num">11</div>
+    <div class="body">
+      <div class="tag">Documentos</div>
+      <h3>Se for renovação, leve o passaporte anterior</h3>
+      <p>Caso você já tenha tido um visto americano ou tenha renovado o passaporte, leve o documento anterior. O visto antigo é informação relevante no histórico do solicitante.</p>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="num">12</div>
+    <div class="body">
+      <div class="tag">Documentos</div>
+      <h3>Leve o comprovante da taxa MRV paga</h3>
+      <p>O comprovante de pagamento da taxa consular é necessário. Tenha-o impresso ou disponível no celular, mesmo que o sistema já registre o pagamento.</p>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <p><b>Importante:</b> este material é orientativo e não garante a aprovação do visto. A decisão final é sempre do Oficial Consular. Cada caso é analisado individualmente.</p>
+  </div>
+
+  <div style="text-align:center;margin-top:32px;">
+    <p style="color:var(--muted);font-size:.92rem;margin-bottom:16px;">Ficou com dúvidas? Fale diretamente com a especialista.</p>
+    <a class="wa-cta" href="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20li%20as%20dicas%20importantes%20do%20guia%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Falar com a especialista
+    </a>
+  </div>
+
+</main>
+
+<button class="print-btn" onclick="window.print()">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Imprimir dicas
+</button>
+
+</body>
+</html>

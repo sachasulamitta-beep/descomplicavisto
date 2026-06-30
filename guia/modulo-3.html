@@ -242,8 +242,9 @@ function ctrl(f){
   if(f.tipo==='deliv') return `<div class="deliv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9h13v8H3zM16 12h4l1 3v2h-5z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></span><div><div class="t">Entrega Premium (Correios)</div><div class="s">Receber o passaporte em casa</div></div><span class="pr">${f.pr}</span></div>`;
   if(f.tipo==='docs'){
     const items=[
-      '<b>Passaporte atual válido</b> — pelo menos 6 meses além da estadia.',
-      'Passaporte com o <b>último visto dos EUA</b> (se aplicável).',
+      '<b>Passaporte atual válido</b> — pelo menos 6 meses além da estadia prevista.',
+      '<b>Comprovante da taxa consular (MRV) paga</b>.',
+      'Passaporte com o <b>último visto dos EUA</b>, se aplicável. <em>Se for renovação de visto, leve o passaporte anterior onde está o visto antigo.</em>',
       'Página de confirmação do <b>Formulário DS-160</b>.',
       'Página de confirmação e <b>instruções do agendamento</b> (impressa).',
       '<b>Recife / Porto Alegre:</b> foto impressa 5x5 cm, fundo branco.'
