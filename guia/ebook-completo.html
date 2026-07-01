@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Completo de Assessoria Consular — Descomplica Visto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700&family=Cinzel:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#040A18;--navy-900:#06112A;--navy-800:#091a3d;
+  --gold-50:#FCEFC0;--gold-100:#F7E2A0;--gold-300:#EBC56A;--gold-500:#D6A23E;--gold-700:#A9781F;
+  --ink:#ECF2FE;--muted:#9DB0D6;--muted-dim:#6F82A8;--line:rgba(214,162,62,.28);--line-soft:rgba(157,176,214,.14);
+  --green:#1f9e57;--red:#cf6a5e;
+  --gold-grad:linear-gradient(174deg,#FCEFC0 0%,#F0CE78 30%,#D6A23E 58%,#A9781F 100%);
+  --gold-grad-flat:linear-gradient(180deg,#F4D98A 0%,#D6A23E 60%,#B0801F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--navy-950);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.72;}
+a{color:inherit;text-decoration:none;}
+.gold{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.wrap{max-width:780px;margin:0 auto;padding:0 30px;}
+
+/* ===== top bar (tela) ===== */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(6,17,42,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.topbar .brand{font-family:"Playfair Display",serif;font-weight:700;font-size:.96rem;display:flex;flex-direction:column;line-height:1.1;}
+.topbar .brand small{font-family:"Cinzel",serif;font-size:.48rem;letter-spacing:.22em;color:var(--gold-300);margin-top:2px;}
+.topbar .actions{display:flex;align-items:center;gap:10px;}
+.topbar .back{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);transition:color .18s;}
+.topbar .back:hover{color:var(--gold-100);}
+.btn-print{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.86rem;color:var(--navy-900);background:var(--gold-grad-flat);padding:10px 18px;border-radius:9px;border:none;cursor:pointer;font-family:"Hanken Grotesk",sans-serif;transition:.18s;}
+.btn-print:hover{filter:brightness(1.07);}
+
+/* ===== cover ===== */
+.cover-pg{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 30px 60px;
+  background:radial-gradient(80% 60% at 50% 15%,rgba(28,79,156,.45),transparent 60%),linear-gradient(180deg,#071435,var(--navy-950));}
+.cover-pg .tex{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1.4px);background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(70% 55% at 50% 20%,#000,transparent 75%);mask-image:radial-gradient(70% 55% at 50% 20%,#000,transparent 75%);}
+.cover-pg{position:relative;overflow:hidden;}
+.cover-pg .in{position:relative;z-index:2;}
+.cover-pg .logo{width:80px;height:80px;object-fit:contain;margin:0 auto 20px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.5));}
+.cover-pg .eyebrow{font-family:"Cinzel",serif;letter-spacing:.32em;font-size:.64rem;color:var(--gold-300);text-transform:uppercase;}
+.cover-pg h1{font-family:"Playfair Display",serif;font-weight:900;font-size:clamp(2.4rem,6vw,4rem);line-height:1.06;margin:18px 0 0;letter-spacing:-.015em;text-wrap:balance;}
+.cover-pg h1 em{font-style:italic;}
+.cover-pg .sub{color:var(--muted);font-size:1.08rem;margin:20px auto 0;max-width:50ch;}
+.cover-pg .by{display:flex;align-items:center;gap:14px;justify-content:center;margin-top:36px;}
+.cover-pg .by .ln{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-500));}
+.cover-pg .by span{font-family:"Cinzel",serif;letter-spacing:.18em;font-size:.66rem;color:var(--muted);text-transform:uppercase;}
+.cover-pg .metas{display:flex;gap:32px;justify-content:center;margin-top:34px;flex-wrap:wrap;font-family:"Cinzel",serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-dim);}
+.cover-pg .metas b{display:block;font-size:1.4rem;font-family:"Playfair Display",serif;color:var(--gold-100);letter-spacing:-.01em;margin-bottom:4px;}
+.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:42px;}
+.divider .ln{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-500));}
+.divider .ln.r{background:linear-gradient(270deg,transparent,var(--gold-500));}
+.divider i{width:7px;height:7px;background:var(--gold-grad-flat);transform:rotate(45deg);display:block;}
+
+/* ===== toc ===== */
+.toc{margin:60px 0 0;background:rgba(9,26,61,.5);border:1px solid var(--line);border-radius:18px;padding:30px 32px;}
+.toc .t{font-family:"Cinzel",serif;letter-spacing:.24em;font-size:.62rem;color:var(--gold-300);text-transform:uppercase;margin-bottom:18px;}
+.toc ol{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.toc li{display:flex;align-items:baseline;gap:12px;font-size:.96rem;color:var(--muted);}
+.toc li .n{font-family:"Playfair Display",serif;font-weight:800;font-style:italic;font-size:1.5rem;color:var(--gold-300);line-height:1;flex:none;width:32px;}
+.toc li a{color:var(--ink);transition:color .18s;}
+.toc li a:hover{color:var(--gold-100);}
+
+/* ===== chapters ===== */
+.chapter{padding:72px 0 0;scroll-margin-top:80px;}
+.ch-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+.ch-eyebrow .num{font-family:"Playfair Display",serif;font-weight:900;font-style:italic;font-size:3.6rem;line-height:.85;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.9;flex:none;}
+.ch-eyebrow .meta{display:flex;flex-direction:column;}
+.ch-eyebrow .label{font-family:"Cinzel",serif;letter-spacing:.22em;font-size:.6rem;color:var(--gold-300);text-transform:uppercase;}
+.ch-title{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;margin:4px 0 0;text-wrap:balance;}
+.rule{display:flex;align-items:center;gap:12px;margin:16px 0 22px;}
+.rule .ln{height:1px;width:56px;background:linear-gradient(90deg,var(--gold-500),transparent);}
+.rule i{width:6px;height:6px;background:var(--gold-grad-flat);transform:rotate(45deg);display:block;}
+.ch-lead{color:var(--ink);font-size:1.1rem;margin-bottom:20px;}
+.ch-body p{color:#c8d6f0;font-size:1rem;margin:12px 0;}
+.ch-body p strong{color:var(--ink);}
+.ch-body h3{font-family:"Playfair Display",serif;font-weight:600;font-size:1.3rem;color:var(--gold-100);margin:32px 0 10px;}
+.ch-sep{border:none;border-top:1px solid var(--line-soft);margin:72px 0 0;}
+
+/* steps */
+.steps{display:flex;flex-direction:column;gap:11px;margin:22px 0;}
+.step{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line-soft);border-radius:13px;padding:16px 18px;background:rgba(9,26,61,.3);}
+.step .sn{font-family:"Cinzel",serif;font-weight:700;font-size:.94rem;color:var(--navy-900);background:var(--gold-grad-flat);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none;}
+.step h4{font-weight:700;font-size:.98rem;color:var(--ink);margin-bottom:3px;}
+.step p{color:var(--muted);font-size:.9rem;margin:0;}
+
+/* callout */
+.call{display:flex;gap:14px;align-items:flex-start;border-radius:13px;padding:16px 18px;margin:18px 0;font-size:.94rem;}
+.call svg{flex:none;margin-top:2px;}
+.call.tip{background:rgba(214,162,62,.07);border:1px solid var(--line);color:var(--muted);}
+.call.tip svg{color:var(--gold-300);}
+.call.tip b{color:var(--gold-100);}
+.call.warn{background:rgba(207,106,94,.08);border:1px solid rgba(207,106,94,.36);color:#f0c4bd;}
+.call.warn svg{color:var(--red);}
+.call.warn b{color:#f4d4cd;}
+
+/* table */
+.tbl{border:1px solid var(--line);border-radius:13px;overflow:hidden;margin:20px 0;}
+.tbl table{width:100%;border-collapse:collapse;font-size:.91rem;}
+.tbl th{background:rgba(214,162,62,.1);color:var(--gold-100);font-family:"Cinzel",serif;letter-spacing:.06em;font-size:.62rem;text-transform:uppercase;padding:12px 15px;text-align:left;font-weight:600;}
+.tbl td{padding:12px 15px;border-top:1px solid var(--line-soft);color:#c8d6f0;}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,.015);}
+.tbl td b{color:var(--ink);}
+
+/* visa cards */
+.vcards{display:flex;flex-direction:column;gap:10px;margin:18px 0;}
+.vc{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;background:rgba(9,26,61,.3);}
+.vc.hl{border-color:var(--gold-500);background:rgba(214,162,62,.06);}
+.vc .code{font-family:"Cinzel",serif;font-weight:700;font-size:.88rem;color:var(--navy-900);background:var(--gold-grad-flat);border-radius:8px;padding:6px 11px;flex:none;min-width:56px;text-align:center;}
+.vc h4{font-weight:700;font-size:.96rem;margin-bottom:3px;}
+.vc p{color:var(--muted);font-size:.88rem;margin:0;}
+
+/* do/dont */
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+.col-card{border:1px solid var(--line-soft);border-radius:12px;padding:18px;}
+.col-card.yes{border-color:rgba(31,158,87,.3);}
+.col-card.no{border-color:rgba(207,106,94,.3);}
+.col-card h4{margin-bottom:10px;font-size:.96rem;}
+.col-card.yes h4{color:#7fe0a6;}
+.col-card.no h4{color:#ec9a8e;}
+.col-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.col-card li{font-size:.88rem;color:#c8d6f0;display:flex;gap:8px;align-items:flex-start;}
+.col-card.yes li::before{content:"✓";color:var(--green);flex:none;font-weight:700;}
+.col-card.no li::before{content:"✗";color:var(--red);flex:none;font-weight:700;}
+@media(max-width:600px){.cols2{grid-template-columns:1fr;}}
+
+/* qa */
+.qa{border:1px solid var(--line-soft);border-radius:12px;margin:10px 0;overflow:hidden;background:rgba(9,26,61,.3);}
+.qa .q{display:flex;align-items:center;width:100%;text-align:left;background:none;border:none;color:var(--ink);cursor:pointer;padding:16px 18px;font-family:inherit;gap:12px;}
+.qa .q .qt{flex:1;font-family:"Playfair Display",serif;font-weight:600;font-size:1.02rem;font-style:italic;}
+.qa .q .chev{flex:none;color:var(--gold-300);transition:transform .28s;}
+.qa.open .q .chev{transform:rotate(180deg);}
+.qa .a{max-height:0;overflow:hidden;transition:max-height .32s ease;}
+.qa .a p{padding:0 18px 16px;margin:0;color:var(--muted);font-size:.94rem;}
+.qa .a .ex{margin:0 18px 16px;padding:11px 14px;border-left:3px solid var(--gold-500);background:rgba(214,162,62,.06);border-radius:0 8px 8px 0;color:var(--gold-100);font-style:italic;font-size:.92rem;}
+
+/* checklist inline */
+.ckl{border:1px solid var(--line);border-radius:13px;overflow:hidden;margin:18px 0;}
+.ck-lbl{padding:10px 18px 6px;font-family:"Cinzel",serif;letter-spacing:.14em;font-size:.6rem;color:var(--gold-300);text-transform:uppercase;background:rgba(214,162,62,.04);}
+.ck-item{display:flex;gap:11px;align-items:flex-start;padding:11px 18px;border-top:1px solid var(--line-soft);font-size:.9rem;color:#c8d6f0;}
+.ck-item::before{content:"☐";color:var(--gold-300);flex:none;font-size:1.1rem;margin-top:-1px;}
+
+/* footer da página impressa */
+.pg-footer{margin:80px 0 50px;text-align:center;border-top:1px solid var(--line-soft);padding-top:36px;}
+.pg-footer img{height:48px;margin:0 auto 12px;}
+.pg-footer .tag{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold-100);font-size:1.1rem;}
+.pg-footer .cr{font-size:.76rem;color:var(--muted-dim);margin-top:14px;}
+
+/* ===== FAB imprimir ===== */
+.fab{position:fixed;bottom:26px;right:26px;z-index:60;display:flex;align-items:center;gap:9px;font-weight:700;font-size:.9rem;color:var(--navy-900);background:var(--gold-grad-flat);padding:14px 22px;border-radius:14px;border:none;cursor:pointer;font-family:"Hanken Grotesk",sans-serif;box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 20px rgba(214,162,62,.2);transition:.2s;}
+.fab:hover{transform:translateY(-3px);}
+
+/* ===== PRINT ===== */
+@media print{
+  body{background:#fff;color:#1a1a1a;}
+  .topbar,.fab{display:none!important;}
+  .cover-pg{background:#fff!important;border-bottom:2px solid #c8a030;min-height:auto;padding:50px 30px;}
+  .cover-pg .tex{display:none;}
+  .cover-pg h1,.ch-title{color:#0a1830;}
+  .ch-eyebrow .num{-webkit-text-fill-color:#c8a030!important;background:none!important;}
+  .gold{-webkit-text-fill-color:#9a7010!important;background:none!important;}
+  .rule .ln{background:#c8a030;}
+  .rule i{background:#c8a030;}
+  .toc{background:#f8f6ef;border:1px solid #ccc;}
+  .toc li a,.toc li{color:#1a1a1a;}
+  .step{border:1px solid #ccc;background:#f8f6ef;}
+  .step .sn{background:#c8a030;color:#fff;}
+  .call.tip{background:#fffbe6;border:1px solid #d4a020;color:#4a3800;}
+  .call.warn{background:#fff0ee;border:1px solid #c06050;color:#5a1c10;}
+  .call.tip b,.call.warn b{color:inherit;}
+  .vc{border:1px solid #ccc;background:#f8f6ef;}
+  .vc.hl{border-color:#c8a030;background:#fffbe6;}
+  .vc .code{background:#c8a030;color:#fff;}
+  .col-card{border:1px solid #ccc;background:#f8f6ef;}
+  .col-card.yes h4{color:#1a7a40;}
+  .col-card.no h4{color:#a03020;}
+  .col-card li{color:#333;}
+  .qa{border:1px solid #ccc;background:#f8f6ef;}
+  .qa .a{max-height:none!important;}
+  .qa .q .chev{display:none;}
+  .qa .q .qt{color:#0a1830;font-size:.98rem;}
+  .qa .a p{color:#444;}
+  .qa .a .ex{border-color:#c8a030;background:#fffbe6;color:#4a3000;}
+  .tbl{border:1px solid #ccc;}
+  .tbl th{background:#f4eed8;color:#4a3000;}
+  .tbl td{color:#333;border-color:#ddd;}
+  .ck-item{color:#333;border-color:#ddd;}
+  .ck-lbl{color:#9a7010;background:#fffbe6;}
+  .ckl{border:1px solid #ccc;}
+  .vcards .vc p,.steps .step p{color:#444;}
+  .ch-body p,.ch-lead{color:#1a1a1a;}
+  .ch-sep{border-color:#ccc;}
+  .chapter{page-break-before:always;}
+  .chapter:first-of-type{page-break-before:avoid;}
+  .toc{page-break-after:always;}
+  .cover-pg{page-break-after:always;}
+  .pg-footer{border-color:#ccc;}
+  .pg-footer img{filter:grayscale(1);}
+  .pg-footer .tag,.pg-footer .cr{color:#444;}
+  .metas b{color:#9a7010!important;}
+  .metas{color:#666;}
+  .cover-pg .by span{color:#666;}
+  .cover-pg .sub{color:#444;}
+  .divider .ln,.divider .ln.r{background:#c8a030;}
+  .divider i{background:#c8a030;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="brand">Descomplica Visto<small>Guia Completo de Assessoria Consular</small></div>
+  <div class="actions">
+    <a class="back" href="index.html">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Voltar ao guia
+    </a>
+    <button class="btn-print" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Salvar como PDF
+    </button>
+  </div>
+</div>
+
+<!-- CAPA -->
+<div class="cover-pg" id="top">
+  <span class="tex"></span>
+  <div class="in">
+    <img class="logo" src="assets/globo-logo.png" alt="Descomplica Visto">
+    <div class="eyebrow">Descomplica Visto · Assessoria Consular</div>
+    <h1>Guia Completo de<br><em class="gold">Assessoria Consular</em></h1>
+    <p class="sub">Do preenchimento do DS-160 ao treinamento da entrevista — o método da especialista, no seu ritmo e no seu idioma.</p>
+    <div class="by">
+      <span class="ln"></span>
+      <span>Por Isis Salles · Especialista Consular</span>
+      <span class="ln" style="transform:rotate(180deg)"></span>
+    </div>
+    <div class="metas">
+      <div><b>5</b> Módulos</div>
+      <div><b>6</b> Capítulos</div>
+      <div><b>2026</b> Edição</div>
+    </div>
+    <div class="divider"><span class="ln"></span><i></i><span class="ln r"></span></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- SUMÁRIO -->
+  <div class="toc">
+    <div class="t">Sumário</div>
+    <ol>
+      <li><span class="n">1</span><a href="#cap1">O que é o visto americano — e o que ele não garante</a></li>
+      <li><span class="n">2</span><a href="#cap2">Visto × Passaporte × Carimbo de entrada</a></li>
+      <li><span class="n">3</span><a href="#cap3">Os tipos de visto</a></li>
+      <li><span class="n">4</span><a href="#cap4">O passaporte: primeiro passo obrigatório</a></li>
+      <li><span class="n">5</span><a href="#cap5">O formulário DS-160</a></li>
+      <li><span class="n">6</span><a href="#cap6">Taxa consular (MRV) e agendamento</a></li>
+      <li><span class="n">7</span><a href="#cap7">A entrevista consular</a></li>
+      <li><span class="n">8</span><a href="#cap8">Documentos e checklist final</a></li>
+    </ol>
+  </div>
+
+  <!-- CAP 1 -->
+  <article class="chapter" id="cap1">
+    <div class="ch-eyebrow">
+      <span class="num">1</span>
+      <div class="meta"><span class="label">Capítulo 1</span></div>
+    </div>
+    <h2 class="ch-title">O que é o visto americano — e o que ele não garante</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">O visto é uma <strong>autorização para solicitar a entrada</strong> em território americano. Importante: o visto não garante a entrada — ele permite que você se apresente na fronteira e peça para entrar.</p>
+    <div class="ch-body">
+      <p>No caso dos Estados Unidos, o visto é concedido (ou não) por um <strong>cônsul</strong>, após a análise do formulário DS-160 e de uma entrevista presencial. A decisão é soberana e exclusiva do consulado.</p>
+      <p>Todo o processo gira em torno de um único objetivo: <strong>demonstrar boa-fé e vínculos fortes com o Brasil</strong> — trabalho, família, imóvel, estudos — que garantam o seu retorno após a viagem.</p>
+      <div class="call warn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <div><b>Atenção:</b> ter o visto <strong>não garante</strong> a entrada nos EUA. A decisão final é sempre do oficial de imigração no aeroporto, que pode negar a entrada mesmo com visto válido.</div>
+      </div>
+      <div class="call tip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>Visto é <b>processo</b>, não é sorte. Cada etapa bem feita aumenta as suas chances — e cada detalhe descuidado pode custar a aprovação.</div>
+      </div>
+    </div>
+    <hr class="ch-sep">
+  </article>
+
+  <!-- CAP 2 -->
+  <article class="chapter" id="cap2">
+    <div class="ch-eyebrow">
+      <span class="num">2</span>
+      <div class="meta"><span class="label">Capítulo 2</span></div>
+    </div>
+    <h2 class="ch-title">Visto × Passaporte × Carimbo de entrada</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">Três documentos distintos que costumam ser confundidos. Entender a diferença evita erros logo no início do processo.</p>
+    <div class="ch-body">
+      <div class="steps">
+        <div class="step"><span class="sn">A</span><div><h4>Passaporte</h4><p>Documento do <strong>seu país</strong> que comprova sua identidade e nacionalidade no exterior. Emitido pela Polícia Federal — é a base de tudo.</p></div></div>
+        <div class="step"><span class="sn">B</span><div><h4>Visto</h4><p>Autorização do <strong>governo dos EUA</strong>, registrada no passaporte, que permite viajar para os EUA e solicitar a entrada.</p></div></div>
+        <div class="step"><span class="sn">C</span><div><h4>Carimbo / I-94</h4><p>Registro feito <strong>na entrada</strong> no aeroporto que define até quando você pode permanecer nos EUA. Esse prazo é o que realmente importa.</p></div></div>
+      </div>
+      <div class="call tip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>O visto pode valer <b>10 anos</b>, mas isso <em>não</em> é o tempo que você pode ficar nos EUA. O prazo de cada visita é definido pelo I-94 na entrada — geralmente até 6 meses para turismo.</div>
+      </div>
+    </div>
+    <hr class="ch-sep">
+  </article>
+
+  <!-- CAP 3 -->
+  <article class="chapter" id="cap3">
+    <div class="ch-eyebrow">
+      <span class="num">3</span>
+      <div class="meta"><span class="label">Capítulo 3</span></div>
+    </div>
+    <h2 class="ch-title">Os tipos de visto</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">Existem diversas categorias de visto, conforme o objetivo da viagem. Escolher a categoria errada compromete toda a solicitação.</p>
+    <div class="ch-body">
+      <div class="vcards">
+        <div class="vc hl"><span class="code">B1/B2</span><div><h4>Turismo e Negócios</h4><p>Passeio, visita a familiares, tratamento médico, reuniões e eventos. <strong>Foco deste guia.</strong> É o tipo mais comum para brasileiros.</p></div></div>
+        <div class="vc"><span class="code">F1</span><div><h4>Estudante</h4><p>Cursos e graduação em instituições americanas autorizadas, com o formulário I-20 da escola.</p></div></div>
+        <div class="vc"><span class="code">J1</span><div><h4>Intercâmbio</h4><p>Programas culturais, au pair, trainee e pesquisa acadêmica.</p></div></div>
+        <div class="vc"><span class="code">H/L/O</span><div><h4>Trabalho</h4><p>Trabalho temporário, transferência ou habilidade extraordinária. Exige patrocínio de empregador americano.</p></div></div>
+      </div>
+      <div class="call tip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>Na dúvida sobre a categoria? Se for passeio, visita ou negócios pontuais, o <b>B1/B2</b> é o caminho certo. Para estudo ou trabalho, consulte a especialista — a estratégia muda.</div>
+      </div>
+    </div>
+    <hr class="ch-sep">
+  </article>
+
+  <!-- CAP 4 -->
+  <article class="chapter" id="cap4">
+    <div class="ch-eyebrow">
+      <span class="num">4</span>
+      <div class="meta"><span class="label">Capítulo 4</span></div>
+    </div>
+    <h2 class="ch-title">O passaporte: o primeiro passo obrigatório</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">Sem passaporte válido, não há processo. Ele é exigido já no preenchimento do DS-160 — providencie <strong>antes de tudo</strong>.</p>
+    <div class="ch-body">
+      <p>O passaporte deve estar <strong>válido</strong> e, idealmente, com pelo menos <strong>6 meses de validade</strong> além da data prevista de retorno. Verifique também se há páginas em branco para o visto.</p>
+      <div class="steps">
+        <div class="step"><span class="sn">1</span><div><h4>Acesse o site da Polícia Federal</h4><p>Emissão e renovação são feitas online, com agendamento presencial.</p></div></div>
+        <div class="step"><span class="sn">2</span><div><h4>Pague a GRU (taxa)</h4><p>Gerada no sistema da PF durante o agendamento.</p></div></div>
+        <div class="step"><span class="sn">3</span><div><h4>Compareça com os documentos</h4><p>RG, CPF, comprovante de pagamento e foto no padrão exigido.</p></div></div>
+      </div>
+      <div class="call warn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <div><b>Evite este erro:</b> não inicie o DS-160 com passaporte vencido ou próximo de vencer. Os dados devem ser idênticos ao documento que você levará à entrevista.</div>
+      </div>
+    </div>
+    <hr class="ch-sep">
+  </article>
+
+  <!-- CAP 5 -->
+  <article class="chapter" id="cap5">
+    <div class="ch-eyebrow">
+      <span class="num">5</span>
+      <div class="meta"><span class="label">Capítulo 5</span></div>
+    </div>
+    <h2 class="ch-title">O formulário DS-160</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">O DS-160 é o formulário oficial de solicitação do visto americano — um questionário online detalhado e a base de toda a sua solicitação.</p>
+    <div class="ch-body">
+      <p>Reserve <strong>de uma hora a uma hora e meia</strong> em momento tranquilo. A regra mais importante: preencha tudo com atenção porque <strong>após enviar, o formulário não pode ser editado</strong>.</p>
+      <h3>Regras de ouro do preenchimento</h3>
+      <div class="steps">
+        <div class="step"><span class="sn">1</span><div><h4>Idêntico ao passaporte</h4><p>Nomes, sobrenomes e datas exatamente iguais aos do passaporte.</p></div></div>
+        <div class="step"><span class="sn">2</span><div><h4>Guarde o Application ID</h4><p>Código gerado ao iniciar — necessário para recuperar o formulário se a sessão expirar. Anote imediatamente.</p></div></div>
+        <div class="step"><span class="sn">3</span><div><h4>Informe estadia curta</h4><p>Declare período de até 30 dias. Estadias longas exigem maior comprovação financeira.</p></div></div>
+        <div class="step"><span class="sn">4</span><div><h4>Liste todos os países visitados</h4><p>Registre todas as viagens dos últimos 5 anos — isso fortalece seu perfil de viajante.</p></div></div>
+        <div class="step"><span class="sn">5</span><div><h4>Informe redes sociais</h4><p>O formulário exige os handles das suas redes dos últimos 5 anos (Instagram, Facebook, X etc.).</p></div></div>
+      </div>
+      <div class="call warn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <div><b>Sem edição depois de enviado:</b> revise cada campo antes de finalizar. Um erro obriga a refazer o formulário inteiro com um novo número de protocolo.</div>
+      </div>
+    </div>
+    <hr class="ch-sep">
+  </article>
+
+  <!-- CAP 6 -->
+  <article class="chapter" id="cap6">
+    <div class="ch-eyebrow">
+      <span class="num">6</span>
+      <div class="meta"><span class="label">Capítulo 6</span></div>
+    </div>
+    <h2 class="ch-title">Taxa consular (MRV) e agendamento</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">Com o formulário finalizado, você paga a taxa consular e agenda a entrevista — tudo pelo site oficial da CASV.</p>
+    <div class="ch-body">
+      <p>A taxa do visto B1/B2 é de <strong>US$ 185 por pessoa</strong> e <strong>não é reembolsável nem transferível</strong>. Há três formas de pagar:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Forma</th><th>Particularidade importante</th></tr></thead>
+          <tbody>
+            <tr><td><b>Cartão</b></td><td>Há cobrança de IOF, mas o calendário de datas abre na hora do pagamento.</td></tr>
+            <tr><td><b>PIX</b></td><td>Pago por QR Code (válido ~1h). Calendário libera rapidamente após confirmação.</td></tr>
+            <tr><td><b>Boleto</b></td><td>O calendário só abre <b>24h após</b> o pagamento. Evite se tiver pressa.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="call tip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>O posto consular escolhido no agendamento precisa ser <b>o mesmo</b> informado no DS-160. Postos diferentes invalidam o agendamento.</div>
+      </div>
+      <h3>Entrega do passaporte após aprovação</h3>
+      <p>Aprovado, você pode retirar o passaporte em um centro CASV (gratuito) ou optar pela entrega em casa pelos Correios (paga — somente cartão).</p>
+    </div>
+    <hr class="ch-sep">
+  </article>
+
+  <!-- CAP 7 -->
+  <article class="chapter" id="cap7">
+    <div class="ch-eyebrow">
+      <span class="num">7</span>
+      <div class="meta"><span class="label">Capítulo 7</span></div>
+    </div>
+    <h2 class="ch-title">A entrevista consular</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">A entrevista é o momento decisivo. Com preparação adequada, ela se torna uma oportunidade de fortalecer a sua solicitação.</p>
+    <div class="ch-body">
+      <p>O cônsul quer responder uma pergunta central: <strong>você tem motivos fortes para voltar ao Brasil?</strong> Tudo gira em torno dos seus vínculos — trabalho, família, imóvel e compromissos no país.</p>
+      <h3>Perguntas mais comuns e como responder</h3>
+      <div class="qa">
+        <button class="q"><span class="qt">"Qual é o motivo da sua viagem?"</span><span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button>
+        <div class="a"><p>Responda de forma simples e específica, com propósito e tempo definidos.</p><div class="ex">"Vou a turismo, conhecer Nova York e os parques na Flórida, por cerca de 15 dias."</div></div>
+      </div>
+      <div class="qa">
+        <button class="q"><span class="qt">"O que você faz no Brasil?"</span><span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button>
+        <div class="a"><p>Fale do seu trabalho com firmeza — vínculo profissional é um forte motivo de retorno.</p><div class="ex">"Trabalho como enfermeira há 6 anos em um hospital em Natal."</div></div>
+      </div>
+      <div class="qa">
+        <button class="q"><span class="qt">"O que te faz voltar ao Brasil?"</span><span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span></button>
+        <div class="a"><p>Cite âncoras concretas: emprego, família, imóvel, negócio.</p><div class="ex">"Meu emprego, meus filhos e minha casa estão todos aqui."</div></div>
+      </div>
+      <div class="cols2">
+        <div class="col-card yes"><h4>✓ No dia, faça</h4><ul>
+          <li>Chegue com antecedência</li>
+          <li>Vista-se de forma social e discreta</li>
+          <li>Responda curto, verdadeiro e com calma</li>
+          <li>Leve os documentos impressos</li>
+        </ul></div>
+        <div class="col-card no"><h4>✗ No dia, evite</h4><ul>
+          <li>Levar celular (não entra no consulado)</li>
+          <li>Respostas decoradas ou longas</li>
+          <li>Contradizer o que está no DS-160</li>
+          <li>Demonstrar insegurança ou pressa</li>
+        </ul></div>
+      </div>
+    </div>
+    <hr class="ch-sep">
+  </article>
+
+  <!-- CAP 8 -->
+  <article class="chapter" id="cap8">
+    <div class="ch-eyebrow">
+      <span class="num">8</span>
+      <div class="meta"><span class="label">Capítulo 8</span></div>
+    </div>
+    <h2 class="ch-title">Documentos e checklist final</h2>
+    <div class="rule"><span class="ln"></span><i></i></div>
+    <p class="ch-lead">Organização é metade do caminho. Mantenha seus documentos legíveis, organizados e separados com antecedência.</p>
+    <div class="ch-body">
+      <div class="ckl">
+        <div class="ck-lbl">Documentos obrigatórios</div>
+        <div class="ck-item">Passaporte válido (6+ meses além da data da viagem)</div>
+        <div class="ck-item">Página de confirmação do DS-160 impressa</div>
+        <div class="ck-item">Confirmação do agendamento da entrevista</div>
+        <div class="ck-item">Comprovante de pagamento da taxa consular (MRV)</div>
+        <div class="ck-lbl">Comprovações de vínculo (leve, se tiver)</div>
+        <div class="ck-item">Comprovante de renda — holerite, extrato ou declaração de IR</div>
+        <div class="ck-item">Comprovante de vínculo empregatício ou contrato de trabalho</div>
+        <div class="ck-item">Documentos de imóvel, veículo, negócio ou estudos</div>
+        <div class="ck-item">Foto 5×5 impressa (obrigatória em Recife e Porto Alegre)</div>
+        <div class="ck-item">Passaporte anterior (se tiver visto antigo ou passaporte renovado)</div>
+        <div class="ck-item">Certidão de casamento e/ou nascimento dos filhos (se aplicável)</div>
+      </div>
+      <div class="call tip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>Organize tudo em <b>pastas ou envelopes identificados</b> antes do dia. Você pode não precisar de todos os documentos de apoio — mas é melhor tê-los à mão do que faltar.</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- RODAPÉ -->
+  <div class="pg-footer">
+    <img src="assets/globo-logo.png" alt="Descomplica Visto">
+    <div class="tag">Seu visto. Sem complicação.</div>
+    <div class="cr">© 2026 Descomplica Visto · Assessoria Consular Internacional<br>Conteúdo educativo — não constitui garantia de aprovação. A decisão é exclusiva do consulado.</div>
+  </div>
+</div>
+
+<!-- FAB imprimir -->
+<button class="fab" onclick="window.print()">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Salvar como PDF
+</button>
+
+<script>
+// Acordeão das perguntas
+document.querySelectorAll('.qa .q').forEach(q=>{
+  q.onclick=()=>{
+    const it=q.closest('.qa'), a=it.querySelector('.a');
+    const open=it.classList.contains('open');
+    document.querySelectorAll('.qa.open').forEach(o=>{o.classList.remove('open');o.querySelector('.a').style.maxHeight=null;});
+    if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  };
+});
+// Abrir todos no print
+window.addEventListener('beforeprint',()=>{
+  document.querySelectorAll('.qa').forEach(it=>{
+    it.classList.add('open');
+    const a=it.querySelector('.a');
+    if(a) a.style.maxHeight='none';
+  });
+});
+window.addEventListener('afterprint',()=>{
+  document.querySelectorAll('.qa:not(.keep-open)').forEach(it=>{
+    it.classList.remove('open');
+    const a=it.querySelector('.a');
+    if(a) a.style.maxHeight=null;
+  });
+});
+</script>
+</body>
+</html>
