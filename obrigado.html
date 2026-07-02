@@ -114,6 +114,10 @@ h1 .g{font-style:italic;background:var(--gold-grad);-webkit-background-clip:text
 </style>
 </head>
 <body>
+<script>
+/* libera acesso ao guia após compra */
+try { localStorage.setItem('dv_guia_acesso', '1'); } catch(e) {}
+</script>
 <main class="wrap">
   <div class="seal">
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12.5l5 5L20 6.5"/></svg>
@@ -132,7 +136,15 @@ h1 .g{font-style:italic;background:var(--gold-grad);-webkit-background-clip:text
 
   <div class="divider rise" style="animation-delay:.28s"><span class="ln"></span><i></i><span class="ln r"></span></div>
 
-  <section class="upsell rise" style="animation-delay:.34s">
+  <!-- ===== ACESSAR GUIA ===== -->
+  <a class="btn rise" href="guia/index.html?acesso=1" style="animation-delay:.3s;background:var(--gold-grad-flat);color:#2a1c04;box-shadow:0 14px 32px rgba(214,162,62,.36);margin-top:28px;width:100%;max-width:400px;font-size:1.08rem;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    Acessar meu Guia agora
+  </a>
+
+  <div class="divider rise" style="animation-delay:.36s"><span class="ln"></span><i></i><span class="ln r"></span></div>
+
+  <section class="upsell rise" style="animation-delay:.42s">
     <span class="tag">★ Quer ir além?</span>
     <h2>Prefere ter a especialista <span class="g">ao seu lado</span> em cada etapa?</h2>
     <p>O ebook te dá todo o caminho. Mas se você quer acompanhamento individual — com revisão da sua documentação, preparação personalizada para a entrevista e suporte do início ao fim — a assessoria completa com a Isis é pra você.</p>
