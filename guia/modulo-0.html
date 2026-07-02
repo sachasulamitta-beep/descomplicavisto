@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<script src="access.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guia Completo de Assessoria Consular — Módulo 0 | Descomplica Visto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,6 +194,37 @@ a{color:inherit;text-decoration:none}
   .topbar .tt .a{font-size:.86rem}
   .topbar .dl span{display:none}
 }
+/* ===== QUIZ ===== */
+.quiz{background:linear-gradient(160deg,rgba(12,35,80,.5),rgba(6,17,42,.6));border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin:20px 0;}
+.q-progress{height:4px;background:rgba(157,176,214,.12);border-radius:20px;margin-bottom:12px;overflow:hidden;}
+.q-bar{height:100%;background:var(--gold-grad-flat);border-radius:20px;transition:width .4s ease;}
+.q-counter{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:18px;}
+.q-slides{position:relative;}
+.q-slide{display:none;}
+.q-slide.active{display:block;}
+.q-txt{font-size:1.05rem;color:var(--ink);margin-bottom:18px;line-height:1.55;}
+.q-txt strong{color:var(--gold-100);}
+.q-opts{display:flex;flex-direction:column;gap:10px;}
+.q-opt{background:rgba(9,26,61,.4);border:1px solid var(--line-soft);border-radius:11px;padding:13px 18px;color:var(--muted);font-family:"Hanken Grotesk",sans-serif;font-size:.95rem;text-align:left;cursor:pointer;transition:.18s;}
+.q-opt:hover{border-color:var(--gold-500);color:var(--ink);background:rgba(214,162,62,.07);}
+.q-opt.chosen{border-color:var(--gold-500);background:rgba(214,162,62,.1);color:var(--gold-100);}
+/* resultado */
+.q-result-inner{margin-bottom:20px;}
+.q-res-badge{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
+.q-res-icon{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:1.6rem;box-shadow:0 8px 20px rgba(0,0,0,.3);}
+.q-res-icon.green{background:rgba(31,158,87,.2);border:1px solid rgba(31,158,87,.4);}
+.q-res-icon.yellow{background:rgba(214,162,62,.15);border:1px solid var(--line);}
+.q-res-icon.red{background:rgba(207,106,94,.15);border:1px solid rgba(207,106,94,.4);}
+.q-res-title{font-family:"Playfair Display",serif;font-weight:800;font-size:1.3rem;line-height:1.15;}
+.q-res-title.green{color:#7fe0a6;}
+.q-res-title.yellow{color:var(--gold-100);}
+.q-res-title.red{color:#ec9a8e;}
+.q-res-desc{color:var(--muted);font-size:.93rem;line-height:1.65;margin-bottom:14px;}
+.q-res-tips{display:flex;flex-direction:column;gap:8px;}
+.q-res-tip{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:#c8d6f0;padding:10px 14px;background:rgba(9,26,61,.3);border:1px solid var(--line-soft);border-radius:9px;}
+.q-res-tip::before{content:"→";color:var(--gold-300);flex:none;font-weight:700;}
+.q-restart{margin-top:18px;background:none;border:1px solid var(--line-soft);border-radius:10px;padding:10px 20px;color:var(--muted);font-family:"Hanken Grotesk",sans-serif;font-size:.86rem;cursor:pointer;transition:.18s;}
+.q-restart:hover{border-color:var(--gold-500);color:var(--gold-100);}
 </style>
 </head>
 <body>
@@ -219,6 +251,7 @@ a{color:inherit;text-decoration:none}
     <div class="mod active" data-mod="0">
       <div class="mod-head"><span class="n">0</span><span class="t">Antes de Começar<small>Fundamentos e preparação</small></span></div>
       <ul class="sublist">
+        <li><a href="#s-elegibilidade">Teste de elegibilidade</a></li>
         <li><a href="#s-bem-vindo">Bem-vindo(a) ao guia</a></li>
         <li><a href="#s-o-que-e">O que é o visto americano</a></li>
         <li><a href="#s-diferencas">Visto × Passaporte × Carimbo</a></li>
@@ -262,6 +295,93 @@ a{color:inherit;text-decoration:none}
             <div><b>~12 min</b> de leitura</div>
             <div><b>1 de 5</b> módulos</div>
           </div>
+        </div>
+      </section>
+
+      <!-- TESTE DE ELEGIBILIDADE -->
+      <section class="sec" id="s-elegibilidade">
+        <div class="sec-no">Antes de começar</div>
+        <h2>Teste de Elegibilidade</h2>
+        <div class="rule"><span class="ln"></span><i></i></div>
+        <p class="lead">Responda 6 perguntas rápidas para entender o seu perfil e o que fortalecer antes da entrevista consular.</p>
+
+        <div class="quiz" id="quiz">
+          <div class="q-progress"><div class="q-bar" id="qBar" style="width:0%"></div></div>
+          <div class="q-counter" id="qCounter">Pergunta 1 de 6</div>
+
+          <div class="q-slides" id="qSlides">
+
+            <!-- P1 -->
+            <div class="q-slide active" data-q="0">
+              <div class="q-txt">Você tem <strong>emprego formal, negócio próprio ou renda comprovada</strong> no Brasil atualmente?</div>
+              <div class="q-opts">
+                <button class="q-opt" data-score="2" data-next="1">✓ Sim, com comprovante</button>
+                <button class="q-opt" data-score="1" data-next="1">Sim, mas informal / sem comprovante fácil</button>
+                <button class="q-opt" data-score="0" data-next="1">Não no momento</button>
+              </div>
+            </div>
+
+            <!-- P2 -->
+            <div class="q-slide" data-q="1">
+              <div class="q-txt">Você possui <strong>imóvel, veículo ou outro bem</strong> registrado no seu nome no Brasil?</div>
+              <div class="q-opts">
+                <button class="q-opt" data-score="2" data-next="2">✓ Sim</button>
+                <button class="q-opt" data-score="0" data-next="2">Não</button>
+              </div>
+            </div>
+
+            <!-- P3 -->
+            <div class="q-slide" data-q="2">
+              <div class="q-txt">Você tem <strong>família próxima (cônjuge, filhos, pais)</strong> morando no Brasil?</div>
+              <div class="q-opts">
+                <button class="q-opt" data-score="2" data-next="3">✓ Sim</button>
+                <button class="q-opt" data-score="1" data-next="3">Sim, mas vivo sozinho(a)</button>
+                <button class="q-opt" data-score="0" data-next="3">Não tenho vínculos familiares aqui</button>
+              </div>
+            </div>
+
+            <!-- P4 -->
+            <div class="q-slide" data-q="3">
+              <div class="q-txt">Você já teve algum <strong>visto americano negado</strong> anteriormente?</div>
+              <div class="q-opts">
+                <button class="q-opt" data-score="2" data-next="4">Nunca solicitei</button>
+                <button class="q-opt" data-score="1" data-next="4">Já solicitei e fui aprovado(a)</button>
+                <button class="q-opt" data-score="0" data-next="4">Sim, já fui negado(a)</button>
+              </div>
+            </div>
+
+            <!-- P5 -->
+            <div class="q-slide" data-q="4">
+              <div class="q-txt">Qual é o <strong>principal objetivo</strong> da sua viagem?</div>
+              <div class="q-opts">
+                <button class="q-opt" data-score="2" data-next="5">Turismo / visita a familiares ou amigos</button>
+                <button class="q-opt" data-score="1" data-next="5">Negócios pontuais / evento</button>
+                <button class="q-opt" data-score="0" data-next="5">Tratamento médico / outro</button>
+              </div>
+            </div>
+
+            <!-- P6 -->
+            <div class="q-slide" data-q="5">
+              <div class="q-txt">Você consegue comprovar <strong>renda ou saldo bancário</strong> suficiente para custear a viagem?</div>
+              <div class="q-opts">
+                <button class="q-opt" data-score="2" data-next="result">✓ Sim, com extratos / holerites</button>
+                <button class="q-opt" data-score="1" data-next="result">Parcialmente</button>
+                <button class="q-opt" data-score="0" data-next="result">Não tenho comprovação</button>
+              </div>
+            </div>
+
+            <!-- RESULTADO -->
+            <div class="q-slide" data-q="result" id="qResult">
+              <div class="q-result-inner" id="qResultInner"></div>
+              <button class="q-restart" id="qRestart">Refazer o teste</button>
+            </div>
+
+          </div><!-- /q-slides -->
+        </div><!-- /quiz -->
+
+        <div class="box tip" style="margin-top:28px">
+          <div class="bh"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Este teste é orientativo</div>
+          <p>O resultado não determina se você será aprovado(a) — isso é decisão exclusiva do consulado. Ele serve para você identificar <span class="gold-em">pontos de atenção</span> e fortalecer o seu perfil antes da entrevista.</p>
         </div>
       </section>
 
@@ -469,6 +589,84 @@ function setDone(on){
 }
 setDone(localStorage.getItem(DK)==='1');
 doneBtn.onclick=()=>{const on=localStorage.getItem(DK)!=='1';localStorage.setItem(DK,on?'1':'0');setDone(on);if(on)window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});};
+</script>
+
+<script>
+(function(){
+  var slides=document.querySelectorAll('.q-slide:not(#qResult)');
+  var resultSlide=document.getElementById('qResult');
+  var resultInner=document.getElementById('qResultInner');
+  var bar=document.getElementById('qBar');
+  var counter=document.getElementById('qCounter');
+  var total=slides.length;
+  var score=0;
+
+  function showSlide(idx){
+    document.querySelectorAll('.q-slide').forEach(function(s){s.classList.remove('active');});
+    if(idx==='result'){
+      resultSlide.classList.add('active');
+      bar.style.width='100%';
+      counter.textContent='Resultado';
+      showResult();
+    } else {
+      slides[idx].classList.add('active');
+      bar.style.width=((idx/total)*100)+'%';
+      counter.textContent='Pergunta '+(idx+1)+' de '+total;
+    }
+  }
+
+  slides.forEach(function(slide){
+    slide.querySelectorAll('.q-opt').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        slide.querySelectorAll('.q-opt').forEach(function(b){b.classList.remove('chosen');});
+        btn.classList.add('chosen');
+        score+=parseInt(btn.dataset.score||'0');
+        var next=btn.dataset.next;
+        setTimeout(function(){
+          if(next==='result') showSlide('result');
+          else showSlide(parseInt(next));
+        },280);
+      });
+    });
+  });
+
+  function showResult(){
+    var max=total*2;
+    var pct=score/max;
+    var cls,icon,title,desc,tips;
+    if(pct>=0.7){
+      cls='green';icon='&#10003;';
+      title='Perfil forte — bom sinal!';
+      desc='Você tem vínculos consistentes com o Brasil e pode demonstrar boa-fé de forma clara. Siga o guia e prepare bem a entrevista.';
+      tips=['Continue lendo os módulos na ordem','Reúna os documentos de vínculo com antecedência','Treine respostas objetivas para a entrevista'];
+    } else if(pct>=0.4){
+      cls='yellow';icon='&#9888;';
+      title='Perfil médio — atenção a alguns pontos';
+      desc='Seu perfil tem pontos fortes, mas há áreas para reforçar antes da entrevista. Preparação faz toda a diferença.';
+      tips=['Fortaleça a comprovação de renda antes de agendar','Reúna documentos que comprovem seus vínculos no Brasil','Considere a assessoria para orientação personalizada'];
+    } else {
+      cls='red';icon='&#8226;';
+      title='Perfil com desafios — preparação é essencial';
+      desc='Existem fatores que podem dificultar a aprovação. Com a estratégia certa é possível melhorar seu perfil.';
+      tips=['Não agende antes de fortalecer seus vínculos','Considere a assessoria completa para uma estratégia personalizada','Leia com atenção o módulo sobre entrevista consular'];
+    }
+    resultInner.innerHTML=
+      '<div class="q-res-badge">'+
+        '<div class="q-res-icon '+cls+'">'+icon+'</div>'+
+        '<div class="q-res-title '+cls+'">'+title+'</div>'+
+      '</div>'+
+      '<p class="q-res-desc">'+desc+'</p>'+
+      '<div class="q-res-tips">'+tips.map(function(t){return '<div class="q-res-tip">'+t+'</div>';}).join('')+'</div>';
+  }
+
+  document.getElementById('qRestart').addEventListener('click',function(){
+    score=0;
+    document.querySelectorAll('.q-opt').forEach(function(b){b.classList.remove('chosen');});
+    showSlide(0);
+  });
+
+  showSlide(0);
+})();
 </script>
 </body>
 </html>
