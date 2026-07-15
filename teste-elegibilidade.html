@@ -113,9 +113,31 @@ a{color:inherit;text-decoration:none;}
 .retry-link{display:block;text-align:center;margin-top:16px;color:var(--muted-dim);font-size:.82rem;cursor:pointer;transition:color .18s;}
 .retry-link:hover{color:var(--gold-300);}
 
+/* ─── Lead capture ─── */
+#lead{display:none;width:100%;max-width:600px;}
+.lead-card{width:100%;background:linear-gradient(170deg,rgba(12,35,80,.6),rgba(6,17,42,.7));border:1px solid var(--line-soft);border-radius:20px;padding:36px 36px 30px;position:relative;overflow:hidden;}
+.lead-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold-grad-flat);}
+.lead-eyebrow{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-300);margin-bottom:12px;}
+.lead-title{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(1.2rem,3vw,1.5rem);line-height:1.15;margin-bottom:8px;text-wrap:balance;}
+.lead-sub{color:var(--muted);font-size:.9rem;line-height:1.5;margin-bottom:6px;}
+.lead-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 6px;}
+.lead-fields .full{grid-column:1/-1;}
+.lf label{display:block;font-family:"Cinzel",serif;letter-spacing:.13em;font-size:.58rem;text-transform:uppercase;color:var(--gold-300);margin-bottom:6px;}
+.lf input{width:100%;background:rgba(4,10,24,.55);border:1.5px solid var(--line-soft);border-radius:11px;color:var(--ink);font:inherit;font-size:.95rem;padding:12px 15px;outline:none;transition:border-color .18s;}
+.lf input:focus{border-color:var(--gold-500);}
+.lf input::placeholder{color:var(--muted-dim);}
+.lead-err{display:none;color:#f0b8b0;font-size:.84rem;margin:10px 0 0;}
+.lead-err.show{display:block;}
+.lead-privacy{color:var(--muted-dim);font-size:.76rem;text-align:center;margin-top:16px;line-height:1.45;}
+.btn-lead{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:18px;padding:16px 24px;border-radius:13px;font-family:"Hanken Grotesk",sans-serif;font-size:.98rem;font-weight:700;cursor:pointer;border:none;background:var(--gold-grad-flat);color:#2a1c04;transition:.2s;}
+.btn-lead:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-1px);}
+.btn-lead:disabled{opacity:.6;cursor:default;transform:none;}
+
 @media(max-width:640px){
   .qcard{padding:24px 20px 20px;}
   .result-card{padding:28px 22px;}
+  .lead-card{padding:26px 22px;}
+  .lead-fields{grid-template-columns:1fr;}
   .nav-row{flex-direction:column-reverse;}
   .content{padding:28px 16px 60px;}
 }
@@ -141,7 +163,7 @@ a{color:inherit;text-decoration:none;}
   <div class="intro">
     <span class="eyebrow">Análise gratuita de perfil</span>
     <h1>Seu perfil está pronto para solicitar o <span class="gold">visto americano?</span></h1>
-    <p>Responda 12 perguntas rápidas e receba uma orientação imediata sobre o seu perfil. Sem cadastro, sem compromisso.</p>
+    <p>Responda 12 perguntas rápidas e receba uma orientação imediata sobre o seu perfil. Leva menos de 2 minutos, sem compromisso.</p>
   </div>
 
   <div class="progress-wrap" id="progressWrap">
@@ -168,6 +190,7 @@ a{color:inherit;text-decoration:none;}
     </div>
   </div>
 
+  <div id="lead"></div>
   <div id="result"></div>
 </div>
 
@@ -205,9 +228,14 @@ const QUESTIONS=[
 ];
 
 const MAX_SCORE=23;
+/* Mesmo Apps Script da Triagem Digital: grava na planilha + envia e-mail p/ contato@descomplicavisto.com */
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbz0Uevj2JIECzDj-BONEnL3ytZtEKOVa-YmxArZ5pCF-tw1okO_k8CojCDvNOiUjLlC/exec";
+const WA="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20an%C3%A1lise%20de%20perfil%20gratuita%20para%20saber%20se%20meu%20perfil%20est%C3%A1%20adequado%20para%20solicitar%20o%20visto%20americano.";
+const GUIA="https://pay.kiwify.com.br/dVyPXzk";
 let cur=0;
 let answers=new Array(QUESTIONS.length).fill(null);
 let scores=new Array(QUESTIONS.length).fill(0);
+let leadEnviado=false;
 
 function render(){
   const q=QUESTIONS[cur];
@@ -248,7 +276,7 @@ window.select=function(i,s){
 };
 window.next=function(){
   if(answers[cur]===null)return;
-  if(cur===QUESTIONS.length-1){showResult();return;}
+  if(cur===QUESTIONS.length-1){showLead();return;}
   cur++;render();
 };
 window.prev=function(){
@@ -257,23 +285,140 @@ window.prev=function(){
 };
 window.restart=function(){
   cur=0;answers=new Array(QUESTIONS.length).fill(null);scores=new Array(QUESTIONS.length).fill(0);
+  leadEnviado=false;
   document.getElementById('result').style.display='none';
+  document.getElementById('lead').style.display='none';
   document.getElementById('quiz').style.display='block';
   document.getElementById('progressWrap').style.display='block';
   document.querySelector('.intro').style.display='block';
   render();
 };
 
+function computeResult(){
+  const total=scores.reduce((a,b)=>a+b,0);
+  const pct=total/MAX_SCORE;
+  let level,badge,title;
+  if(pct>=0.74){level='green';badge='Perfil favorável';title='Seu perfil tem boas bases para solicitar o visto';}
+  else if(pct>=0.48){level='amber';badge='Pontos de atenção';title='Seu perfil tem bases, mas com pontos a reforçar';}
+  else{level='red';badge='Análise recomendada';title='Recomendamos uma análise gratuita antes de prosseguir';}
+  return {total,pct,level,badge,title};
+}
+
+function showLead(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('progressWrap').style.display='none';
+  document.querySelector('.intro').style.display='none';
+  const el=document.getElementById('lead');
+  el.style.display='block';
+  el.innerHTML=`
+    <div class="lead-card">
+      <div class="lead-eyebrow">Último passo</div>
+      <div class="lead-title">Seu resultado está pronto</div>
+      <p class="lead-sub">Preencha seus dados para ver a análise do seu perfil. A especialista da Descomplica Visto recebe o seu resultado e pode entrar em contato para uma orientação gratuita.</p>
+      <div class="lead-fields">
+        <div class="lf full"><label for="lead-nome">Nome completo *</label><input type="text" id="lead-nome" autocomplete="name" placeholder="Seu nome"></div>
+        <div class="lf"><label for="lead-whats">WhatsApp *</label><input type="tel" id="lead-whats" autocomplete="tel" placeholder="(DDD) 90000-0000"></div>
+        <div class="lf"><label for="lead-email">E-mail</label><input type="email" id="lead-email" autocomplete="email" placeholder="email@exemplo.com"></div>
+        <div class="lf full"><label for="lead-cidade">Cidade / Estado</label><input type="text" id="lead-cidade" placeholder="Ex.: Natal / RN"></div>
+      </div>
+      <p class="lead-err" id="leadErr"></p>
+      <button class="btn-lead" id="btnLead" onclick="submitLead()">
+        Ver meu resultado
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <p class="lead-privacy">Seus dados são usados apenas para a análise do seu perfil pela Descomplica Visto. Não compartilhamos com terceiros.</p>
+    </div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+window.submitLead=function(){
+  const nome=document.getElementById('lead-nome').value.trim();
+  const whats=document.getElementById('lead-whats').value.trim();
+  const email=document.getElementById('lead-email').value.trim();
+  const cidade=document.getElementById('lead-cidade').value.trim();
+  const err=document.getElementById('leadErr');
+  if(!nome || whats.replace(/\D/g,'').length<10){
+    err.textContent='Por favor, preencha seu nome e um WhatsApp válido com DDD.';
+    err.classList.add('show');
+    return;
+  }
+  err.classList.remove('show');
+  const btn=document.getElementById('btnLead');
+  btn.disabled=true;btn.innerHTML='Enviando…';
+  enviarLead({nome,whats,email,cidade}, showResult);
+};
+
+/* envio p/ o mesmo Apps Script da triagem (planilha + e-mail) — método à prova de CORS */
+function enviarLead(c, done){
+  if(leadEnviado){done();return;}
+  const r=computeResult();
+  let resumo=`Pontuação: ${r.total}/${MAX_SCORE} (${Math.round(r.pct*100)}%) — ${r.badge}\n\nRespostas do teste:\n`;
+  QUESTIONS.forEach((q,i)=>{
+    const a=answers[i]!=null?q.opts[answers[i]].t:'(sem resposta)';
+    resumo+=`${i+1}. ${q.q}\n   → ${a}\n`;
+  });
+  /* mesmo conjunto de colunas da planilha da Triagem, para o script gravar a linha
+     e disparar o e-mail exatamente como no formulário interno */
+  const payload={
+    "Data":new Date().toLocaleString('pt-BR'),
+    "Nome":c.nome,
+    "Telefone":c.whats,
+    "E-mail":c.email,
+    "Cidade/Estado":c.cidade,
+    "Profissão":"",
+    "Estado civil":"",
+    "País de destino":"Estados Unidos",
+    "Tipo de visto":"",
+    "Primeira ou renovação":"",
+    "Objetivo":"Teste de elegibilidade (site)",
+    "Data prevista":"",
+    "Permanência":"",
+    "Qtd pessoas":"",
+    "Passaporte válido":"",
+    "Validade passaporte":"",
+    "Visto aprovado antes":"",
+    "Visto negado":"",
+    "Negado quando/país":"",
+    "Já viajou exterior":"",
+    "Países visitados":"",
+    "Iniciou formulário":"",
+    "Pagou taxa":"",
+    "Fez agendamento":"",
+    "Entrevista marcada":"",
+    "Só preparação":"",
+    "Assessoria completa":"",
+    "Dúvidas":resumo,
+    "Pontos de atenção":r.title,
+    "Serviço indicado":"",
+    "Valor":"",
+    "Forma de pagamento":"",
+    "Status":"Teste de elegibilidade — "+r.badge+" ("+r.total+"/"+MAX_SCORE+")"
+  };
+  const alvo="envio_"+Date.now();
+  const iframe=document.createElement('iframe');
+  iframe.name=alvo;iframe.style.display='none';
+  const hf=document.createElement('form');
+  hf.method='POST';hf.action=SCRIPT_URL;hf.target=alvo;
+  const inp=document.createElement('input');
+  inp.type='hidden';inp.name='payload';inp.value=JSON.stringify(payload);
+  hf.appendChild(inp);
+  document.body.appendChild(iframe);document.body.appendChild(hf);
+  let feito=false;
+  const fin=()=>{ if(feito)return;feito=true;leadEnviado=true;setTimeout(()=>{hf.remove();iframe.remove();},1500);done(); };
+  iframe.addEventListener('load',fin);
+  setTimeout(fin,4000);
+  hf.submit();
+}
+
 function showResult(){
   const total=scores.reduce((a,b)=>a+b,0);
   const pct=total/MAX_SCORE;
+  document.getElementById('lead').style.display='none';
   document.getElementById('quiz').style.display='none';
   document.getElementById('progressWrap').style.display='none';
   document.getElementById('progressFill').style.width='100%';
 
   let level,badge,title,msg,ctas;
-  const WA="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20an%C3%A1lise%20de%20perfil%20gratuita%20para%20saber%20se%20meu%20perfil%20est%C3%A1%20adequado%20para%20solicitar%20o%20visto%20americano.";
-  const GUIA="https://pay.kiwify.com.br/dVyPXzk";
 
   if(pct>=0.74){
     level='green';
