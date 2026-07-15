@@ -226,6 +226,12 @@ a{color:inherit;text-decoration:none}
 .q-restart{margin-top:18px;background:none;border:1px solid var(--line-soft);border-radius:10px;padding:10px 20px;color:var(--muted);font-family:"Hanken Grotesk",sans-serif;font-size:.86rem;cursor:pointer;transition:.18s;}
 .q-restart:hover{border-color:var(--gold-500);color:var(--gold-100);}
 </style>
+<style id="back-btn-css">
+.topbar .back{display:inline-flex;align-items:center;gap:7px;font-family:"Cinzel",serif;letter-spacing:.12em;font-size:.6rem;text-transform:uppercase;color:var(--gold-100);border:1px solid var(--line);border-radius:30px;padding:8px 14px;text-decoration:none;transition:.18s;flex:none;}
+.topbar .back:hover{background:rgba(214,162,62,.09);border-color:var(--gold-500);}
+.topbar .back svg{flex:none;}
+@media(max-width:560px){.topbar .back span{display:none;}.topbar .back{padding:8px 10px;}}
+</style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
@@ -234,6 +240,7 @@ a{color:inherit;text-decoration:none}
 <header class="topbar">
   <div class="l">
     <button class="burger" id="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <a class="back" href="index.html" aria-label="Voltar ao início do guia"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span>Início</span></a>
     <img class="logo" src="assets/globo-logo.png" alt="Descomplica Visto">
     <div class="tt"><div class="a">Guia de Assessoria Consular</div><div class="b">Descomplica Visto</div></div>
   </div>
@@ -285,7 +292,8 @@ a{color:inherit;text-decoration:none}
       <section class="cover" id="top">
         <span class="tex"></span>
         <div class="in">
-          <img class="logo" src="assets/globo-logo.png" alt="Descomplica Visto">
+          <a class="back" href="index.html" aria-label="Voltar ao início do guia"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span>Início</span></a>
+    <img class="logo" src="assets/globo-logo.png" alt="Descomplica Visto">
           <div class="eyebrow">Descomplica Visto · Assessoria Consular</div>
           <div class="modtag">Módulo 0</div>
           <h1>Antes de <em class="gold">Começar</em></h1>
