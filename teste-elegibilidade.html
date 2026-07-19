@@ -229,7 +229,7 @@ const QUESTIONS=[
 
 const MAX_SCORE=23;
 /* Mesmo Apps Script da Triagem Digital: grava na planilha + envia e-mail p/ contato@descomplicavisto.com */
-const SCRIPT_URL="https://script.google.com/macros/s/AKfycbz0Uevj2JIECzDj-BONEnL3ytZtEKOVa-YmxArZ5pCF-tw1okO_k8CojCDvNOiUjLlC/exec";
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbyqvy2BVsUm7Qb27ROACVc0ZRKNTVDFr2Z4t-P4Hsyqky9xIAphg0rnvZP4Nk1LS1P4/exec";
 const WA="https://wa.me/5584999185400?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20an%C3%A1lise%20de%20perfil%20gratuita%20para%20saber%20se%20meu%20perfil%20est%C3%A1%20adequado%20para%20solicitar%20o%20visto%20americano.";
 const GUIA="https://pay.kiwify.com.br/dVyPXzk";
 let cur=0;
@@ -394,12 +394,13 @@ function enviarLead(c, done){
     "Forma de pagamento":"",
     "Status":"Teste de elegibilidade — "+r.badge+" ("+r.total+"/"+MAX_SCORE+")"
   };
-  /* Envia o JSON como corpo bruto (text/plain evita o preflight de CORS) para
-     que o Apps Script leia e.postData.contents — exatamente o caminho que o
-     teste ?teste=1 já comprovou funcionar. */
+  /* Payload na QUERY STRING (sobrevive ao redirect 302 do Apps Script) + no
+     corpo como reserva. Assim o script grava lendo e.parameter.payload (query)
+     OU e.postData.contents (corpo). Funciona anônimo, sem CORS, sem redeploy. */
+  const dados=encodeURIComponent(JSON.stringify(payload));
   let feito=false;
   const fin=()=>{ if(feito)return;feito=true;leadEnviado=true;done(); };
-  fetch(SCRIPT_URL,{
+  fetch(SCRIPT_URL+"?payload="+dados,{
     method:'POST',
     mode:'no-cors',
     headers:{'Content-Type':'text/plain;charset=utf-8'},
