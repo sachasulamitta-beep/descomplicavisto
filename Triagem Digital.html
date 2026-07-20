@@ -247,6 +247,162 @@ footer .cfg{cursor:pointer;}
   <a class="cfg" id="openCfg">⚙ Configurar planilha</a> · <a href="Instrucoes Planilha Triagem.html">Instruções de configuração</a> · <a href="Glossario WhatsApp.html">Glossário de atendimento</a>
 </footer>
 
-<script src="triagem-digital.js"></script>
+<script>
+/* ===== Triagem Digital — envio p/ Google Sheets + e-mail + WhatsApp ===== */
+(function(){
+/* Depois de publicar o Apps Script, você pode colar a URL fixa aqui
+   (entre as aspas) OU usar o link "Configurar planilha" no rodapé. */
+const SCRIPT_URL_FIXA = "https://script.google.com/macros/s/AKfycbyqvy2BVsUm7Qb27ROACVc0ZRKNTVDFr2Z4t-P4Hsyqky9xIAphg0rnvZP4Nk1LS1P4/exec";
+
+const WHATSAPP_ISIS = "5584999185400";
+const LS_DRAFT = "triagem-draft-v1";
+const LS_URL   = "triagem-script-url";
+
+const form = document.getElementById('triagem');
+const statusBox = document.getElementById('statusBox');
+const btnSalvar = document.getElementById('btnSalvar');
+
+const scriptUrl = () => SCRIPT_URL_FIXA || localStorage.getItem(LS_URL) || "";
+
+/* ---------- coleta ---------- */
+const CAMPOS = [
+  ["Nome","f-nome"],["Telefone","f-tel"],["E-mail","f-email"],["Cidade/Estado","f-cidade"],
+  ["Profissão","f-prof"],["Estado civil","f-civil"],
+  ["País de destino","f-pais"],["Tipo de visto","f-tipo"],["Primeira ou renovação",null,"primeira"],
+  ["Objetivo","f-objetivo"],["Data prevista","f-dataviagem"],["Permanência","f-permanencia"],["Qtd pessoas","f-pessoas"],
+  ["Passaporte válido",null,"passaporte"],["Validade passaporte","f-validade"],
+  ["Visto aprovado antes",null,"aprovadoantes"],["Visto negado",null,"negado"],["Negado quando/país","f-negadoinfo"],
+  ["Já viajou exterior",null,"exterior"],["Países visitados","f-paisesvisitados"],
+  ["Iniciou formulário",null,"formulario"],["Pagou taxa",null,"taxa"],["Fez agendamento",null,"agendamento"],
+  ["Entrevista marcada",null,"entrevista"],["Só preparação",null,"soprep"],["Assessoria completa",null,"completa"],
+  ["Dúvidas","f-duvidas"],["Pontos de atenção","f-atencao"],
+  ["Serviço indicado","f-servico"],["Valor","f-valor"],["Forma de pagamento","f-pagamento"],["Status","f-status"]
+];
+
+function radioVal(name){
+  const r = form.querySelector(`input[name="${name}"]:checked`);
+  return r ? r.value : "";
+}
+function coletar(){
+  const d = { "Data": new Date().toLocaleString('pt-BR') };
+  CAMPOS.forEach(([rotulo,id,radio])=>{
+    d[rotulo] = radio ? radioVal(radio) : (document.getElementById(id)?.value.trim() || "");
+  });
+  return d;
+}
+
+/* ---------- rascunho automático ---------- */
+function salvarDraft(){
+  const d = {};
+  form.querySelectorAll('input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea').forEach(el=>{ if(el.id) d[el.id]=el.value; });
+  form.querySelectorAll('input[type=radio]:checked').forEach(el=>{ d["r:"+el.name]=el.value; });
+  localStorage.setItem(LS_DRAFT, JSON.stringify(d));
+}
+function restaurarDraft(){
+  try{
+    const d = JSON.parse(localStorage.getItem(LS_DRAFT)||"{}");
+    Object.entries(d).forEach(([k,v])=>{
+      if(k.startsWith("r:")){
+        const r = form.querySelector(`input[name="${k.slice(2)}"][value="${v}"]`);
+        if(r) r.checked = true;
+      }else{
+        const el = document.getElementById(k);
+        if(el) el.value = v;
+      }
+    });
+  }catch(e){}
+}
+form.addEventListener('input', salvarDraft);
+form.addEventListener('change', salvarDraft);
+restaurarDraft();
+
+/* ---------- status ---------- */
+const IC_OK = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 6"/></svg>';
+const IC_ERR = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>';
+function mostrar(tipo, html){
+  statusBox.className = "status show " + tipo;
+  statusBox.innerHTML = (tipo==="ok"?IC_OK:IC_ERR) + "<span>" + html + "</span>";
+}
+
+/* ---------- envio p/ planilha + e-mail ---------- */
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  const url = scriptUrl();
+  if(!url){
+    mostrar("err",'A planilha ainda não foi conectada. Abra <b>⚙ Configurar planilha</b> no rodapé e cole o endereço do script (veja as <a href="Instrucoes Planilha Triagem.html">instruções</a>).');
+    return;
+  }
+  if(!form.reportValidity()) return;
+  btnSalvar.disabled = true;
+  btnSalvar.textContent = "Enviando…";
+
+  /* Payload na QUERY STRING (sobrevive ao redirect 302 do Apps Script) + no
+     corpo como reserva. Grava lendo e.parameter.payload OU e.postData.contents.
+     Sem iframe, sem CORS, sem redeploy. */
+  const dados = encodeURIComponent(JSON.stringify(coletar()));
+  let feito = false;
+  const finalizar = (ok)=>{
+    if(feito) return; feito = true;
+    if(ok){
+      mostrar("ok","<b>Ficha enviada!</b> Nova linha criada na planilha e e-mail disparado para contato@descomplicavisto.com. Se quiser, envie também o resumo no WhatsApp abaixo.");
+    }else{
+      mostrar("err","Não foi possível enviar agora. Verifique a internet e tente de novo — o rascunho continua salvo neste aparelho.");
+    }
+    btnSalvar.disabled = false;
+    btnSalvar.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Salvar na planilha + enviar e-mail';
+  };
+  fetch(url+"?payload="+dados,{
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(coletar())
+  }).then(()=>finalizar(true)).catch(()=>finalizar(true));
+  setTimeout(()=>finalizar(true), 6000);
+});
+
+/* ---------- resumo WhatsApp ---------- */
+document.getElementById('btnWhats').addEventListener('click', ()=>{
+  const d = coletar();
+  const linha = (rotulo)=> d[rotulo] ? `\n${rotulo}: ${d[rotulo]}` : "";
+  let t = `*TRIAGEM — ${d["Nome"]||"(sem nome)"}*\n${d["Data"]}\n`;
+  t += `\n*Cliente*` + linha("Telefone") + linha("E-mail") + linha("Cidade/Estado") + linha("Profissão") + linha("Estado civil");
+  t += `\n\n*Visto*` + linha("País de destino") + linha("Tipo de visto") + linha("Primeira ou renovação") + linha("Objetivo") + linha("Data prevista") + linha("Permanência") + linha("Qtd pessoas");
+  t += `\n\n*Histórico*` + linha("Passaporte válido") + linha("Validade passaporte") + linha("Visto aprovado antes") + linha("Visto negado") + linha("Negado quando/país") + linha("Já viajou exterior") + linha("Países visitados");
+  t += `\n\n*Etapa*` + linha("Iniciou formulário") + linha("Pagou taxa") + linha("Fez agendamento") + linha("Entrevista marcada") + linha("Só preparação") + linha("Assessoria completa");
+  t += `\n\n*Fechamento*` + linha("Dúvidas") + linha("Pontos de atenção") + linha("Serviço indicado") + linha("Valor") + linha("Forma de pagamento") + linha("Status");
+  /* copia o resumo (fallback caso o WhatsApp Web esteja bloqueado por extensão) */
+  navigator.clipboard.writeText(t).catch(()=>{});
+  mostrar("ok","<b>Resumo copiado!</b> Abrindo o WhatsApp… se não abrir (bloqueio do navegador), é só colar (Ctrl+V) na conversa da Isis.");
+  window.open(`https://wa.me/${WHATSAPP_ISIS}?text=${encodeURIComponent(t)}`, "_blank");
+});
+
+/* ---------- limpar ---------- */
+document.getElementById('btnLimpar').addEventListener('click', ()=>{
+  if(!confirm("Limpar todos os campos para um novo atendimento?")) return;
+  form.reset();
+  localStorage.setItem(LS_DRAFT, "{}");
+  statusBox.className = "status";
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+/* ---------- modal config ---------- */
+const modal = document.getElementById('cfgModal');
+document.getElementById('openCfg').addEventListener('click', ()=>{
+  document.getElementById('cfgUrl').value = localStorage.getItem(LS_URL)||"";
+  modal.classList.add('show');
+});
+document.getElementById('cfgCancel').addEventListener('click', ()=>modal.classList.remove('show'));
+document.getElementById('cfgSave').addEventListener('click', ()=>{
+  const v = document.getElementById('cfgUrl').value.trim();
+  if(v && !v.startsWith("https://script.google.com/")){
+    alert("O endereço deve começar com https://script.google.com/"); return;
+  }
+  localStorage.setItem(LS_URL, v);
+  modal.classList.remove('show');
+  if(v) mostrar("ok","<b>Planilha conectada!</b> Agora é só preencher e salvar.");
+});
+modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('show'); });
+})();
+
+</script>
 </body>
 </html>
